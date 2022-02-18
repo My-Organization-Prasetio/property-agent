@@ -16,8 +16,8 @@
     <li class="nav-item nav-item-submenu">
         <a href="#" class="nav-link"><i class="icon-grid icon"></i> <span>Master</span></a>
         <ul class="nav nav-group-sub" data-submenu-title="Themes">
-            <li class="nav-item"><a href="<?= base_url()?>admin/area" class="nav-link">Area</a></li>
             <li class="nav-item"><a href="<?= base_url() ?>admin/city" class="nav-link">Kota</a></li>
+            <li class="nav-item"><a href="<?= base_url()?>admin/area" class="nav-link">Wilayah</a></li>
             <li class="nav-item"><a href="<?= base_url() ?>admin/asset-category" class="nav-link">Jenis Aset</a></li>
             <li class="nav-item"><a href="<?= base_url() ?>admin/owner" class="nav-link">Pemilik Aset</a></li>
             <!-- <li class="nav-item"><a href="<?= base_url() ?>admin/employee" class="nav-link">Karyawan</a></li> -->

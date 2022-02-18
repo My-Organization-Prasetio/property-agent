@@ -1,19 +1,19 @@
-<div class="card card-body">
-    <div class="media align-items-center align-items-md-start flex-column flex-md-row">
-        <a href="#" class="text-teal mr-md-3 align-self-md-center mb-3 mb-md-0">
-            <i class="icon-question7 text-success-400 border-success-400 border-3 rounded-round p-2"></i>
-        </a>
-
-        <div class="media-body text-center text-md-left">
-            <h6 class="media-title font-weight-semibold">Kelola daftar area.</h6>
-            Anda dapat mengelola daftar area dengan kota-kota yang sesuai didalamnya.
-        </div>
-
-        <button type="button" class="btn bg-teal" data-toggle="modal" data-target="#modal_form_add"><i class="icon-add-to-list"></i> &nbsp; Tambahkan Area Baru</button>
-    </div>
-</div>
 <div class="row">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="col-lg-10 col-md-10 col-sm-12 col-xs-12">
+        <div class="card card-body">
+            <div class="media align-items-center align-items-md-start flex-column flex-md-row">
+                <a href="#" class="text-teal mr-md-3 align-self-md-center mb-3 mb-md-0">
+                    <i class="icon-question7 text-success-400 border-success-400 border-3 rounded-round p-2"></i>
+                </a>
+
+                <div class="media-body text-center text-md-left">
+                    <h6 class="media-title font-weight-semibold">Jenis Properti</h6>
+                    Anda dapat menambahkan jenis properti baru.
+                </div>
+
+                <button type="button" class="btn bg-teal" data-toggle="modal" data-target="#modal_form_add"><i class="icon-add-to-list"></i> &nbsp; Tambahkan Jenis Properti</button>
+            </div>
+        </div>
         <!-- Invoice archive -->
         <div class="card">
             <div class="card-header bg-transparent header-elements-inline">
@@ -27,17 +27,16 @@
                 </div>
             </div>
 
-            <table class="table table-lg table-owner">
+            <table class="table table-lg table-area">
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Kumpulan Area</th>
-                        <th>Nama Area</th>
+                        <th>Area</th>
                         <th>Deskripsi Area</th>
-                        <th class="text-center">Aksi</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="table-body-owner">
+                <tbody id="table-body-area">
 
                 </tbody>
             </table>
@@ -51,68 +50,23 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-teal">FORM TAMBAH PEMILIK PROPERTI</h5>
+                <h5 class="modal-title text-teal">FORM TAMBAH JENIS ASET</h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <form action="#" class="form-horizontal" name="add-owner" id="add-owner">
+            <form action="#" class="form-horizontal" name="add-area" id="add-area">
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Nama</label>
+                        <label class="col-form-label col-sm-3">Jenis Aset</label>
                         <div class="col-sm-9">
-                            <input type="text" placeholder="" class="form-control" name="owner_name">
+                            <input type="text" placeholder="" class="form-control" name="area_name">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Jenis Owner</label>
+                        <label class="col-form-label col-sm-3">Deskripsi</label>
                         <div class="col-sm-9">
-                            <select class="form-control" name="owner_type">
-                                <option value="Perorangan">Perorangan</option>
-                                <option value="Perusahaan">Perusahaan</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Foto</label>
-                        <div class="col-sm-9">
-                            <input type="file" class="form-control h-auto" name="owner_photo">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">ID Owner / No. Perusahaan</label>
-                        <div class="col-sm-9">
-                            <input type="text" placeholder="11011101111" class="form-control" name="id_number">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Jenis ID</label>
-                        <div class="col-sm-9">
-                            <input type="text" placeholder="" class="form-control" name="id_number_type">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Nomor Telp.</label>
-                        <div class="col-sm-9">
-                            <input type="text" placeholder="085711112121" class="form-control" name="owner_phone_number">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Email</label>
-                        <div class="col-sm-9">
-                            <input type="email" placeholder="hana2022@mail.com" class="form-control" name="owner_email">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Alamat</label>
-                        <div class="col-sm-9">
-                            <textarea rows="3" cols="3" class="form-control" placeholder="Tidak wajib diisi" name="address"></textarea>
+                            <textarea rows="3" cols="3" class="form-control" placeholder="Tidak wajib diisi" name="area_description"></textarea>
                         </div>
                     </div>
 
@@ -137,58 +91,20 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <form action="#" class="form-horizontal" name="edit-owner" id="edit-owner">
+            <form action="#" class="form-horizontal" name="edit-area" id="edit-area">
                 <div class="modal-body">
-                <div class="form-group row">
+                    <div class="form-group row">
                         <label class="col-form-label col-sm-3">Nama</label>
                         <div class="col-sm-9">
-                            <input type="text" placeholder="" class="form-control" name="owner_id" id="owner_id">
-                            <input type="text" placeholder="" class="form-control" name="owner_name" id="owner_name">
+                            <input type="hidden" placeholder="" class="form-control" name="area_id" id="area_id">
+                            <input type="text" placeholder="" class="form-control" name="area_name" id="area_name">
                         </div>
                     </div>
 
                     <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Jenis Owner</label>
+                        <label class="col-form-label col-sm-3">Deskripsi</label>
                         <div class="col-sm-9">
-                            <select class="form-control" name="owner_type" id="owner_type">
-                                <option value="Perorangan">Perorangan</option>
-                                <option value="Perusahaan">Perusahaan</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">ID Owner / No. Perusahaan</label>
-                        <div class="col-sm-9">
-                            <input type="text" placeholder="11011101111" class="form-control" name="id_number" id="id_number">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Jenis ID</label>
-                        <div class="col-sm-9">
-                            <input type="text" placeholder="" class="form-control" name="id_number_type" id="id_number_type">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Nomor Telp.</label>
-                        <div class="col-sm-9">
-                            <input type="text" placeholder="085711112121" class="form-control" name="owner_phone_number" id="owner_phone_number">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Email</label>
-                        <div class="col-sm-9">
-                            <input type="email" placeholder="hana2022@mail.com" class="form-control" name="owner_email" id="owner_email">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Alamat</label>
-                        <div class="col-sm-9">
-                            <textarea rows="3" cols="3" class="form-control" placeholder="Tidak wajib diisi" name="address" id="address"></textarea>
+                            <textarea rows="3" cols="3" class="form-control" placeholder="Tidak wajib diisi" name="area_description" id="area_description"></textarea>
                         </div>
                     </div>
 

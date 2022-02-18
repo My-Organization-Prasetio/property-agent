@@ -17,7 +17,7 @@ class Area extends Admin_main_controller {
 			'content' 		=> 'admin/pages/master/area_v',
 			'breadcrumb' 	=> '<a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>						
                                 <span class="breadcrumb-item active">Area</span>',
-			// 'js_file'		=> 'area',
+			'js_file'		=> 'area',
 		);
         $this->template->render_view('admin/template_admin_v', $data);
 	}
