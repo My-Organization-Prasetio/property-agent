@@ -14,10 +14,10 @@ class City extends Admin_main_controller {
 	public function index()
 	{
         $data = array(
-			'content' 		=> 'admin/pages/master/owner_v',
+			'content' 		=> 'admin/pages/master/city_v',
 			'breadcrumb' 	=> '<a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>						
-                                <span class="breadcrumb-item active">Pemilik Properti</span>',
-			'js_file'		=> 'owner',
+                                <span class="breadcrumb-item active">Kota</span>',
+			'js_file'		=> 'city',
 		);
         $this->template->render_view('admin/template_admin_v', $data);
 	}
