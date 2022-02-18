@@ -52,6 +52,8 @@ export function initAction() {
 				$("#modal_form_edit").modal("show");
 				$("#area_id").val(data.area_id);
 				$("#area_name").val(data.area_name);
+				$("#city_id").val(data.city_id);
+				console.log(data.city_id);
 				$("#area_description").val(data.area_description);
 			},
 			error: function (request, error) {

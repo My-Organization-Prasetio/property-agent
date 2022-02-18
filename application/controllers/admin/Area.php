@@ -13,7 +13,7 @@ class Area extends Admin_main_controller {
 
 	public function index()
 	{
-		$cities = $this->mainmodel->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC');
+		$cities = $this->mainmodel->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $data = array(
 			'content' 		=> 'admin/pages/master/area_v',
 			'breadcrumb' 	=> '<a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>						

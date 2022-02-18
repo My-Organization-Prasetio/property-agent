@@ -7,17 +7,17 @@
                 </a>
 
                 <div class="media-body text-center text-md-left">
-                    <h6 class="media-title font-weight-semibold">Jenis Properti</h6>
-                    Anda dapat menambahkan jenis properti baru.
+                    <h6 class="media-title font-weight-semibold">Wilayah</h6>
+                    Anda dapat menambahkan wilayah baru.
                 </div>
 
-                <button type="button" class="btn bg-teal" data-toggle="modal" data-target="#modal_form_add"><i class="icon-add-to-list"></i> &nbsp; Tambahkan Jenis Properti</button>
+                <button type="button" class="btn bg-teal" data-toggle="modal" data-target="#modal_form_add"><i class="icon-add-to-list"></i> &nbsp; Tambahkan Wilayah</button>
             </div>
         </div>
         <!-- Invoice archive -->
         <div class="card">
             <div class="card-header bg-transparent header-elements-inline">
-                <h6 class="card-title text-teal font-weight-bold">Pemilik Properti</h6>
+                <h6 class="card-title text-teal font-weight-bold">Wilayah</h6>
                 <div class="header-elements">
                     <div class="list-icons">
                         <a class="list-icons-item" data-action="collapse"></a>
@@ -31,7 +31,8 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Area</th>
+                        <th>Wilayah</th>
+                        <th>Kota</th>
                         <th>Deskripsi Area</th>
                         <th>Action</th>
                     </tr>
@@ -50,16 +51,30 @@
     <div class="modal-dialog modal-lg">
         <div class="modal-content">
             <div class="modal-header">
-                <h5 class="modal-title text-teal">FORM TAMBAH JENIS ASET</h5>
+                <h5 class="modal-title text-teal">FORM TAMBAH WILAYAH</h5>
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
             <form action="#" class="form-horizontal" name="add-area" id="add-area">
                 <div class="modal-body">
                     <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Jenis Aset</label>
+                        <label class="col-form-label col-sm-3">Wilayah</label>
                         <div class="col-sm-9">
                             <input type="text" placeholder="" class="form-control" name="area_name">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-3">Kota</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" name="city_id">
+                                <option value="">-- Pilih Kota --</option>
+                                <?php
+                                    foreach($data['cities'] as $row){
+                                        echo '<option value="'.$row['city_id'].'">'.$row['city_name'].'</option>';
+                                    }
+                                ?>
+                            </select>
                         </div>
                     </div>
 
@@ -98,6 +113,20 @@
                         <div class="col-sm-9">
                             <input type="hidden" placeholder="" class="form-control" name="area_id" id="area_id">
                             <input type="text" placeholder="" class="form-control" name="area_name" id="area_name">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-3">Kota</label>
+                        <div class="col-sm-9">
+                            <select class="form-control" name="city_id" id="city_id">
+                                <option value="">-- Pilih Kota --</option>
+                                <?php
+                                    foreach($data['cities'] as $row){
+                                        echo '<option value="'.$row['city_id'].'">'.$row['city_name'].'</option>';
+                                    }
+                                ?>
+                            </select>
                         </div>
                     </div>
 

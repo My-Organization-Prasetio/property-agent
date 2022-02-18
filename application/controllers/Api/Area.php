@@ -8,13 +8,14 @@ class Area extends Api_main_controller
     {
         parent::__construct();
         $this->load->model('main_model', 'm_main');
+        $this->load->model('area_model', 'm_area');
         $this->load->library('lib_main');
         $this->check_login('admin');
     }
 
     public function index()
     {
-        $result = $this->m_main->viewWhereOrdering('mst_area', array('deleted' => 0), 'area_name', 'ASC');
+        $result = $this->m_area->all();
         $dataArray = array(
             'status'    => 'Success',
             'message'   => 'Result Data Jenis Aset',
@@ -28,7 +29,7 @@ class Area extends Api_main_controller
 
     public function get_by_id()
     {
-        $result = $this->m_main->viewWhereOrdering('mst_area', array('deleted' => 0, 'area_id' => $this->input->get('id')), 'area_name', 'ASC');
+        $result = $this->m_area->getById($this->input->get('id'));
         $dataArray = array(
             'status'    => 'Success',
             'message'   => 'Result data jenis aset',
@@ -45,13 +46,15 @@ class Area extends Api_main_controller
         try {
             $inputData = array(
                 'area_name'   => $this->input->post('area_name'),
+                'city_id'   => $this->input->post('city_id'),
+                'area_description'   => $this->input->post('area_description'),
                 'created_by'    => $this->session->userdata(SHORT_APP_NAME . '_' . 'userid'),
                 'created_by'    => $this->session->userdata(SHORT_APP_NAME . '_' . 'userid')
             );
             $this->main_model->insert($inputData, 'mst_area');
             $dataArray = array(
                 'status'    => 'Success',
-                'message'   => 'Berhasil menambahkan jenis aset'
+                'message'   => 'Berhasil menambahkan area baru'
             );
             $this->output
                 ->set_status_header(200, 'Success')
@@ -63,7 +66,7 @@ class Area extends Api_main_controller
                 'message'   => $th
             );
             $this->output
-                ->set_status_header(500, 'Gagal menambahkan jenis aset')
+                ->set_status_header(500, 'Gagal menambahkan area baru')
                 ->set_content_type('application/json')
                 ->set_output(json_encode($dataArray));
         }
@@ -74,6 +77,7 @@ class Area extends Api_main_controller
         try {
             $updateData = array(
                 'area_name'   => $this->input->post('area_name'),
+                'city_id'   => $this->input->post('city_id'),
                 'area_description'   => $this->input->post('area_description'),
                 'updated_by'    => $this->session->userdata(SHORT_APP_NAME.'_'.'userid')
             );

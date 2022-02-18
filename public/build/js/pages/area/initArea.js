@@ -96,6 +96,11 @@ export function viewAllArea() {
                     </td>
                     <td>
                         <h6 class="mb-0">
+                            ${key.city_name}
+                        </h6>
+                    </td>
+                    <td>
+                        <h6 class="mb-0">
                             ${key.area_description}
                         </h6>
                     </td>
