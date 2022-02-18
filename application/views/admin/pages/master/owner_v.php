@@ -145,7 +145,7 @@
                 <div class="form-group row">
                         <label class="col-form-label col-sm-3">Nama</label>
                         <div class="col-sm-9">
-                            <input type="text" placeholder="" class="form-control" name="owner_id" id="owner_id">
+                            <input type="hidden" placeholder="" class="form-control" name="owner_id" id="owner_id">
                             <input type="text" placeholder="" class="form-control" name="owner_name" id="owner_name">
                         </div>
                     </div>

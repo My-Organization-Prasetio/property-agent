@@ -2,33 +2,6 @@ var _initTableOwner = function (className) {
 	// Initialize
 	$("." + className).DataTable({
 		autoWidth: false,
-		columnDefs: [
-			{
-				width: 30,
-				targets: 0,
-			},
-			{
-				visible: false,
-				targets: 1,
-			},
-			{
-				orderable: false,
-				width: 120,
-				targets: 7,
-			},
-			{
-				width: "15%",
-				targets: [4, 5],
-			},
-			{
-				width: "15%",
-				targets: 6,
-			},
-			{
-				width: "15%",
-				targets: 3,
-			},
-		],
 		order: [[0, "asc"]],
 		dom: '<"datatable-header"fl><"datatable-scroll-lg"t><"datatable-footer"ip>',
 		language: {
@@ -46,25 +19,6 @@ var _initTableOwner = function (className) {
 		displayLength: 25,
 		drawCallback: function (settings) {
 			var api = this.api();
-			var rows = api.rows({ page: "current" }).nodes();
-			var last = null;
-
-			api
-				.column(1, { page: "current" })
-				.data()
-				.each(function (group, i) {
-					if (last !== group) {
-						$(rows)
-							.eq(i)
-							.before(
-								'<tr class="table-active table-border-double"><td colspan="8" class="font-weight-semibold">' +
-									group +
-									"</td></tr>"
-							);
-
-						last = group;
-					}
-				});
 
 			// Initializw Select2
 			if (!$().select2) {
@@ -140,16 +94,28 @@ export function viewAllAssetCategory() {
                             ${key.asset_category_name}
                         </h6>
                     </td>
+					<td class="text-center">
+                        <div class="list-icons list-icons-extended">
+                            <div class="list-icons-item dropdown">
+                                <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-file-text2"></i></a>
+                                <div class="dropdown-menu dropdown-menu-right">
+                                    <a href="#" class="dropdown-item btn-edit" data-id="${
+																			key.asset_category_id
+																		}"><i class="icon-file-plus"></i> Perbarui</a>
+                                </div>
+                            </div>
+                        </div>
+                    </td>
                 </tr>`;
 			});
-			$("#table-body-owner").html(tbAssetCategory);
 			// return tbAssetCategory;
-			// if ($(".table-owner").length > 0) {
-			// 	$(".table-owner").dataTable().fnDestroy();
-			// 	if ($("#table-body-owner").length > 0) {
-			// 	}
-			// 	_initTableOwner("table-owner");
-			// }
+			if ($(".table-asset-category").length > 0) {
+				$(".table-asset-category").dataTable().fnDestroy();
+				if ($("#table-body-asset-category").length > 0) {
+					$("#table-body-asset-category").html(tbAssetCategory);
+				}
+				_initTableOwner("table-asset-category");
+			}
 		},
 		error: function (request, error) {
 			// console.log("Request: " + JSON.stringify(request));

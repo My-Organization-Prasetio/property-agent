@@ -50,7 +50,6 @@
 	<!-- Custom and Page -->
 	<script src="<?= base_url() ?>public/build/js/custom/app.js"></script>
 	<script src="<?= base_url() ?>public/build/js/pages/dashboard.js"></script>
-	<script src="<?= base_url() ?>public/build/js/pages/outlet-request-archive.js"></script>
 	<script src="<?= base_url() ?>public/build/js/global/variable.js"></script>
 	<script src="<?= base_url() ?>public/build/js/global/function.js"></script>
 	<script src="<?= base_url() ?>public/build/js/global/function_pnotify.js"></script>

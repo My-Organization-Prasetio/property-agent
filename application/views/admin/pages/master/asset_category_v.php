@@ -28,14 +28,15 @@
                 </div>
             </div>
 
-            <table class="table table-lg table-owner">
+            <table class="table table-lg table-asset-category">
                 <thead>
                     <tr>
                         <th>#</th>
                         <th>Jenis Aset</th>
+                        <th>Action</th>
                     </tr>
                 </thead>
-                <tbody id="table-body-owner">
+                <tbody id="table-body-asset-category">
 
                 </tbody>
             </table>
@@ -83,58 +84,13 @@
                 <button type="button" class="close" data-dismiss="modal">&times;</button>
             </div>
 
-            <form action="#" class="form-horizontal" name="edit-owner" id="edit-owner">
+            <form action="#" class="form-horizontal" name="edit-asset-category" id="edit-asset-category">
                 <div class="modal-body">
                 <div class="form-group row">
                         <label class="col-form-label col-sm-3">Nama</label>
                         <div class="col-sm-9">
-                            <input type="text" placeholder="" class="form-control" name="owner_id" id="owner_id">
-                            <input type="text" placeholder="" class="form-control" name="owner_name" id="owner_name">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Jenis Owner</label>
-                        <div class="col-sm-9">
-                            <select class="form-control" name="owner_type" id="owner_type">
-                                <option value="Perorangan">Perorangan</option>
-                                <option value="Perusahaan">Perusahaan</option>
-                            </select>
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">ID Owner / No. Perusahaan</label>
-                        <div class="col-sm-9">
-                            <input type="text" placeholder="11011101111" class="form-control" name="id_number" id="id_number">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Jenis ID</label>
-                        <div class="col-sm-9">
-                            <input type="text" placeholder="" class="form-control" name="id_number_type" id="id_number_type">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Nomor Telp.</label>
-                        <div class="col-sm-9">
-                            <input type="text" placeholder="085711112121" class="form-control" name="owner_phone_number" id="owner_phone_number">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Email</label>
-                        <div class="col-sm-9">
-                            <input type="email" placeholder="hana2022@mail.com" class="form-control" name="owner_email" id="owner_email">
-                        </div>
-                    </div>
-
-                    <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Alamat</label>
-                        <div class="col-sm-9">
-                            <textarea rows="3" cols="3" class="form-control" placeholder="Tidak wajib diisi" name="address" id="address"></textarea>
+                            <input type="hidden" placeholder="" class="form-control" name="asset_category_id" id="asset_category_id">
+                            <input type="text" placeholder="" class="form-control" name="asset_category_name" id="asset_category_name">
                         </div>
                     </div>
 

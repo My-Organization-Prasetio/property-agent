@@ -26,6 +26,20 @@ class Asset_category extends Api_main_controller
             ->set_output(json_encode($dataArray));
     }
 
+    public function get_by_id()
+    {
+        $result = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0, 'asset_category_id' => $this->input->get('id')), 'asset_category_name', 'ASC');
+        $dataArray = array(
+            'status'    => 'Success',
+            'message'   => 'Result data jenis aset',
+            'data'      => $result->result_array()
+        );
+        $this->output
+            ->set_status_header(200, 'Success')
+            ->set_content_type('application/json')
+            ->set_output(json_encode($dataArray));
+    }
+
     public function add()
     {
         try {
@@ -52,6 +66,36 @@ class Asset_category extends Api_main_controller
                 ->set_status_header(500, 'Gagal menambahkan jenis aset')
                 ->set_content_type('application/json')
                 ->set_output(json_encode($dataArray));
+        }
+    }
+
+    public function edit()
+    {
+        try {
+            $updateData = array(
+                'asset_category_name'   => $this->input->post('asset_category_name'),
+                'updated_by'    => $this->session->userdata(SHORT_APP_NAME.'_'.'userid')
+            );
+
+            //Update data user
+            $this->main_model->update(
+                array('asset_category_id'=>$this->input->post('asset_category_id')),
+                $updateData,
+                'mst_asset_category');
+
+            $responseArray = array(
+                'status'    => 'Success',
+                'message'   => 'Berhasil memperbarui data pemilik'
+            );
+            $this->output
+                ->set_status_header(200, 'Success')
+                ->set_content_type('application/json')
+                ->set_output(json_encode($responseArray));
+        } catch (\Throwable $th) {
+            $this->output
+                ->set_status_header(500, 'Gagal memperbarui data pemilik')
+                ->set_content_type('application/json')
+                ->set_output(json_encode($responseArray));
         }
     }
 }

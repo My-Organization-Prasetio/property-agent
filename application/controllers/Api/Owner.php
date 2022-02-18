@@ -105,7 +105,7 @@ class Owner extends Api_main_controller
                 'owner_phone_number'   => $this->input->post('owner_phone_number'),
                 'owner_email'   => $this->input->post('owner_email'),
                 'address'   => $this->input->post('address'),
-                'created_by'    => $this->session->userdata(SHORT_APP_NAME.'_'.'userid')
+                'updated_by'    => $this->session->userdata(SHORT_APP_NAME.'_'.'userid')
             );
 
             //Update data user
