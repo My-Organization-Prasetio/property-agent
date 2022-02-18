@@ -13,11 +13,15 @@ class Area extends Admin_main_controller {
 
 	public function index()
 	{
+		$cities = $this->mainmodel->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC');
         $data = array(
 			'content' 		=> 'admin/pages/master/area_v',
 			'breadcrumb' 	=> '<a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>						
                                 <span class="breadcrumb-item active">Area</span>',
 			'js_file'		=> 'area',
+			'data'			=> array(
+				'cities'	=> $cities
+			)
 		);
         $this->template->render_view('admin/template_admin_v', $data);
 	}
