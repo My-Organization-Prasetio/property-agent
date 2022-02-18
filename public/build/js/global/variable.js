@@ -1,0 +1,1 @@
+const rootApp = "http://localhost/property-agent/";
