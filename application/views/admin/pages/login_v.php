@@ -27,7 +27,7 @@
                             <div class="logo-cover" >
                                 <!-- <img src="<?= base_url() ?>public/images/logo/logo-login.png" alt=""> -->
                                 <br><br><br><br>
-                                <h1 class="font-weight-bold mt-2" style="color: #BAEAE7">PROPERTY AGENT APP</h1>
+                                <h1 class="font-weight-bold mt-2" style="color: #353535; font-size: 1.7rem; background-color: RGBA(255, 255, 255, 0.3); padding: 3px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">PROPERTY AGENT</h1>
                             </div>
                             <p class="text-center" style="font-size: 1,4rem; margin-top: 0px; letter-spacing: 3px; font-weight: 600; text-shadow: 2px 1px 1px #404355; color: white;">Jual Beli Properti, Sewa Menyewa Aset & Pengembangan  Aset</p>
                         </div>
@@ -36,23 +36,23 @@
                                 <div class="col-lg-10 col-md-12 mx-auto text-center">
                                 <img src="<?= base_url() ?>public/images/logo/logo-login.png" class="align-center" alt="">
                                     <div class="form-cover">
-                                        <h6>Login Here</h6>
+                                        <h6>Silahkan masuk untuk mengakses semua fitur.</h6>
                                         <form name="login" id="login" action="#">
                                             <div class="form-group">
-                                                <input placeholder="Enter Username" type="text" class="form-control" name="username">
+                                                <input placeholder="Masukan nama pengguna" type="text" class="form-control" name="username">
                                             </div>
                                             <div class="form-group">
-                                                <input Placeholder="Enter Password" type="password" class="form-control" name="password">
+                                                <input Placeholder="Masukan password" type="password" class="form-control" name="password">
                                             </div>
                                             <div class="row form-footer">
                                                 <div class="col-md-6 forget-paswd">
                                                     <div class="form-check">
                                                         <input type="checkbox" class="form-check-input" id="exampleCheck1">
-                                                        <label class="form-check-label" for="exampleCheck1">Remember Me</label>
+                                                        <label class="form-check-label" for="exampleCheck1">Ingatkan Saya</label>
                                                     </div>
                                                 </div>
                                                 <div class="col-md-6 button-div">
-                                                    <button type="submit" class="btn btn-primary">Login</button>
+                                                    <button type="submit" class="btn btn-primary">Masuk</button>
                                                 </div>
                                             </div>
                                         </form>
