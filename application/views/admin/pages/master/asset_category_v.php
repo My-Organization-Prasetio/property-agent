@@ -32,7 +32,7 @@
                 <thead>
                     <tr>
                         <th>#</th>
-                        <th>Jenis Aset</th>
+                        <th>Jenis Properti</th>
                         <th>Action</th>
                     </tr>
                 </thead>

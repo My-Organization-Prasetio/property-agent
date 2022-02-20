@@ -11,8 +11,8 @@
             </span>
         </a>
     </li>
-    <li class="nav-item"><a href="<?= base_url() ?>service" class="nav-link disabled"><i class="icon-wall icon"></i>Transaksi & Layanan <span class="badge bg-transparent align-self-center ml-auto">Segera Hadir</span></a></li> 
-    <li class="nav-item"><a href="<?= base_url() ?>asset-management" class="nav-link"><i class="icon-office"></i>Manajemen Aset</a></li>  
+    <li class="nav-item"><a href="<?= base_url() ?>admin/service" class="nav-link disabled"><i class="icon-wall icon"></i>Transaksi & Layanan <span class="badge bg-transparent align-self-center ml-auto">Segera Hadir</span></a></li> 
+    <li class="nav-item"><a href="<?= base_url() ?>admin/property" class="nav-link"><i class="icon-office"></i>Manajemen Properti</a></li>  
     <li class="nav-item"><a href="<?= base_url() ?>admin/report" class="nav-link disabled"><i class="icon-file-presentation2 icon"></i> Laporan <span class="badge bg-transparent align-self-center ml-auto">Segera Hadir</span></a></li>  
 
     <!-- Tambahan -->
@@ -24,8 +24,8 @@
         <ul class="nav nav-group-sub" data-submenu-title="Themes">
             <li class="nav-item"><a href="<?= base_url() ?>admin/city" class="nav-link">Kota</a></li>
             <li class="nav-item"><a href="<?= base_url()?>admin/area" class="nav-link">Wilayah</a></li>
-            <li class="nav-item"><a href="<?= base_url() ?>admin/asset-category" class="nav-link">Jenis Aset</a></li>
-            <li class="nav-item"><a href="<?= base_url() ?>admin/owner" class="nav-link">Pemilik Aset</a></li>
+            <li class="nav-item"><a href="<?= base_url() ?>admin/asset-category" class="nav-link">Jenis Properti</a></li>
+            <li class="nav-item"><a href="<?= base_url() ?>admin/owner" class="nav-link">Pemilik Properti</a></li>
             <!-- <li class="nav-item"><a href="<?= base_url() ?>admin/employee" class="nav-link">Karyawan</a></li> -->
             <li class="nav-item"><a href="<?= base_url() ?>master/material-category" class="nav-link disabled">Segera Hadir<span class="badge bg-transparent align-self-center ml-auto">Coming soon</span></a></li>
         </ul>
