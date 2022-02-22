@@ -27,7 +27,7 @@
                             <div class="logo-cover" >
                                 <!-- <img src="<?= base_url() ?>public/images/logo/logo-login.png" alt=""> -->
                                 <br><br><br><br>
-                                <h1 class="font-weight-bold mt-2" style="color: #353535; font-size: 1.7rem; background-color: RGBA(255, 255, 255, 0.3); padding: 3px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">PROPERTY AGENT</h1>
+                                <h1 class="font-weight-bold mt-2" style="color: #353535; font-size: 1.7rem; background-color: RGBA(255, 255, 255, 0.4); padding: 3px; font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;">PROPERTY AGENT</h1>
                             </div>
                             <p class="text-center" style="font-size: 1,4rem; margin-top: 0px; letter-spacing: 3px; font-weight: 600; text-shadow: 2px 1px 1px #404355; color: white;">Jual Beli Properti, Sewa Menyewa Aset & Pengembangan  Aset</p>
                         </div>

@@ -125,7 +125,7 @@ export function _uniform() {
 	};
 }
 
-export function viewAllOwner() {
+export function viewAllProperty() {
 	$.ajax({
 		url: rootApp + "api/owner",
 		type: "GET",

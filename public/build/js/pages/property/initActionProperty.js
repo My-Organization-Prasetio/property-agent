@@ -1,4 +1,4 @@
-import { viewAllOwner } from "./initProperty.js";
+import { viewAllProperty } from "./initProperty.js";
 
 export function initAction() {
 	/*******************************************************************************************
@@ -31,7 +31,7 @@ export function initAction() {
 				success: function (res) {
 					$("#modal_form_add").modal("hide");
 					pnotifySuccess(res.status, res.message);
-					viewAllOwner();
+					viewAllProperty();
 				},
 				error: function (request, error) {
 					pnotifyError("Error", JSON.stringify(request.statusText));
@@ -93,7 +93,7 @@ export function initAction() {
 	                success: function (res) {
 	                    $("#modal_form_edit").modal("hide");
 	                    pnotifySuccess(res.status, res.message);
-	                    viewAllOwner();
+	                    viewAllProperty();
 	                },
 	                error: function (request, error) {
 	                    pnotifyError('Error', JSON.stringify(request.statusText));
@@ -144,7 +144,7 @@ export function initAction() {
 				dataType: "json",
 				success: function (res) {
 					pnotifySuccess(res.status, res.message);
-					viewAllOwner();
+					viewAllProperty();
 				},
 				error: function (request, error) {
 					pnotifyError("Error", JSON.stringify(request.statusText));

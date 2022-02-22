@@ -142,7 +142,7 @@
 
             <form action="#" class="form-horizontal" name="edit-owner" id="edit-owner">
                 <div class="modal-body">
-                <div class="form-group row">
+                    <div class="form-group row">
                         <label class="col-form-label col-sm-3">Nama</label>
                         <div class="col-sm-9">
                             <input type="hidden" placeholder="" class="form-control" name="owner_id" id="owner_id">
