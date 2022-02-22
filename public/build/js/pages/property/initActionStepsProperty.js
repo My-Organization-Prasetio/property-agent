@@ -108,13 +108,13 @@ export function initActionStepsAdd() {
                 error.insertAfter(element);
             }
         },
-        // Specify validation rules
-        rules: {
-            property_title: "required",
-        },
-        // Specify validation error messages
-        messages: {
-            property_title: "Masukan pemilik",
-        },
+        // // Specify validation rules
+        // rules: {
+        //     property_title: "required",
+        // },
+        // // Specify validation error messages
+        // messages: {
+        //     property_title: "Masukan pemilik",
+        // },
     });
 };

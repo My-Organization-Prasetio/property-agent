@@ -20,8 +20,11 @@
                     <br><small class="text-warning">*Silahkan pilih tipe penjualan properti</small>
                     <select name="asset_category_id" data-placeholder="Pilih Tipe Properti" class="form-control">
                         <option value="">-- Pilih Tipe Properti --</option>
-                        <option value="1">Sewa</option>
-                        <option value="2">Jual</option>
+                        <?php
+                            foreach($data['asset_categories'] as $row){
+                                echo '<option value="'.$row['asset_category_id'].'">'.$row['asset_category_name'].'</option>';
+                            }
+                        ?>
                     </select>
                 </div>
             </div>
@@ -61,27 +64,28 @@
             <div class="col-md-8">
                 <div class="form-group">
                     <label>Alamat Properti:</label>
-                    <textarea rows="3" cols="3" class="form-control" placeholder="Tidak wajib diisi" name="address"></textarea>
+                    <textarea rows="3" cols="3" class="form-control" placeholder="Tidak wajib diisi"></textarea>
                 </div>
             </div>
             <div class="col-md-7 col-sm-12">
                 <div class="form-group">
                     <label>Kota:</label>
                     <br><small class="text-warning">*Silahkan pilih kota untuk menampilkan area</small>
-                    <select name="city_id" data-placeholder="Pilih Tipe Penjualan" class="form-control">
+                    <select name="city_id" data-placeholder="Pilih Tipe Penjualan" class="form-control cities-form-add">
                         <option value="">-- Pilih Tipe Penjualan --</option>
-                        <option value="1">Sewa</option>
-                        <option value="2">Jual</option>
+                        <?php
+                            foreach($data['cities'] as $row){
+                                echo '<option value="'.$row['city_id'].'">'.$row['city_name'].'</option>';
+                            }
+                        ?>
                     </select>
                 </div>
             </div>
             <div class="col-md-7">
                 <div class="form-group">
                     <label>Area Properti:</label>
-                    <select name="area_id" data-placeholder="Pilih Tipe Penjualan" class="form-control">
+                    <select name="area_id" data-placeholder="Pilih Tipe Penjualan" class="form-control area-form-add">
                         <option value="">-- Pilih Area Properti --</option>
-                        <option value="1">Sewa</option>
-                        <option value="2">Jual</option>
                     </select>
                 </div>
             </div>
@@ -216,7 +220,7 @@
             <div class="col-md-8">
                 <div class="form-group">
                     <label>Alamat Pemilik Properti:</label>
-                    <textarea rows="3" cols="3" class="form-control" placeholder="Tidak wajib diisi readonly" name="address" id="address"></textarea>
+                    <textarea rows="3" cols="3" class="form-control" placeholder="Tidak wajib diisi readonly" name="address"></textarea>
                 </div>
             </div>
         </div>

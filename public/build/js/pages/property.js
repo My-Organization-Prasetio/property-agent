@@ -7,3 +7,28 @@ document.addEventListener("DOMContentLoaded", function () {
 	initAction();
     initActionStepsAdd();
 });
+
+// Another Initialize Action
+document.addEventListener("DOMContentLoaded", function () {
+	$(".cities-form-add").change(function () {
+		$.ajax({
+			url: rootApp + "api/area/get-by-city",
+			type: "GET",
+			data: {
+				id: this.value
+			},
+			dataType: "json",
+			success: function (res) {
+				let listArea = ''
+				listArea += `<option value="">-- Pilih Area Properti --</option>`
+				$.each(res.data, function(index, key){
+					listArea += `<option value="${key.area_id}">${key.area_name}</option>`
+				})
+				$(".area-form-add").html(listArea)
+			},
+			error: function (request, error) {
+				pnotifyError("Error", JSON.stringify(request.statusText))
+			},
+		});
+	});
+});

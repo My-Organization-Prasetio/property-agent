@@ -18,7 +18,7 @@ class Area extends Api_main_controller
         $result = $this->m_area->all();
         $dataArray = array(
             'status'    => 'Success',
-            'message'   => 'Result Data Jenis Aset',
+            'message'   => 'Result Data area',
             'data'      => $result->result_array()
         );
         $this->output
@@ -32,7 +32,21 @@ class Area extends Api_main_controller
         $result = $this->m_area->getById($this->input->get('id'));
         $dataArray = array(
             'status'    => 'Success',
-            'message'   => 'Result data jenis aset',
+            'message'   => 'Result data area',
+            'data'      => $result->result_array()
+        );
+        $this->output
+            ->set_status_header(200, 'Success')
+            ->set_content_type('application/json')
+            ->set_output(json_encode($dataArray));
+    }
+
+    public function get_by_city()
+    {
+        $result = $this->m_area->getByCity($this->input->get('id'));
+        $dataArray = array(
+            'status'    => 'Success',
+            'message'   => 'Result data area',
             'data'      => $result->result_array()
         );
         $this->output

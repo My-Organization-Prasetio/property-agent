@@ -2,8 +2,8 @@ import { viewAllProperty } from "./initProperty.js";
 
 export function initAction() {
 	/*******************************************************************************************
-                                VALIDATE INPUT DATA SUPPLIER
-    *******************************************************************************************/
+								VALIDATE INPUT DATA SUPPLIER
+	*******************************************************************************************/
 	$("form[name='add-owner']").validate({
 		// Specify validation rules
 		rules: {
@@ -41,8 +41,8 @@ export function initAction() {
 	});
 
 	/*******************************************************************************************
-                                    ON CLICK BUTTON EDIT
-    *******************************************************************************************/
+									ON CLICK BUTTON EDIT
+	*******************************************************************************************/
 	$("#table-body-owner").on("click", ".btn-edit", function () {
 		var id = $(this).data("id");
 		$.ajax({
@@ -55,14 +55,14 @@ export function initAction() {
 			success: function (res) {
 				const data = res.data[0];
 				$("#modal_form_edit").modal("show");
-                $("#owner_id").val(data.owner_id);
-                $("#owner_name").val(data.owner_name);
-                $("#owner_type").val(data.owner_type);
-                $("#owner_photo").val(data.owner_photo);
-                $("#id_number_type").val(data.id_number_type);
-                $("#owner_phone_number").val(data.owner_phone_number);
-                $("#owner_email").val(data.owner_email);
-                $("#address").val(data.address);
+				$("#owner_id").val(data.owner_id);
+				$("#owner_name").val(data.owner_name);
+				$("#owner_type").val(data.owner_type);
+				$("#owner_photo").val(data.owner_photo);
+				$("#id_number_type").val(data.id_number_type);
+				$("#owner_phone_number").val(data.owner_phone_number);
+				$("#owner_email").val(data.owner_email);
+				$("#address").val(data.address);
 			},
 			error: function (request, error) {
 				// console.log("Request: " + JSON.stringify(request));
@@ -71,7 +71,7 @@ export function initAction() {
 	});
 
 	$("form[name='edit-owner']").validate({
-	    // Specify validation rules
+		// Specify validation rules
 		rules: {
 			owner_name: "required",
 			owner_type: "required",
@@ -83,31 +83,31 @@ export function initAction() {
 			owner_type: "Pilih tipe kepelikan",
 			owner_phone_number: "Masukan No. Telp",
 		},
-	    submitHandler: function (form) {
-	        try {
-	            $.ajax({
-	                url: rootApp + "api/owner/edit",
-	                type: "POST",
-                	data: $("#edit-owner").serialize(),
-	                dataType: "json",
-	                success: function (res) {
-	                    $("#modal_form_edit").modal("hide");
-	                    pnotifySuccess(res.status, res.message);
-	                    viewAllProperty();
-	                },
-	                error: function (request, error) {
-	                    pnotifyError('Error', JSON.stringify(request.statusText));
-	                },
-	            });
-	        } catch (error) {
-	            console.log(error);
-	        }
-	    },
+		submitHandler: function (form) {
+			try {
+				$.ajax({
+					url: rootApp + "api/owner/edit",
+					type: "POST",
+					data: $("#edit-owner").serialize(),
+					dataType: "json",
+					success: function (res) {
+						$("#modal_form_edit").modal("hide");
+						pnotifySuccess(res.status, res.message);
+						viewAllProperty();
+					},
+					error: function (request, error) {
+						pnotifyError('Error', JSON.stringify(request.statusText));
+					},
+				});
+			} catch (error) {
+				console.log(error);
+			}
+		},
 	});
 
 	/*******************************************************************************************
-                                    ON CLICK BUTTON DELETE
-    *******************************************************************************************/
+									ON CLICK BUTTON DELETE
+	*******************************************************************************************/
 	$("#table-body-owner").on("click", ".btn-delete", function () {
 		var id = $(this).data("id");
 		// Setup
