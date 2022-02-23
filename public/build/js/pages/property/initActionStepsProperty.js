@@ -52,8 +52,9 @@ export function initActionStepsAdd() {
             return form.valid();
         },
         onFinished: function (event, currentIndex) {
-            alert('Submitted!');
+            var form = $('#add-property')[0];
             var formData = new FormData(form);
+            event.preventDefault();
             $.ajax({
                 url: rootApp + "api/property/add",
                 type: "POST",
@@ -108,13 +109,41 @@ export function initActionStepsAdd() {
                 error.insertAfter(element);
             }
         },
-        // // Specify validation rules
-        // rules: {
-        //     property_title: "required",
-        // },
-        // // Specify validation error messages
-        // messages: {
-        //     property_title: "Masukan pemilik",
-        // },
+        // Specify validation rules
+        rules: {
+            property_title: "required",
+            asset_category_id: "required",
+            sale_type: "required",
+            address: "required",
+            unit_number: "required",
+            area_id: "required",
+            city_id: "required",
+            land_area: "required",
+            building_area: "required",
+            bedroom: "required",
+            bathroom: "required",
+            price: "required",
+            agent_id: "required",
+            fee: "required",
+            owner_id: "required",
+        },
+        // Specify validation error messages
+        messages: {
+            property_title: "Masukan judul properti",
+            asset_category_id: "Jenis properti harus dipilih",
+            sale_type: "Tipe penjualan harus dipilih",
+            address: "Masukan alamat properti",
+            unit_number: "Nomor unit harus diisi",
+            area_id: "Pilih area",
+            city_id: "Pilih kota",
+            land_area: "Masukan LT",
+            building_area: "Masukan LB",
+            bedroom: "Masukan KT",
+            bathroom: "Masukan KM",
+            price: "Berapa harga properti ini",
+            agent_id: "Siapa agen yang bertanggungjawab",
+            fee: "Masukan keuntungan yang didapat agen (%)",
+            owner_id: "Pilih pemilik properti, tambahkan jika belum terdaftar",
+        },
     });
 };

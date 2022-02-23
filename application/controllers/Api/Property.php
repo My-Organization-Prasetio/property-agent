@@ -2,7 +2,7 @@
 defined('BASEPATH') or exit('No direct script access allowed');
 include APPPATH . 'controllers/api/Api_main_controller.php';
 
-class Owner extends Api_main_controller
+class Property extends Api_main_controller
 {
     function __construct()
     {
@@ -61,7 +61,7 @@ class Owner extends Api_main_controller
                     'fee'   => $this->input->post('fee'),
                     'fee'   => $this->input->post('fee'),
                     'created_by'    => $this->session->userdata(SHORT_APP_NAME.'_'.'userid'),
-                    'created_by'    => $this->session->userdata(SHORT_APP_NAME.'_'.'userid')
+                    'updated_by'    => $this->session->userdata(SHORT_APP_NAME.'_'.'userid')
                 );
                 $this->main_model->insert($inputData, 'property');
                 $dataArray = array(

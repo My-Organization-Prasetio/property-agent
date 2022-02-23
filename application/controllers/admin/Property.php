@@ -15,6 +15,8 @@ class Property extends Admin_main_controller {
 	{
 		$asset_categories = $this->mainmodel->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC');
 		$cities = $this->mainmodel->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC');
+		$agents = $this->mainmodel->viewWhereOrdering('mst_user', array('deleted' => 0, 'user_level_id' => 2), 'user_full_name', 'ASC');
+		$owner = $this->mainmodel->viewWhereOrdering('mst_owner', array('deleted' => 0), 'owner_name', 'ASC');
         $data = array(
 			'content' 		=> 'admin/pages/property_v',
 			'breadcrumb' 	=> '<a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>						
@@ -22,7 +24,9 @@ class Property extends Admin_main_controller {
 			'js_file'		=> 'property',
 			'data'			=> array(
 				'asset_categories'	=> $asset_categories->result_array(),
-				'cities'			=> $cities->result_array()
+				'cities'			=> $cities->result_array(),
+				'agents'			=> $agents->result_array(),
+				'owner'				=> $owner->result_array()
 			)
 		);
         $this->template->render_view('admin/template_admin_v', $data);

@@ -1,4 +1,4 @@
-<form class="wizard-form steps-validation" action="#" data-fouc>
+<form class="wizard-form steps-validation" id="add-property" action="#" data-fouc>
     <h6>Formulir Utama</h6>
     <fieldset>
 
@@ -64,7 +64,7 @@
             <div class="col-md-8">
                 <div class="form-group">
                     <label>Alamat Properti:</label>
-                    <textarea rows="3" cols="3" class="form-control" placeholder="Tidak wajib diisi"></textarea>
+                    <textarea rows="3" cols="3" class="form-control" name="address" placeholder="Tidak wajib diisi"></textarea>
                 </div>
             </div>
             <div class="col-md-7 col-sm-12">
@@ -190,8 +190,11 @@
                     <br><small class="text-warning">*Silahkan pilih agen untuk properti ini</small>
                     <select name="agent_id" data-placeholder="Pilih Agen" class="form-control">
                         <option value="">-- Pilih Agen --</option>
-                        <option value="1">Sewa</option>
-                        <option value="2">Jual</option>
+                        <?php
+                            foreach($data['agents'] as $row){
+                                echo '<option value="'.$row['user_id'].'">'.$row['user_full_name'].'</option>';
+                            }
+                        ?>
                     </select>
                 </div>
             </div>
@@ -212,17 +215,20 @@
                     <br><small class="text-warning">*Silahkan pilih kota untuk menampilkan area</small>
                     <select name="owner_id" data-placeholder="" class="form-control">
                         <option value="">-- Pilih Pemilik Properti --</option>
-                        <option value="1">Sewa</option>
-                        <option value="2">Jual</option>
+                        <?php
+                            foreach($data['owner'] as $row){
+                                echo '<option value="'.$row['owner_id'].'">'.$row['owner_name'].'</option>';
+                            }
+                        ?>
                     </select>
                 </div>
             </div>
-            <div class="col-md-8">
+            <!-- <div class="col-md-8">
                 <div class="form-group">
                     <label>Alamat Pemilik Properti:</label>
                     <textarea rows="3" cols="3" class="form-control" placeholder="Tidak wajib diisi readonly" name="address"></textarea>
                 </div>
-            </div>
+            </div> -->
         </div>
     </fieldset>
 </form>
