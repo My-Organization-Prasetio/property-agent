@@ -1,4 +1,4 @@
-var _initTableOwner = function (className) {
+var _initTableProperty = function (className) {
 	// Initialize
 	$("." + className).DataTable({
 		autoWidth: false,
@@ -127,17 +127,20 @@ export function _uniform() {
 
 export function viewAllProperty() {
 	$.ajax({
-		url: rootApp + "api/owner",
+		url: rootApp + "api/property",
 		type: "GET",
 		dataType: "json",
 		success: function (res) {
-			var tbOwnerData = "";
+			var tbProperty = "";
 			$.each(res.data, function (index, key) {
-				tbOwnerData += `<tr>
+				tbProperty += `<tr>
                     <td>${index + 1}</td>
-                    <td>${key.owner_type}</td>
+                    <td>${key.asset_category_name}</td>
                     <td>
-						<img src="${rootApp}public/images/profile/${key.owner_photo}" class=" mr-2" height="50" width="50" alt="">
+						<h6 class="mb-0">
+							<a href="#">${key.property_title}</a>
+							<span class="d-block font-size-sm text-muted">Jenis ID: ${key.property_description}</span>
+						</h6>
                     </td>
                     <td>
                         <h6 class="mb-0">
@@ -146,20 +149,15 @@ export function viewAllProperty() {
                     </td>
                     <td>
 						<h6 class="mb-0">
-						<a href="#">${key.id_number}</a>
-						<span class="d-block font-size-sm text-muted">Jenis ID: ${
-															key.id_number_type
-														}</span>
+							<a href="#">${key.area_name}</a>
+							<span class="d-block font-size-sm text-muted">Jenis ID: ${key.city_name}</span>
 						</h6>
                     </td>
                     <td>
-                        ${key.owner_phone_number}
-                        <span class="d-block font-size-sm text-muted">E-mail: ${numberWithCommas(
-													key.owner_email
-												)}</span>
+                        Rp_ ${key.price}
                     </td>
                     <td>
-                        ${key.address}
+                        ${key.agent_name}
                     </td>
                     <td class="text-center">
                         <div class="list-icons list-icons-extended">
@@ -167,10 +165,10 @@ export function viewAllProperty() {
                                 <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-file-text2"></i></a>
                                 <div class="dropdown-menu dropdown-menu-right">
                                     <a href="#" class="dropdown-item btn-edit" data-id="${
-																			key.owner_id
+																			key.property_id
 																		}"><i class="icon-file-plus"></i> Perbarui</a>
                                     <a href="#" class="dropdown-item btn-delete" data-id="${
-																			key.owner_id
+																			key.property_id
 																		}"><i class="icon-cross2"></i> Hapus</a>
                                 </div>
                             </div>
@@ -178,13 +176,13 @@ export function viewAllProperty() {
                     </td>
                 </tr>`;
 			});
-			// return tbOwnerData;
-			if ($(".table-owner").length > 0) {
-				$(".table-owner").dataTable().fnDestroy();
-				if ($("#table-body-owner").length > 0) {
-					$("#table-body-owner").html(tbOwnerData);
+			// return tbProperty;
+			if ($(".table-property").length > 0) {
+				$(".table-property").dataTable().fnDestroy();
+				if ($("#table-body-property").length > 0) {
+					$("#table-body-property").html(tbProperty);
 				}
-				_initTableOwner("table-owner");
+				_initTableProperty("table-property");
 			}
 		},
 		error: function (request, error) {

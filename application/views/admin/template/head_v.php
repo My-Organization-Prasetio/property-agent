@@ -40,8 +40,9 @@
 	<script src="<?= base_url() ?>public/plugins/forms/selects/select2.min.js"></script>
 	<script src="<?= base_url() ?>public/plugins/tables/datatables/datatables.min.js"></script>
 	<script src="<?= base_url() ?>public/plugins/forms/validation/validate.min.js"></script>
-
+	<!-- Jquery Steps -->
 	<script src="<?= base_url() ?>public/plugins/forms/wizards/steps.min.js"></script>
+	<!-- <script src="<?= base_url() ?>public/plugins/forms/wizards/jquery.steps.js"></script> -->
 	<!-- Theme JS files -->
 	<script src="<?= base_url() ?>public/plugins/forms/styling/uniform.min.js"></script>
 	<script src="<?= base_url() ?>public/plugins/forms/styling/switchery.min.js"></script>

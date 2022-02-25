@@ -1,4 +1,4 @@
-<table class="table table-lg table-owner">
+<table class="table table-lg table-property">
     <thead>
         <tr>
             <th>#</th>
@@ -11,7 +11,7 @@
             <th class="text-center">Aksi</th>
         </tr>
     </thead>
-    <tbody id="table-body-owner">
+    <tbody id="table-body-property">
 
     </tbody>
 </table>

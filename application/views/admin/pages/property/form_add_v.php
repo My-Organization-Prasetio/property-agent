@@ -1,4 +1,4 @@
-<form class="wizard-form steps-validation" id="add-property" action="#" data-fouc>
+<form class="wizard-form steps-add-property" id="add-property" action="#" data-fouc>
     <h6>Formulir Utama</h6>
     <fieldset>
 
@@ -64,7 +64,7 @@
             <div class="col-md-8">
                 <div class="form-group">
                     <label>Alamat Properti:</label>
-                    <textarea rows="3" cols="3" class="form-control" name="address" placeholder="Tidak wajib diisi"></textarea>
+                    <textarea rows="3" cols="3" class="form-control" name="address" placeholder=""></textarea>
                 </div>
             </div>
             <div class="col-md-7 col-sm-12">

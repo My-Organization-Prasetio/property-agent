@@ -8,37 +8,47 @@ class Property extends Api_main_controller
     {
         parent::__construct();
         $this->load->model('main_model', 'm_main');
+        $this->load->model('property_model', 'm_property');
+        $this->load->model('area_model', 'm_area');
         $this->load->library('lib_main');
         $this->check_login('admin');
     }
 
-    // public function index()
-    // {
-    //     $result = $this->m_main->viewWhereOrdering('mst_owner', array('deleted' => 0), 'owner_name', 'ASC');
-    //     $dataArray = array(
-    //         'status'    => 'Success',
-    //         'message'   => 'Result Data Owner',
-    //         'data'      => $result->result_array()
-    //     );
-    //     $this->output
-    //         ->set_status_header(200, 'Success')
-    //         ->set_content_type('application/json')
-    //         ->set_output(json_encode($dataArray));
-    // }
+    public function index()
+    {
+        $result = $this->m_property->all();
+        $dataArray = array(
+            'status'    => 'Success',
+            'message'   => 'Result Data Property',
+            'data'      => $result->result_array()
+        );
+        $this->output
+            ->set_status_header(200, 'Success')
+            ->set_content_type('application/json')
+            ->set_output(json_encode($dataArray));
+    }
 
-    // public function get_by_id()
-    // {
-    //     $result = $this->m_main->viewWhereOrdering('mst_owner', array('deleted' => 0, 'owner_id' => $this->input->get('id')), 'owner_name', 'ASC');
-    //     $dataArray = array(
-    //         'status'    => 'Success',
-    //         'message'   => 'Result data owner',
-    //         'data'      => $result->result_array()
-    //     );
-    //     $this->output
-    //         ->set_status_header(200, 'Success')
-    //         ->set_content_type('application/json')
-    //         ->set_output(json_encode($dataArray));
-    // }
+    public function get_by_id()
+    {
+        //Get property by Property ID
+        $result = $this->m_main->viewWhereOrdering('property', array('deleted' => 0, 'property_id' => $this->input->get('id')), 'property_id', 'ASC');
+        $result_data = $result->row();
+        //Get Area List By City ID
+        $areas = $this->m_area->getByCity($result_data->city_id);
+
+        $dataArray = array(
+            'status'    => 'Success',
+            'message'   => 'Result data properti',
+            'data'      => array(
+                'property'    => $result_data,
+                'areas'      => $areas->result_array()
+            )
+        );
+        $this->output
+            ->set_status_header(200, 'Success')
+            ->set_content_type('application/json')
+            ->set_output(json_encode($dataArray));
+    }
 
     public function add()
     {
@@ -58,7 +68,7 @@ class Property extends Api_main_controller
                     'bathroom'   => $this->input->post('bathroom'),
                     'price'   => $this->input->post('price'),
                     'agent_id'   => $this->input->post('agent_id'),
-                    'fee'   => $this->input->post('fee'),
+                    'owner_id'   => $this->input->post('owner_id'),
                     'fee'   => $this->input->post('fee'),
                     'created_by'    => $this->session->userdata(SHORT_APP_NAME.'_'.'userid'),
                     'updated_by'    => $this->session->userdata(SHORT_APP_NAME.'_'.'userid')
@@ -84,40 +94,50 @@ class Property extends Api_main_controller
         }
     }
 
-    // public function edit()
-    // {
-    //     try {
-    //         $updateData = array(
-    //             'owner_name'   => $this->input->post('owner_name'),
-    //             'owner_type'   => $this->input->post('owner_type'),
-    //             'id_number_type'   => $this->input->post('id_number_type'),
-    //             'owner_phone_number'   => $this->input->post('owner_phone_number'),
-    //             'owner_email'   => $this->input->post('owner_email'),
-    //             'address'   => $this->input->post('address'),
-    //             'updated_by'    => $this->session->userdata(SHORT_APP_NAME.'_'.'userid')
-    //         );
+    public function edit()
+    {
+        try {
+            $updateData = array(
+                'property_title'   => $this->input->post('property_title'),
+                'property_description'   => $this->input->post('property_description'),
+                'asset_category_id'   => $this->input->post('asset_category_id'),
+                'sale_type'   => $this->input->post('sale_type'),
+                'address'   => $this->input->post('address'),
+                'unit_number'   => $this->input->post('unit_number'),
+                'area_id'   => $this->input->post('area_id'),
+                'city_id'   => $this->input->post('city_id'),
+                'land_area'   => $this->input->post('land_area'),
+                'building_area'   => $this->input->post('building_area'),
+                'bedroom'   => $this->input->post('bedroom'),
+                'bathroom'   => $this->input->post('bathroom'),
+                'price'   => $this->input->post('price'),
+                'agent_id'   => $this->input->post('agent_id'),
+                'owner_id'   => $this->input->post('owner_id'),
+                'fee'   => $this->input->post('fee'),
+                'updated_by'    => $this->session->userdata(SHORT_APP_NAME.'_'.'userid')
+            );
 
-    //         //Update data user
-    //         $this->main_model->update(
-    //             array('owner_id'=>$this->input->post('owner_id')),
-    //             $updateData,
-    //             'mst_owner');
+            //Update data user
+            $this->main_model->update(
+                array('property_id'=>$this->input->post('property_id')),
+                $updateData,
+                'property');
 
-    //         $responseArray = array(
-    //             'status'    => 'Success',
-    //             'message'   => 'Berhasil memperbarui data pemilik'
-    //         );
-    //         $this->output
-    //             ->set_status_header(200, 'Success')
-    //             ->set_content_type('application/json')
-    //             ->set_output(json_encode($responseArray));
-    //     } catch (\Throwable $th) {
-    //         $this->output
-    //             ->set_status_header(500, 'Gagal memperbarui data pemilik')
-    //             ->set_content_type('application/json')
-    //             ->set_output(json_encode($responseArray));
-    //     }
-    // }
+            $responseArray = array(
+                'status'    => 'Success',
+                'message'   => 'Berhasil memperbarui data properti'
+            );
+            $this->output
+                ->set_status_header(200, 'Success')
+                ->set_content_type('application/json')
+                ->set_output(json_encode($responseArray));
+        } catch (\Throwable $th) {
+            $this->output
+                ->set_status_header(500, 'Gagal memperbarui data properti')
+                ->set_content_type('application/json')
+                ->set_output(json_encode($responseArray));
+        }
+    }
 
     // public function delete()
     // {
