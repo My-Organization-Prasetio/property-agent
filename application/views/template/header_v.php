@@ -174,7 +174,7 @@
                             <?php
                             foreach ($data['asset_categories'] as $row) {
                                 $url = strtolower($row['asset_category_name']);
-                                echo '<li><a href="' . base_url() . 'category/' . $url . '">' . $row['asset_category_name'] . '</a></li>';
+                                echo '<li><a href="' . base_url() . 'home/category/' . $url . '">' . $row['asset_category_name'] . '</a></li>';
                             }
                             ?>
                         </ul>

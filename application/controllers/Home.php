@@ -20,7 +20,27 @@ class Home extends Main_controller
 			'breadcrumb' 	=> '<a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
 									<span class="breadcrumb-item active">Home</span>',
 			'js_function_file'=> 'home-function',
-			'js_file'		=> 'home',
+			'data'			=> array(
+				'asset_categories'	=> $asset_categories
+			)
+		);
+		$this->template->render_view('template_v', $data);
+	}
+
+	public function category()
+	{
+		//Will read on javascript
+		echo '<script> var propertyCategory = "'.$this->uri->segment(3).'"</script>';
+
+		//Get Data
+        $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
+
+		//Load View
+		$data = array(
+			'content' 		=> 'pages/home/admin_category_v',
+			'breadcrumb' 	=> '<a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+									<span class="breadcrumb-item active">Home</span>',
+			'js_function_file'=> 'home-category-function',
 			'data'			=> array(
 				'asset_categories'	=> $asset_categories
 			)

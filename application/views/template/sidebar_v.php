@@ -1,10 +1,9 @@
 <div class="col-lg-3 order-2 order-lg-1">
     <!--sidebar-categores-box start  -->
-    <div class="sidebar-categores-box mt-sm-30 mt-xs-30">
+    <!-- <div class="sidebar-categores-box mt-sm-30 mt-xs-30">
         <div class="sidebar-title">
             <h2>Category</h2>
         </div>
-        <!-- category-sub-menu start -->
         <div class="category-sub-menu">
             <ul>
                 <li class="has-sub"><a href="<?= base_url() ?>public/front-web/# ">Rumah</a>
@@ -27,8 +26,7 @@
                 </li>
             </ul>
         </div>
-        <!-- category-sub-menu end -->
-    </div>
+    </div> -->
     <!--sidebar-categores-box end  -->
     <!--sidebar-categores-box start  -->
     <div class="sidebar-categores-box">

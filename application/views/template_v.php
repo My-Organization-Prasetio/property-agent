@@ -39,7 +39,7 @@
             <div class="container">
                 <div class="row">
                     <?php
-                        $this->load->view('page/home_v');
+                        !empty($content) ? $this->load->view('page/home_v') : ''
                     ?>
                     <?php
                         $this->load->view('template/sidebar_v');
