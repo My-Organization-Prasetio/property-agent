@@ -27,7 +27,7 @@ $(function () {
                         window.location.href = rootApp+'admin';
 					},
 					error: function (request, error) {
-						// console.log("Request: " + JSON.stringify(request));
+						alert(request.responseJSON.message);
 					},
 				});
 			} catch (error) {

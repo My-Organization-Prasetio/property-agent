@@ -1,4 +1,4 @@
-<div class="card">
+<!-- <div class="card">
     <div class="card-header bg-transparent header-elements-inline">
         <span class="card-title font-weight-semibold"><b> Import Excel <i class="icon-folder-upload ml-2"></i></b></span>
     </div>
@@ -15,7 +15,7 @@
             </div>
         </div>
     </div>
-</div>
+</div> -->
 <div class="card">
     <div class="card-header bg-transparent header-elements-inline">
         <span class="card-title font-weight-semibold"><b> Kalkulasi Properti <i class="icon-office ml-2"></i></b></span>

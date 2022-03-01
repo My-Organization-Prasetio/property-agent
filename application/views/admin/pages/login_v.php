@@ -76,6 +76,8 @@
 <script src="<?= base_url() ?>public/build/js/global/bootstrap.bundle.min.js"></script>
 <script src="<?= base_url() ?>public/plugins/forms/validation/validate.min.js"></script>
 <script src="<?= base_url() ?>public/build/js/global/variable.js"></script>
+<script src="<?= base_url() ?>public/plugins/notifications/pnotify.min.js"></script>
+<script src="<?= base_url() ?>public/build/js/global/function_pnotify.js"></script>
 
 <!-- Custom Page -->
 <script src="<?= base_url() ?>public/build/js/pages/login.js"></script>

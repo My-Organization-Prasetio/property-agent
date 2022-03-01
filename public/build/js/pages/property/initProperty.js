@@ -43,7 +43,7 @@ var _initTableProperty = function (className) {
 			},
 		},
 		lengthMenu: [25, 50, 75, 100],
-		displayLength: 25,
+		displayLength: 12,
 		drawCallback: function (settings) {
 			var api = this.api();
 			var rows = api.rows({ page: "current" }).nodes();

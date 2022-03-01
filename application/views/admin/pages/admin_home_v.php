@@ -10,28 +10,28 @@
                         </button>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
-                        <button type="button" class="btn bg-teal-700 btn-block btn-float">
+                        <a href="<?= base_url()?>admin/property" type="button" class="btn bg-teal-700 btn-block btn-float">
                             <i class="icon-office icon-2x"></i>
-                            <span>Aset</span>
-                        </button>
+                            <span>Properti</span>
+                        </a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
-                        <button type="button" class="btn bg-purple-300 btn-block btn-float">
+                        <a href="<?= base_url()?>admin/asset-category" type="button" class="btn bg-purple-300 btn-block btn-float">
                             <i class="icon-make-group icon-2x"></i>
-                            <span>Jenis Aset</span>
-                        </button>
+                            <span>Jenis Properti</span>
+                        </a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
-                        <button type="button" class="btn bg-warning-400 btn-block btn-float">
+                        <a href="<?= base_url()?>admin/area" type="button" class="btn bg-warning-400 btn-block btn-float">
                             <i class="icon-lan2 icon-2x"></i>
-                            <span>Area</span>
-                        </button>
+                            <span>Wilayah</span>
+                        </a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
-                        <button type="button" class="btn bg-pink-400 btn-block btn-float">
+                        <a href="<?= base_url()?>admin/city" type="button" class="btn bg-pink-400 btn-block btn-float">
                             <i class="icon-city icon-2x"></i>
                             <span>Kota</span>
-                        </button>
+                        </a>
                     </div>
                     <!-- <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
                         <button type="button" class="btn bg-violet-400 btn-block btn-float">
@@ -40,10 +40,10 @@
                         </button>
                     </div> -->
                     <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
-                        <button type="button" class="btn bg-indigo-400 btn-block btn-float">
+                        <a href="<?= base_url()?>admin/owner" type="button" class="btn bg-indigo-400 btn-block btn-float">
                             <i class="icon-clipboard2 icon-2x"></i>
                             <span>Pemilik</span>
-                        </button>
+                        </a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
                         <button type="button" class="btn bg-brown-400 btn-block btn-float">
@@ -52,16 +52,16 @@
                         </button>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
-                        <button type="button" class="btn bg-green-400 btn-block btn-float">
+                        <a href="<?= base_url()?>admin/company" type="button" class="btn bg-green-400 btn-block btn-float">
                             <i class="icon-office icon-2x"></i>
                             <span>Perusahaan</span>
-                        </button>
+                        </a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
-                        <button type="button" class="btn bg-slate-400 btn-block btn-float">
+                        <a href="<?= base_url()?>admin/user" type="button" class="btn bg-slate-400 btn-block btn-float">
                             <i class="icon-people icon-2x"></i>
                             <span>Pengguna</span>
-                        </button>
+                        </a>
                     </div>
                     <!-- <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
                         <button type="button" class="btn bg-info-400 btn-block btn-float">

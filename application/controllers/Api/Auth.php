@@ -18,7 +18,8 @@ class Auth extends CI_Controller
     {
         $where = array(
             'mst_user.user_name' => $this->input->post('username'),
-            'user_level_management.user_level_status' => 'active'
+            'user_level_management.user_level_status' => 'active',
+            'user_level_management.user_level_position' => 'admin'
         );
         $result = $this->m_auth->view_by_username($where);
         if ($result->num_rows() == 1) {
@@ -38,7 +39,7 @@ class Auth extends CI_Controller
                     $this->session->set_userdata($user_session);
                     $dataArray = array(
                         'status'    => 'Ok',
-                        'message'   => 'Success Login.',
+                        'message'   => 'Berhasil Login.',
                         'data'      => $user_session
                     );
                     $this->output
@@ -48,7 +49,7 @@ class Auth extends CI_Controller
                 } else {
                     $dataArray = array(
                         'status'    => 'Error',
-                        'message'   => 'Wrong username or password.'
+                        'message'   => 'Nama pengguna atau password salah.'
                     );
                     $this->output
                         ->set_status_header(401, 'Unauthorized')
@@ -68,7 +69,7 @@ class Auth extends CI_Controller
         } else {
             $dataArray = array(
                 'status'    => 'Error',
-                'message'   => 'Wrong username or password.'
+                'message'   => 'Nama pengguna atau password salah.'
             );
             $this->output
                 ->set_status_header(401, 'Unauthorized')

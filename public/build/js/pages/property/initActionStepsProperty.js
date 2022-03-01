@@ -63,11 +63,16 @@ export function initActionStepsAdd() {
                 contentType: false,
                 processData: false,
                 success: function (res) {
-                    $("#modal_form_add").modal("hide");
                     pnotifySuccess(res.status, res.message);
+                    setTimeout(function(){
+                        window.location.reload(1);
+                     }, 2000);
                     viewAllProperty();
                     $('#add-property')[0].reset();
-                    form.validate().settings.ignore = ':disabled';
+                    // $('#steps-add-property-p-0').show();
+                    // $('#steps-add-property-p-4').hide();
+                    // $('#steps-add-property .steps').find('li').removeClass().addClass('disabled');
+                    // $('#steps-add-property .steps li:first').removeClass('disabled').addClass('first current');
                 },
                 error: function (request, error) {
                     pnotifyError("Error", JSON.stringify(request.statusText));

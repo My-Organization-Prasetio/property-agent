@@ -8,16 +8,22 @@ class Home extends Main_controller
 	function __construct()
 	{
 		parent::__construct();
-		$this->load->model('Main_model', 'mainmodel');
+        $this->load->model('main_model', 'm_main');
+        $this->load->model('property_model', 'm_property');
 	}
 
 	public function index()
 	{
+        $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
 		$data = array(
 			'content' 		=> 'pages/home/admin_home_v',
 			'breadcrumb' 	=> '<a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
 									<span class="breadcrumb-item active">Home</span>',
-			'menu'			=> 'home',
+			'js_function_file'=> 'home-function',
+			'js_file'		=> 'home',
+			'data'			=> array(
+				'asset_categories'	=> $asset_categories
+			)
 		);
 		$this->template->render_view('template_v', $data);
 	}
