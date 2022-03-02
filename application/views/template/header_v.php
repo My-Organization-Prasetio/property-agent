@@ -47,7 +47,7 @@
             <!-- Begin Header Logo Area -->
             <div class="col-lg-3">
                 <div class="logo pb-sm-30 pb-xs-30">
-                    <a href="<?= base_url() ?>public/front-web/index.html">
+                    <a href="<?= base_url() ?>">
                         <img src="<?= base_url() ?>public/front-web/./images/logo/logo.png" alt="" style="margin-top: -15px; margin-bottom: -15px;">
                         <!-- <h1 class="font-weight-bold"><span style="color: #F39C11;">EAGLE</span><span class="h3" style="color: #14BAB0;"> TREE</span></h1>
                                         <p style="margin-bottom: -20px; margin-top: -8px; letter-spacing: 1.5px;">Find your property</p> -->
@@ -58,45 +58,22 @@
             <!-- Begin Header Middle Right Area -->
             <div class="col-lg-9 pl-0 ml-sm-15 ml-xs-15">
                 <div id="suggest-container">
-                    <form id="asd" class="hm-searchbox">
-                        <select class="nice-select select-search-category">
-                            <option value="0">Semua</option>
-                            <option value="10">Jakarta Selatan</option>
-                            <option value="10">Jakarta Barat</option>
-                            <option value="10">Jakarta Timur</option>
-                            <option value="10">Jakarta Pusat</option>
-                            <option value="10">Tanggerang Selatan</option>
-                            <option value="10">Depok</option>
-                            <option value="10">Bekasi Kota</option>
-                            <option value="10">Kabupaten Bekasi</option>
-                            <option value="10">Karawang</option>
-                            <option value="10">Bandung</option>
-                            <option value="10">Lainnya</option>
+                    <form class="hm-searchbox" id="form-search" action="#">
+                        <select class="nice-select select-search-category" id="form-search-cities">
+                            <option value="">Semua</option>
+                            <?php
+                                foreach($data['cities'] as $row){
+                                    echo '<option value="'.$row['city_name'].'">'.$row['city_name'].'</option>';
+                                }
+                            ?>
                         </select>
-                        <input type="text" placeholder="Masukan kata kunci ...">
+                        <input type="text" id="form-search-input" autocomplete="off" placeholder="Masukan kata kunci ...">
                         <div id="instant-results" class="card instant-results nonactive">
-                            <div class="card-body">
-                                <div class="list rounded">
-                                    <a href="<?= base_url() ?>public/front-web/">
-                                        <div class="title">Rumah Cantik Kebayoran Bintaro</div>
-                                        <div class="description">Putu Dewi | Bintaro Tangerang Selatan | LT/LB : 204/240 KM/KT : 5/4</div>
-                                    </a>
-                                </div>
-                                <div class="list rounded">
-                                    <a href="<?= base_url() ?>public/front-web/">
-                                        <div class="title">Rumah Baru di Cluster Alba Alam Sutera</div>
-                                        <div class="description">Rumah Baru di Cluster Alba Kawasan Sutera Renata Dekat IKEA</div>
-                                    </a>
-                                </div>
-                                <div class="list rounded">
-                                    <a href="<?= base_url() ?>public/front-web/">
-                                        <div class="title">Rumah Mewah Menteng Bintaro</div>
-                                        <div class="description">Jl. Jend. Basuki Rachmat No.8, RW.10, Cipinang Besar Sel., Kecamatan Jatinegara.</div>
-                                    </a>
-                                </div>
+                            <div class="card-body" id="list-recomendation">
+                                <!-- List recomendation -->
                             </div>
                         </div>
-                        <button class="li-btn" type="submit"><i class="fa fa-search"></i></button>
+                        <button class="li-btn" id="btn-search" type="submit"><i class="fa fa-search"></i></button>
                     </form>
                 </div>
                 <!-- Begin Header Middle Right Area -->
@@ -106,43 +83,23 @@
                         <li class="hm-minicart">
                             <div class="hm-minicart-trigger" style="background-color: #14BAB0;">
                                 <span class="item-icon"></span>
-                                <span class="item-text">New Property List
-                                    <span class="cart-item-count">2</span>
+                                <span class="item-text">Daftar Properti Baru
+                                    <span class="cart-item-count"><?= count($data['new_properties'])?></span>
                                 </span>
                             </div>
                             <span></span>
                             <div class="minicart">
                                 <ul class="minicart-product-list">
-                                    <li>
-                                        <div class="minicart-product-details">
-                                            <h6><a href="<?= base_url() ?>public/front-web/#">Rumah Mewah Menteng Bintaro</a></h6>
-                                            <span class="text-secondary"><small>Bintaro Tangerang Selatan</small></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="minicart-product-details">
-                                            <h6><a href="<?= base_url() ?>public/front-web/#">Rumah Mewah Menteng Bintaro</a></h6>
-                                            <span class="text-secondary"><small>Bintaro Tangerang Selatan</small></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="minicart-product-details">
-                                            <h6><a href="<?= base_url() ?>public/front-web/#">Rumah Mewah Menteng Bintaro</a></h6>
-                                            <span class="text-secondary"><small>Bintaro Tangerang Selatan</small></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="minicart-product-details">
-                                            <h6><a href="<?= base_url() ?>public/front-web/#">Rumah Mewah Menteng Bintaro</a></h6>
-                                            <span class="text-secondary"><small>Bintaro Tangerang Selatan</small></span>
-                                        </div>
-                                    </li>
-                                    <li>
-                                        <div class="minicart-product-details">
-                                            <h6><a href="<?= base_url() ?>public/front-web/#">Rumah Mewah Menteng Bintaro</a></h6>
-                                            <span class="text-secondary"><small>Bintaro Tangerang Selatan</small></span>
-                                        </div>
-                                    </li>
+                                    <?php
+                                        foreach($data['new_properties'] as $row){
+                                            echo '<li>
+                                                    <div class="minicart-product-details">
+                                                        <h6><a href="'.base_url().'"home/property/'.$row['property_id'].'">'.$row['property_title'].'</a></h6>
+                                                        <span class="text-secondary"><small>'.$row['area_name'].' | '.$row['city_name'].'</small></span>
+                                                    </div>
+                                                </li>';
+                                        }
+                                    ?>
                                 </ul>
                                 <!-- <p class="minicart-total">Showing: <span>1 dari 100</span></p>
                                                 <div class="minicart-button">

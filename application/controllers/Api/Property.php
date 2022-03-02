@@ -31,7 +31,7 @@ class Property extends Api_main_controller
     public function get_by_id()
     {
         //Get property by Property ID
-        $result = $this->m_main->viewWhereOrdering('property', array('deleted' => 0, 'property_id' => $this->input->get('id')), 'property_id', 'ASC');
+        $result = $this->m_property->getById($this->input->get('id'));
         $result_data = $result->row();
         //Get Area List By City ID
         $areas = $this->m_area->getByCity($result_data->city_id);
@@ -168,12 +168,14 @@ class Property extends Api_main_controller
         //pagination config
         $config['perpage'] = 12;
         $config['offset'] = empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4) == 1 ? 1 : ($this->uri->segment(4)-1)*$config['perpage'];
-        $showing = $config['offset']+$config['perpage'];
+        $showing = $config['offset']-1+$config['perpage'];
 
         //Get property by Property page
         $properties = $this->m_property->getOffset($config['offset'], $config['perpage']);
         //Get total rows property
         $total_properties = $this->m_property->totalRows()->row();
+        //Check total rows <> showing
+        $showing = $showing > $total_properties->total_rows ? $total_properties->total_rows : $showing;
         $dataArray = array(
             'status'    => 'Success',
             'message'   => 'Result data properti',
@@ -196,12 +198,14 @@ class Property extends Api_main_controller
         //pagination config
         $config['perpage'] = 12;
         $config['offset'] = empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4) == 1 ? 1 : ($this->uri->segment(4)-1)*$config['perpage'];
-        $showing = $config['offset']+$config['perpage'];
+        $showing = $config['offset']-1+$config['perpage'];
 
         //Get property by Property page
         $properties = $this->m_property->getByCategory($config['offset'], $config['perpage'], $this->input->get('category'));
         //Get total rows property
         $total_properties = $this->m_property->totalRowsByCategory($this->input->get('category'))->row();
+        //Check total rows <> showing
+        $showing = $showing > $total_properties->total_rows ? $total_properties->total_rows : $showing;
         $dataArray = array(
             'status'    => 'Success',
             'message'   => 'Result data properti',
@@ -212,6 +216,51 @@ class Property extends Api_main_controller
             'showing'   => $config['offset'].'-'.$showing,
             'data'      => $properties->result_array(),
             'post_data' => $this->uri->segment(4)
+        );
+        $this->output
+            ->set_status_header(200, 'Success')
+            ->set_content_type('application/json')
+            ->set_output(json_encode($dataArray));
+    }
+
+    public function by_sale_type()
+    {
+        //pagination config
+        $config['perpage'] = 12;
+        $config['offset'] = empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4) == 1 ? 1 : ($this->uri->segment(4)-1)*$config['perpage'];
+        $showing = $config['offset']-1+$config['perpage'];
+
+        //Get property by Property page
+        $properties = $this->m_property->getBySaleType($config['offset'], $config['perpage'], $this->input->get('sale_type'));
+        //Get total rows property
+        $total_properties = $this->m_property->totalRowsBySaleType($this->input->get('sale_type'))->row();
+        //Check total rows <> showing
+        $showing = $showing > $total_properties->total_rows ? $total_properties->total_rows : $showing;
+        $dataArray = array(
+            'status'    => 'Success',
+            'message'   => 'Result data properti',
+            'total'     => $total_properties->total_rows,
+            'count'     => $properties->num_rows(),
+            'page'      => empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4),
+            'per_page'  => $config['perpage'],
+            'showing'   => $config['offset'].'-'.$showing,
+            'data'      => $properties->result_array(),
+            'post_data' => $this->uri->segment(4)
+        );
+        $this->output
+            ->set_status_header(200, 'Success')
+            ->set_content_type('application/json')
+            ->set_output(json_encode($dataArray));
+    }
+
+    public function recomendation()
+    {
+        //Get property by keywords
+        $properties = $this->m_property->queryByKeyword($this->input->post('keywords'), $this->input->post('cities'));
+        $dataArray = array(
+            'status'    => 'Success',
+            'count'     => $properties->num_rows(),
+            'data'      => $properties->result_array(),
         );
         $this->output
             ->set_status_header(200, 'Success')

@@ -1,32 +1,16 @@
 <div class="col-lg-3 order-2 order-lg-1">
     <!--sidebar-categores-box start  -->
-    <!-- <div class="sidebar-categores-box mt-sm-30 mt-xs-30">
+    <div class="sidebar-categores-box mt-sm-30 mt-xs-30">
         <div class="sidebar-title">
-            <h2>Category</h2>
+            <h2>Kategori Penjualan</h2>
         </div>
         <div class="category-sub-menu">
             <ul>
-                <li class="has-sub"><a href="<?= base_url() ?>public/front-web/# ">Rumah</a>
-                    <ul>
-                        <li><a href="<?= base_url() ?>public/front-web/#">Semua</a></li>
-                        <li><a href="<?= base_url() ?>public/front-web/#">2 Kamar</a></li>
-                    </ul>
-                </li>
-                <li class="has-sub"><a href="<?= base_url() ?>public/front-web/#">Ruko</a>
-                    <ul>
-                        <li><a href="<?= base_url() ?>public/front-web/#">Semua</a></li>
-                        <li><a href="<?= base_url() ?>public/front-web/#">20 M</a></li>
-                    </ul>
-                </li>
-                <li class="has-sub"><a href="<?= base_url() ?>public/front-web/#">Tanah</a>
-                    <ul>
-                        <li><a href="<?= base_url() ?>public/front-web/#">Semua</a></li>
-                        <li><a href="<?= base_url() ?>public/front-web/#">30 M</a></li>
-                    </ul>
-                </li>
+                <li><a href="<?= base_url() ?>home/sale-type/sale" class="text-black">Properti Dijual</a></li>
+                <li><a href="<?= base_url() ?>home/sale-type/rent" class="text-black">Properti Disewakan</a></li>
             </ul>
         </div>
-    </div> -->
+    </div>
     <!--sidebar-categores-box end  -->
     <!--sidebar-categores-box start  -->
     <div class="sidebar-categores-box">

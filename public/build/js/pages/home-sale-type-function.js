@@ -1,72 +1,15 @@
-
-$(document).mouseup(function (e) {
-    var container = $(".suggest-container");
-    $("#instant-results").removeClass("active");
+//On Load Page
+$(document).ready(function () {
+    loadPage(1)
 });
-
-/*****************************************************************/
-/*              SEARCH RECOMENDATION                            */
-/***************************************************************/
-const searchWrapper = document.querySelector(".hm-searchbox");
-const inputBox = searchWrapper.querySelector("input");
-const suggestBox = searchWrapper.querySelector(".instant-results");
-let userData = ``;
-
-//if user press any key an realese
-inputBox.onkeyup = (e) => {
-    if(userData != e.target.value){
-        userData = e.target.value; //user entered data
-        //Active result box
-        $("#instant-results").addClass("active");
-        if (!userData) {
-            $("#instant-results").removeClass("active");
-        }
-    
-        $.ajax({
-            url: rootApp + "api/property/recomendation",
-            type: "POST",
-            data: {
-                keywords: userData,
-                cities: $('#form-search-cities').val()
-            },
-            dataType: "json",
-            success: function (res) {
-                var recomendationList = ``;
-                $.each(res.data, function (index, key) {
-                    recomendationList += `<div class="list rounded">
-                    <a href="${rootApp + "home/property/" + key.property_id}">
-                            <div class="title">${key.property_title}</div>
-                            <div class="description">${key.unit_number} | ${key.area_name} | ${key.address}</div>
-                        </a>
-                    </div>`
-                })
-                $('#list-recomendation').html(recomendationList)
-            },
-            error: function (request, error) {
-                // console.log("Request: " + JSON.stringify(request));
-            },
-        });
-    }
-}
-
-/*****************************************************************/
-/*                      SEARCH PROPERTY                         */
-/***************************************************************/
-$( "#form-search" ).submit(function( event ) {
-    searchPage()
-    $("#instant-results").removeClass("active");
-});
-
 
 //Get data
-function searchProperty(page = 1) {
+function viewAllHome(page = 1) {
     $.ajax({
-        url: rootApp + "api/property/recomendation",
-        type: "POST",
-        data: {
-            keywords: $('#form-search-input').val(),
-            cities: $('#form-search-cities').val()
-        },
+        url: rootApp + "api/property/by-sale-type/" + page,
+        type: "GET",
+        data: {sale_type:saleType},
+        dataType: "json",
         success: function (res) {
             //Render data to view
             __renderData(res.data)
@@ -130,22 +73,22 @@ function __renderData(data) {
 var current_page = 1;
 var total_rows = 0;
 
-function prevPageSearch() {
+function prevPage() {
     if (current_page > 1) {
         current_page--;
-        searchPage(current_page);
+        loadPage(current_page);
     }
 }
 
-function nextPageSearch() {
+function nextPage() {
     if (current_page < total_rows) {
         current_page++;
-        searchPage(current_page);
+        loadPage(current_page);
     }
 }
 
-function searchPage(page = 1) {
-    searchProperty(page)
+function loadPage(page = 1) {
+    viewAllHome(page)
 }
 
 function createLink(page = 1, totalRows = 1, perPage = 1) {
@@ -154,7 +97,7 @@ function createLink(page = 1, totalRows = 1, perPage = 1) {
 
     //Push Previous button
     if (page != 1) {
-        linkCollection += `<li><a href="javascript:prevPageSearch()" id="btn_prev" class="Previous"><i class="fa fa-chevron-left"></i> Sebelumnya</a></li>`
+        linkCollection += `<li><a href="javascript:prevPage()" id="btn_prev" class="Previous"><i class="fa fa-chevron-left"></i> Sebelumnya</a></li>`
     } else {
         linkCollection += `<li><a href="javascript:void(0)" id="btn_prev" class="text-secondary"><i class="fa fa-chevron-left"></i> Sebelumnya</a></li>`
     }
@@ -163,25 +106,25 @@ function createLink(page = 1, totalRows = 1, perPage = 1) {
     var min = 1;
     for (var i = page - 3; i <= page; i++) {
         if (i >= 1 && i != page) {
-            // linkCollection += `<a href="javascript:searchPage(${i})" id="btn_prev">${i}</a>`
-            linkCollection += `<li><a href="javascript:searchPage(${i})"">${i}</a></li>`
+            // linkCollection += `<a href="javascript:loadPage(${i})" id="btn_prev">${i}</a>`
+            linkCollection += `<li><a href="javascript:loadPage(${i})"">${i}</a></li>`
         }
     }
 
     //Push target page link for the current page
-    linkCollection += `<li class="active"><a href="javascript:searchPage(${page})"">${page}</a></li>`
+    linkCollection += `<li class="active"><a href="javascript:loadPage(${page})"">${page}</a></li>`
 
     //Push target page link when the value is more than current page
     var min = 1;
     for (var i = page; i <= parseInt(page) + 2; i++) {
         if (i <= numPagesCollection && i != page) {
-            linkCollection += `<li><a href="javascript:searchPage(${i})"">${i}</a></li>`
+            linkCollection += `<li><a href="javascript:loadPage(${i})"">${i}</a></li>`
         }
     }
 
     //Push Next button
     if (page != numPagesCollection) {
-        linkCollection += `<li><a href="javascript:nextPageSearch()" id="btn_next" class="Next"> Next <i class="fa fa-chevron-right"></i></a></li>`
+        linkCollection += `<li><a href="javascript:nextPage()" id="btn_next" class="Next"> Next <i class="fa fa-chevron-right"></i></a></li>`
     } else {
         linkCollection += `<li><a href="javascript:void(0)" id="btn_next" class="text-secondary"> Next <i class="fa fa-chevron-right"></i></a></li>`
     }
