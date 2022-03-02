@@ -253,6 +253,36 @@ class Property extends Api_main_controller
             ->set_output(json_encode($dataArray));
     }
 
+    public function tag()
+    {
+        //pagination config
+        $config['perpage'] = 12;
+        $config['offset'] = empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4) == 1 ? 1 : ($this->uri->segment(4)-1)*$config['perpage'];
+        $showing = $config['offset']-1+$config['perpage'];
+
+        //Get property by Property page
+        $properties = $this->m_property->getByTag($config['offset'], $config['perpage'], $this->input->get('tag'));
+        //Get total rows property
+        $total_properties = $this->m_property->totalRowsByTag($this->input->get('tag'))->row();
+        //Check total rows <> showing
+        $showing = $showing > $total_properties->total_rows ? $total_properties->total_rows : $showing;
+        $dataArray = array(
+            'status'    => 'Success',
+            'message'   => 'Result data properti',
+            'total'     => $total_properties->total_rows,
+            'count'     => $properties->num_rows(),
+            'page'      => empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4),
+            'per_page'  => $config['perpage'],
+            'showing'   => $config['offset'].'-'.$showing,
+            'data'      => $properties->result_array(),
+            'post_data' => $this->uri->segment(4)
+        );
+        $this->output
+            ->set_status_header(200, 'Success')
+            ->set_content_type('application/json')
+            ->set_output(json_encode($dataArray));
+    }
+
     public function recomendation()
     {
         //Get property by keywords

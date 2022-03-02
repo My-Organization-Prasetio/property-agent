@@ -90,11 +90,11 @@
         </div>
         <div class="category-tags">
             <ul>
-                <li><a href="<?= base_url() ?>public/front-web/# ">Baru</a></li>
-                <li><a href="<?= base_url() ?>public/front-web/# ">Laris</a></li>
-                <li><a href="<?= base_url() ?>public/front-web/# ">Mahal</a></li>
-                <li><a href="<?= base_url() ?>public/front-web/# ">Murah</a></li>
-                <li><a href="<?= base_url() ?>public/front-web/# ">Rekomendasi</a></li>
+                <?php
+                    foreach($data['tags'] as $row){
+                        echo '<li><a href="'.base_url().'home/tag/'.strtolower($row['tag_name']).'">'.$row['tag_name'].'</a></li>';
+                    }
+                ?>
             </ul>
         </div>
         <!-- category-sub-menu end -->

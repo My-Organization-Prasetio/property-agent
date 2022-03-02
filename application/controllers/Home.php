@@ -16,6 +16,7 @@ class Home extends Main_controller
 	{
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
 		$data = array(
 			'content' 		=> 'page/home_v',
@@ -25,7 +26,8 @@ class Home extends Main_controller
 			'data'			=> array(
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
-				'new_properties'	=> $new_properties
+				'new_properties'	=> $new_properties,
+				'tags'				=> $tags
 			)
 		);
 		$this->template->render_view('template_v', $data);
@@ -39,6 +41,7 @@ class Home extends Main_controller
 		//Get Data
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
 
 		//Load View
@@ -50,7 +53,8 @@ class Home extends Main_controller
 			'data'			=> array(
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
-				'new_properties'	=> $new_properties
+				'new_properties'	=> $new_properties,
+				'tags'				=> $tags
 			)
 		);
 		$this->template->render_view('template_v', $data);
@@ -64,6 +68,7 @@ class Home extends Main_controller
 		//Get Data
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
 
 		//Load View
@@ -75,7 +80,8 @@ class Home extends Main_controller
 			'data'			=> array(
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
-				'new_properties'	=> $new_properties
+				'new_properties'	=> $new_properties,
+				'tags'				=> $tags
 			)
 		);
 		$this->template->render_view('template_v', $data);
@@ -89,6 +95,7 @@ class Home extends Main_controller
 		//Get Data
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
 
 		//Load View
@@ -100,7 +107,35 @@ class Home extends Main_controller
 			'data'			=> array(
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
-				'new_properties'	=> $new_properties
+				'new_properties'	=> $new_properties,
+				'tags'				=> $tags
+			)
+		);
+		$this->template->render_view('template_v', $data);
+	}
+
+	public function tag()
+	{
+		//Will read on javascript
+		echo '<script> var tag = "'.$this->uri->segment(3).'"</script>';
+
+		//Get Data
+        $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
+        $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
+        $new_properties = $this->m_property->getNew(12)->result_array();
+
+		//Load View
+		$data = array(
+			'content' 		=> 'page/property_v',
+			'breadcrumb' 	=> '<a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
+									<span class="breadcrumb-item active">Home</span>',
+			'js_function_file'=> 'home-tag-function',
+			'data'			=> array(
+				'asset_categories'	=> $asset_categories,
+				'cities'			=> $cities,
+				'new_properties'	=> $new_properties,
+				'tags'				=> $tags
 			)
 		);
 		$this->template->render_view('template_v', $data);
