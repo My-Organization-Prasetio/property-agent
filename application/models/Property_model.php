@@ -33,8 +33,11 @@ class Property_model extends CI_model
                                 JOIN mst_cities mc ON mc.city_id = p.city_id
                                 JOIN mst_user mua ON mua.user_id = p.agent_id
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
+                                WHERE p.deleted = 0
+                                AND p.sale_status = 0
                                 ORDER BY p.property_id DESC");
 	}
+    
 
     public function getById($id)
 	{
@@ -68,7 +71,44 @@ class Property_model extends CI_model
                                 JOIN mst_user mua ON mua.user_id = p.agent_id
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.property_id = $id
+                                AND p.deleted = 0
                                 ORDER BY p.property_id");
+	}
+
+    public function soldByDate($start_date, $end_date)
+	{
+		return $this->db->query("SELECT
+                                    s.effective_date,
+                                    mc.customer_full_name,
+                                    p.property_title,
+                                    mua.user_full_name agent_name,
+                                    mo.owner_name
+                                FROM service s
+                                JOIN mst_customer mc ON mc.customer_id = s.customer_id
+                                JOIN property p ON p.property_id = s.property_id
+                                JOIN mst_user mua ON mua.user_id = p.agent_id
+                                JOIN mst_owner mo ON mo.owner_id = p.owner_id
+                                WHERE s.deleted = 0
+                                AND s.effective_date BETWEEN '$start_date' AND '$end_date'
+                                AND p.sale_status = 1");
+	}
+
+    public function count_by_category()
+	{
+		return $this->db->query("SELECT
+                                    mac.asset_category_name,
+                                    (SELECT COUNT(p.property_id) FROM property p WHERE p.asset_category_id = mac.asset_category_id AND p.deleted = 0 AND p.sale_status = 0) total_property
+                                FROM mst_asset_category mac");
+	}
+
+    public function count_property()
+	{
+		return $this->db->query("SELECT
+                                    COUNT(p.property_id) all_property,
+                                    SUM(CASE WHEN p.sale_status = 1 THEN 1 END) sold_property,
+                                    SUM(CASE WHEN p.sale_status = 0 THEN 1 END) available_property
+                                FROM property p
+                                WHERE p.deleted = 0");
 	}
 
     public function queryByKeyword($keyword, $cities)
@@ -108,52 +148,19 @@ class Property_model extends CI_model
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.property_title like '$title'
                                 AND mc.city_name like '$cities'
+                                AND p.deleted = 0
+                                AND p.sale_status = 0
                                 OR p.address like '$address'
                                 AND mc.city_name like '$cities'
-                                ORDER BY p.property_id
+                                AND p.deleted = 0
+                                AND p.sale_status = 0
+                                ORDER BY p.property_id DESC
                                 LIMIT 12");
 	}
 
     public function getOffset($offset, $items_per_page = 12)
 	{
-        $offset = $offset != null ? $offset : 1;
-		return $this->db->query("SELECT
-                                    p.property_id,
-                                    p.property_title,
-                                    p.property_description,
-                                    p.sale_type,
-                                    p.address,
-                                    p.unit_number,
-                                    land_area,
-                                    p.building_area,
-                                    p.bedroom,
-                                    p.bathroom,
-                                    p.price,
-                                    p.fee,
-                                    p.asset_category_id,
-                                    p.area_id,
-                                    p.city_id,
-                                    p.agent_id,
-                                    p.owner_id,
-                                    mac.asset_category_name,
-                                    ma.area_name,
-                                    mc.city_name,
-                                    mua.user_full_name agent_name,
-                                    muo.owner_name
-                                FROM property p
-                                JOIN mst_asset_category mac ON mac.asset_category_id = p.asset_category_id
-                                JOIN mst_area ma ON ma.area_id = p.area_id
-                                JOIN mst_cities mc ON mc.city_id = p.city_id
-                                JOIN mst_user mua ON mua.user_id = p.agent_id
-                                JOIN mst_owner muo ON muo.owner_id = p.owner_id
-                                                                WHERE p.deleted = 0
-                                ORDER BY p.property_title ASC
-                                LIMIT $offset, $items_per_page");
-	}
-
-    public function getNew($offset=12)
-	{
-        $offset = $offset != null ? $offset : 1;
+        $offset = $offset != null ? $offset : 0;
 		return $this->db->query("SELECT
                                     p.property_id,
                                     p.property_title,
@@ -184,6 +191,45 @@ class Property_model extends CI_model
                                 JOIN mst_user mua ON mua.user_id = p.agent_id
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.deleted = 0
+                                AND p.sale_status = 0
+                                ORDER BY p.property_id DESC
+                                LIMIT $offset, $items_per_page");
+	}
+
+    public function getNew($offset=12)
+	{
+        $offset = $offset != null ? $offset : 0;
+		return $this->db->query("SELECT
+                                    p.property_id,
+                                    p.property_title,
+                                    p.property_description,
+                                    p.sale_type,
+                                    p.address,
+                                    p.unit_number,
+                                    land_area,
+                                    p.building_area,
+                                    p.bedroom,
+                                    p.bathroom,
+                                    p.price,
+                                    p.fee,
+                                    p.asset_category_id,
+                                    p.area_id,
+                                    p.city_id,
+                                    p.agent_id,
+                                    p.owner_id,
+                                    mac.asset_category_name,
+                                    ma.area_name,
+                                    mc.city_name,
+                                    mua.user_full_name agent_name,
+                                    muo.owner_name
+                                FROM property p
+                                JOIN mst_asset_category mac ON mac.asset_category_id = p.asset_category_id
+                                JOIN mst_area ma ON ma.area_id = p.area_id
+                                JOIN mst_cities mc ON mc.city_id = p.city_id
+                                JOIN mst_user mua ON mua.user_id = p.agent_id
+                                JOIN mst_owner muo ON muo.owner_id = p.owner_id
+                                WHERE p.deleted = 0
+                                AND p.sale_status = 0
                                 ORDER BY p.property_id DESC
                                 LIMIT $offset");
 	}
@@ -198,12 +244,13 @@ class Property_model extends CI_model
                                 JOIN mst_cities mc ON mc.city_id = p.city_id
                                 JOIN mst_user mua ON mua.user_id = p.agent_id
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
-                                WHERE p.deleted = 0");
+                                WHERE p.deleted = 0
+                                AND p.sale_status = 0");
 	}
 
     public function getByCategory($offset, $items_per_page = 12, $category)
 	{
-        $offset = $offset != null ? $offset : 1;
+        $offset = $offset != null ? $offset : 0;
         $category = empty($category) ? "%%" : "%".$category."%";
 		return $this->db->query("SELECT
                                     p.property_id,
@@ -235,15 +282,16 @@ class Property_model extends CI_model
                                 JOIN mst_user mua ON mua.user_id = p.agent_id
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.deleted = 0
+                                AND p.sale_status = 0
                                 AND mac.asset_category_name like '$category'
-                                ORDER BY p.property_title ASC
+                                ORDER BY p.property_id DESC
                                 LIMIT $offset, $items_per_page");
 	}
 
     public function getBySaleType($offset, $items_per_page = 12, $sale_type)
 	{
-        $offset = $offset != null ? $offset : 1;
-        $sale_type = empty($sale_type) ? 0 : $sale_type == "sale" ? 2 : 1;
+        $offset = $offset != null ? $offset : 0;
+        $sale_type = (empty($sale_type) ? 0 : $sale_type == "sale") ? 2 : 1;
 		return $this->db->query("SELECT
                                     p.property_id,
                                     p.property_title,
@@ -274,14 +322,15 @@ class Property_model extends CI_model
                                 JOIN mst_user mua ON mua.user_id = p.agent_id
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.deleted = 0
+                                AND p.sale_status = 0
                                 AND p.sale_type = $sale_type
-                                ORDER BY p.property_title ASC
+                                ORDER BY p.property_id DESC
                                 LIMIT $offset, $items_per_page");
 	}
 
     public function getByTag($offset, $items_per_page = 12, $tag)
 	{
-        $offset = $offset != null ? $offset : 1;
+        $offset = $offset != null ? $offset : 0;
 		return $this->db->query("SELECT
                                     p.property_id,
                                     p.property_title,
@@ -313,8 +362,48 @@ class Property_model extends CI_model
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 JOIN mst_tags mt ON mt.tag_code = p.tag_code
                                 WHERE p.deleted = 0
+                                AND p.sale_status = 0
                                 AND LOWER(mt.tag_name) = LOWER('$tag')
-                                ORDER BY p.property_title ASC
+                                ORDER BY p.property_id DESC
+                                LIMIT $offset, $items_per_page");
+	}
+
+    public function getByAgent($offset, $items_per_page = 12, $agent_name)
+	{
+        $offset = $offset != null ? $offset : 0;
+		return $this->db->query("SELECT
+                                    p.property_id,
+                                    p.property_title,
+                                    p.property_description,
+                                    p.sale_type,
+                                    p.address,
+                                    p.unit_number,
+                                    land_area,
+                                    p.building_area,
+                                    p.bedroom,
+                                    p.bathroom,
+                                    p.price,
+                                    p.fee,
+                                    p.asset_category_id,
+                                    p.area_id,
+                                    p.city_id,
+                                    p.agent_id,
+                                    p.owner_id,
+                                    mac.asset_category_name,
+                                    ma.area_name,
+                                    mc.city_name,
+                                    mua.user_full_name agent_name,
+                                    muo.owner_name
+                                FROM property p
+                                JOIN mst_asset_category mac ON mac.asset_category_id = p.asset_category_id
+                                JOIN mst_area ma ON ma.area_id = p.area_id
+                                JOIN mst_cities mc ON mc.city_id = p.city_id
+                                JOIN mst_user mua ON mua.user_id = p.agent_id
+                                JOIN mst_owner muo ON muo.owner_id = p.owner_id
+                                WHERE p.deleted = 0
+                                AND p.sale_status = 0
+                                AND LOWER(mua.user_full_name) = LOWER('$agent_name')
+                                ORDER BY p.property_id DESC
                                 LIMIT $offset, $items_per_page");
 	}
 
@@ -333,6 +422,44 @@ class Property_model extends CI_model
                                 AND LOWER(mt.tag_name) = LOWER('$tag')");
 	}
 
+    public function totalRowsByKeywords($keyword, $cities)
+	{
+        $title = empty($keyword) ? "%%" : "%".$keyword."%";
+        $address = empty($keyword) ? "%%" : "%".$keyword."%";
+        $cities = empty($cities) ? "%%" : "%".$cities."%";
+
+		return $this->db->query("SELECT
+                                    COUNT(*) total_rows
+                                FROM property p
+                                JOIN mst_asset_category mac ON mac.asset_category_id = p.asset_category_id
+                                JOIN mst_area ma ON ma.area_id = p.area_id
+                                JOIN mst_cities mc ON mc.city_id = p.city_id
+                                JOIN mst_user mua ON mua.user_id = p.agent_id
+                                JOIN mst_owner muo ON muo.owner_id = p.owner_id
+                                WHERE p.property_title like '$title'
+                                AND mc.city_name like '$cities'
+                                AND p.deleted = 0
+                                AND p.sale_status = 0
+                                OR p.address like '$address'
+                                AND mc.city_name like '$cities'
+                                AND p.deleted = 0");
+	}
+
+    public function totalRowsByAgent($agent_name)
+	{
+		return $this->db->query("SELECT
+                                    COUNT(*) total_rows
+                                FROM property p
+                                JOIN mst_asset_category mac ON mac.asset_category_id = p.asset_category_id
+                                JOIN mst_area ma ON ma.area_id = p.area_id
+                                JOIN mst_cities mc ON mc.city_id = p.city_id
+                                JOIN mst_user mua ON mua.user_id = p.agent_id
+                                JOIN mst_owner muo ON muo.owner_id = p.owner_id
+                                WHERE p.deleted = 0
+                                AND p.sale_status = 0
+                                AND LOWER(mua.user_full_name) = LOWER('$agent_name')");
+	}
+
     public function totalRowsByCategory($category)
 	{
         $category = empty($category) ? "%%" : "%".$category."%";
@@ -345,12 +472,13 @@ class Property_model extends CI_model
                                 JOIN mst_user mua ON mua.user_id = p.agent_id
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.deleted = 0
+                                AND p.sale_status = 0
                                 AND mac.asset_category_name like '$category'");
 	}
 
     public function totalRowsBySaleType($sale_type)
 	{
-        $sale_type = empty($sale_type) ? 0 : $sale_type == "sale" ? 2 : 1;
+        $sale_type = (empty($sale_type) ? 0 : $sale_type == "sale") ? 2 : 1;
 		return $this->db->query("SELECT
                                     COUNT(*) total_rows
                                 FROM property p
@@ -360,6 +488,7 @@ class Property_model extends CI_model
                                 JOIN mst_user mua ON mua.user_id = p.agent_id
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.deleted = 0
+                                AND p.sale_status = 0
                                 AND p.sale_type = $sale_type");
 	}
 }

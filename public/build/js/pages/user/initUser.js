@@ -166,12 +166,10 @@ export function viewAllUser() {
                             <div class="list-icons-item dropdown">
                                 <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-file-text2"></i></a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="#" class="dropdown-item btn-edit" data-id="${
-																			key.user_id
-																		}"><i class="icon-file-plus"></i> Perbarui</a>
-                                    <a href="#" class="dropdown-item btn-delete" data-id="${
-																			key.user_id
-																		}"><i class="icon-cross2"></i> Hapus</a>
+									<a href="#" class="dropdown-item btn-edit-password" data-id="${key.user_id}"><i class="icon-key"></i>Ubah Password</a>
+									<a href="#" class="dropdown-item btn-edit-foto" data-id="${key.user_id}"><i class="icon-images3"></i>Ubah Foto</a>
+                                    <a href="#" class="dropdown-item btn-edit" data-id="${key.user_id}"><i class="icon-file-plus"></i> Perbarui</a>
+                                    <a href="#" class="dropdown-item btn-delete" data-id="${key.user_id}"><i class="icon-cross2"></i> Hapus</a>
                                 </div>
                             </div>
                         </div>

@@ -4,10 +4,10 @@
             <div class="card-body">
                 <div class="row">
                     <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
-                        <button type="button" class="btn bg-blue-700 btn-block btn-float">
+                        <a href="<?= base_url()?>admin/service" type="button" class="btn bg-blue-700 btn-block btn-float">
                             <i class="icon-folder-plus2 icon-2x"></i>
                             <span>Layanan</span>
-                        </button>
+                        </a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
                         <a href="<?= base_url()?>admin/property" type="button" class="btn bg-teal-700 btn-block btn-float">
@@ -33,12 +33,6 @@
                             <span>Kota</span>
                         </a>
                     </div>
-                    <!-- <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
-                        <button type="button" class="btn bg-violet-400 btn-block btn-float">
-                            <i class="icon-user-tie icon-2x"></i>
-                            <span>Karyawan</span>
-                        </button>
-                    </div> -->
                     <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
                         <a href="<?= base_url()?>admin/owner" type="button" class="btn bg-indigo-400 btn-block btn-float">
                             <i class="icon-clipboard2 icon-2x"></i>
@@ -46,10 +40,10 @@
                         </a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
-                        <button type="button" class="btn bg-brown-400 btn-block btn-float">
+                        <a href="<?= base_url()?>admin/report" type="button" class="btn bg-brown-400 btn-block btn-float">
                             <i class="icon-file-presentation2 icon-2x"></i>
                             <span>Laporan</span>
-                        </button>
+                        </a>
                     </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
                         <a href="<?= base_url()?>admin/company" type="button" class="btn bg-green-400 btn-block btn-float">
@@ -63,24 +57,12 @@
                             <span>Pengguna</span>
                         </a>
                     </div>
-                    <!-- <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
-                        <button type="button" class="btn bg-info-400 btn-block btn-float">
-                            <i class="icon-images3 icon-2x"></i>
-                            <span>Foto</span>
-                        </button>
-                    </div>
                     <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
-                        <button type="button" class="btn bg-slate-400 btn-block btn-float">
-                            <i class="icon-lock icon-2x"></i>
-                            <span>Password</span>
-                        </button>
-                    </div>
-                    <div class="col-lg-2 col-md-2 col-sm-3 mt-1 mb-1">
-                        <button type="button" class="btn bg-teal-400 btn-block btn-float">
-                            <i class="icon-people icon-2x"></i>
+                        <a href="<?= base_url()?>admin/auth/logout" type="button" class="btn bg-teal-400 btn-block btn-float">
+                            <i class="icon-exit2 icon-2x"></i>
                             <span>Keluar</span>
-                        </button>
-                    </div> -->
+                        </a>
+                    </div>
                 </div>
             </div>
         </div>
@@ -96,7 +78,7 @@
                     </a>
                 </div>
             </div>
-
+            <div class="card-body d-md-flex align-items-md-center justify-content-md-between flex-md-wrap">
             <!-- <div class="card-body d-md-flex align-items-md-center justify-content-md-between flex-md-wrap">
                 <div class="d-flex align-items-center mb-3 mb-md-0">
                     <div id="tickets-status"></div>
@@ -152,89 +134,93 @@
                         <tr class="table-active table-border-double">
                             <td colspan="3">Agen Properti</td>
                             <td class="text-right">
-                                <span class="badge bg-blue badge-pill">1</span>
+                                <span class="badge bg-blue badge-pill"><?= count($data['agent']) ?></span>
                             </td>
                         </tr>
 
-                        <tr>
-                            <td class="text-center">
-                                <i class="icon-checkmark3 text-success"></i>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#" class="btn bg-teal-400 rounded-round btn-icon btn-sm">
-                                            <span class="letter-icon"></span>
-                                        </a>
+                        <?php
+                            foreach($data['agent'] as $row){
+                                echo '<tr>
+                                <td class="text-center">
+                                    <i class="icon-checkmark3 text-success"></i>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-3">
+                                            <a href="#" class="btn bg-teal-400 rounded-round btn-icon btn-sm">
+                                                <span class="letter-icon"></span>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#" class="text-default font-weight-semibold letter-icon-title">'.$row['user_full_name'].'</a>
+                                            <div class="text-muted font-size-sm"><span class="badge badge-mark border-blue mr-1"></span>'.ucfirst($row['status']).'</div>
+                                        </div>
                                     </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold letter-icon-title">Doni Talisman</a>
-                                        <div class="text-muted font-size-sm"><span class="badge badge-mark border-blue mr-1"></span> Active</div>
+                                </td>
+                                <td>
+                                    <a href="#" class="text-default">
+                                        <div class="font-weight-semibold">'.$row['user_phone_number'].'</div>
+                                        <span class="text-muted">E-mail : '.$row['user_email'].'</span>
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                    <div class="list-icons">
+                                        <div class="list-icons-item dropdown">
+                                            <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+                                        </div>
                                     </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="text-default">
-                                    <div class="font-weight-semibold">085715055622</div>
-                                    <span class="text-muted">E-mail : samplemail@mail.com</span>
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="list-icons-item dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                    </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                            </tr>';
+                            }
+                        ?>
 
                         <tr class="table-active table-border-double">
                             <td colspan="3">Penanggung Jawab Lainnya</td>
                             <td class="text-right">
-                                <span class="badge bg-success badge-pill">1</span>
+                                <span class="badge bg-success badge-pill"><?= count($data['admin']) ?></span>
                             </td>
                         </tr>
 
-                        <tr>
-                            <td class="text-center">
-                                <i class="icon-checkmark3 text-success"></i>
-                            </td>
-                            <td>
-                                <div class="d-flex align-items-center">
-                                    <div class="mr-3">
-                                        <a href="#" class="btn bg-success-400 rounded-round btn-icon btn-sm">
-                                            <span class="letter-icon"></span>
-                                        </a>
-                                    </div>
-                                    <div>
-                                        <a href="#" class="text-default font-weight-semibold letter-icon-title">Alan Batubara</a>
-                                        <div class="text-muted font-size-sm"><span class="badge badge-mark border-secondary mr-1"></span> Non-active</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <a href="#" class="text-default">
-                                    <div>PT. Sukanda Djaya</div>
-                                    <span class="text-muted">Pengajuan masih menunggu dari PT. Sukanda Djaya.</span>
-                                </a>
-                            </td>
-                            <td class="text-center">
-                                <div class="list-icons">
-                                    <div class="list-icons-item dropdown">
-                                        <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
-                                        <div class="dropdown-menu dropdown-menu-right">
-                                            <a href="#" class="dropdown-item"><i class="icon-undo"></i> Quick reply</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-history"></i> Full history</a>
-                                            <div class="dropdown-divider"></div>
-                                            <a href="#" class="dropdown-item"><i class="icon-plus3 text-blue"></i> Unresolve issue</a>
-                                            <a href="#" class="dropdown-item"><i class="icon-cross2 text-danger"></i> Close issue</a>
+                        <?php
+                            foreach($data['admin'] as $row){
+                                echo '<tr>
+                                <td class="text-center">
+                                    <i class="icon-checkmark3 text-success"></i>
+                                </td>
+                                <td>
+                                    <div class="d-flex align-items-center">
+                                        <div class="mr-3">
+                                            <a href="#" class="btn bg-teal-400 rounded-round btn-icon btn-sm">
+                                                <span class="letter-icon"></span>
+                                            </a>
+                                        </div>
+                                        <div>
+                                            <a href="#" class="text-default font-weight-semibold letter-icon-title">'.$row['user_full_name'].'</a>
+                                            <div class="text-muted font-size-sm"><span class="badge badge-mark border-blue mr-1"></span>'.ucfirst($row['status']).'</div>
                                         </div>
                                     </div>
-                                </div>
-                            </td>
-                        </tr>
+                                </td>
+                                <td>
+                                    <a href="#" class="text-default">
+                                        <div class="font-weight-semibold">'.$row['user_phone_number'].'</div>
+                                        <span class="text-muted">E-mail : '.$row['user_email'].'</span>
+                                    </a>
+                                </td>
+                                <td class="text-center">
+                                    <div class="list-icons">
+                                        <div class="list-icons-item dropdown">
+                                            <a href="#" class="list-icons-item dropdown-toggle caret-0" data-toggle="dropdown"><i class="icon-menu7"></i></a>
+                                        </div>
+                                    </div>
+                                </td>
+                            </tr>';
+                            }
+                        ?>
                     </tbody>
                 </table>
+            </div>
+                <hr class="mt-2">
+                <a href="<?= base_url() ?>admin/user" class="bg-light text-grey w-100 py-2 border-top" data-popup="tooltip" title="Tampilkan lebih banyak"><i class="icon-menu7 d-block top-0"></i></a>
             </div>
         </div>
         <!-- /support tickets -->
@@ -285,16 +271,14 @@
         </div>
         <!-- /progress counters -->
         <!-- My messages -->
-        <div class="card">
+        <!-- <div class="card">
             <div class="card-header header-elements-inline">
                 <h5 class="card-title text-teal"><b>Kategori Layanan Terbanyak</b></h5>
                 <div class="header-elements">
                     <span><i class="icon-history text-warning mr-2"></i> Jul 7, 10:30</span>
-                    <!-- <span class="badge bg-success align-self-start ml-3">Online</span> -->
                 </div>
             </div>
 
-            <!-- Numbers -->
             <div class="card-body py-0">
                 <div class="row text-center">
                     <div class="col-4">
@@ -319,8 +303,7 @@
                     </div>
                 </div>
             </div>
-            <!-- /numbers -->
-        </div>
+        </div> -->
 
         <!-- Daily financials -->
         <div class="card">
@@ -341,22 +324,24 @@
                 <div class="chart mb-3" id="bullets"></div>
 
                 <ul class="media-list">
-                    <li class="media">
-                        <div class="mr-3">
-                            <a href="#" class="btn bg-transparent border-info border-2 btn-icon"><img src="<?= base_url() ?>/public/images/property/property-home-icon.png" style="width: 3rem;" alt=""></i></a>
-                        </div>
-
-                        <div class="media-body">
-                            <h5 class="font-weight-bold text-info">Rumah Kebayoran Bintaro Terawat</h5>
-                            <div class="text-muted">Bintaro Tangerang Selatan LT/LB : 371/320 KM/KT : 5/4.</div>
-                        </div>
-                    </li>
-
-
+                    <?php
+                        foreach($data['properties'] as $row){
+                            echo '<li class="media">
+                            <div class="mr-3">
+                                <a href="#" class="btn bg-transparent border-info border-2 btn-icon"><img src="'.base_url().'/public/images/property/property-home-icon.png" style="width: 3rem;" alt=""></i></a>
+                            </div>
+    
+                            <div class="media-body">
+                                <h5 class="font-weight-bold text-info">'.$row['property_title'].'</h5>
+                                <div class="text-muted">'.$row['city_name'].' | '.$row['area_name'].' | '.$row['unit_number'].'</div>
+                            </div>
+                        </li>';
+                        }
+                    ?>
                 </ul>
 
                 <hr>
-                <a href="#" class="bg-light text-grey w-100 py-2" data-popup="tooltip" title="Load more"><i class="icon-menu7 d-block top-0"></i></a>
+                <a href="<?= base_url() ?>admin/property" class="bg-light text-grey w-100 py-2" data-popup="tooltip" title="Tampilkan lebih banyak"><i class="icon-menu7 d-block top-0"></i></a>
             </div>
         </div>
         <!-- /daily financials -->

@@ -1,9 +1,10 @@
-import {viewAllProperty} from "./property/initProperty.js";
+import {viewAllProperty, countProperty} from "./property/initProperty.js";
 import {initAction} from "./property/initActionProperty.js";
 import {initActionStepsAdd, initActionStepsUpdate} from "./property/initActionStepsProperty.js";
 
 document.addEventListener("DOMContentLoaded", function () {
 	viewAllProperty();
+	countProperty();
 	initAction();
     initActionStepsAdd();
 	initActionStepsUpdate();

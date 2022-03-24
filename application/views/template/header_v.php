@@ -6,7 +6,7 @@
             <div class="col-lg-3 col-md-4">
                 <div class="header-top-left">
                     <ul class="phone-wrap">
-                        <li><span>Telephone Enquiry:</span><a href="<?= base_url() ?>public/front-web/#">(+123) 123 321 345</a></li>
+                        <li><span>Permintaan Telepon:</span><a href="<?= base_url() ?>public/front-web/#">(+123) 123 321 345</a></li>
                     </ul>
                 </div>
             </div>
@@ -16,14 +16,15 @@
                 <div class="header-top-right">
                     <ul class="ht-menu">
                         <!-- Begin Setting Area -->
-                        <li>
-                            <div class="ht-setting-trigger"><span>Setting</span></div>
+                        <li id="login-button">
+                            <a href="<?= base_url() ?>home/login" class="text-black"><small>Login Akun</small></a>
+                            <!-- <div class="ht-setting-trigger"><span>Setting</span></div>
                             <div class="setting ht-setting">
                                 <ul class="ht-setting-list">
                                     <li><a href="<?= base_url() ?>public/front-web/login-register.html">My Account</a></li>
                                     <li><a href="<?= base_url() ?>public/front-web/login-register.html">Sign In</a></li>
                                 </ul>
-                            </div>
+                            </div> -->
                         </li>
                         <!-- Setting Area End Here -->
                         <!-- Begin Currency Area -->
@@ -83,30 +84,30 @@
                         <li class="hm-minicart">
                             <div class="hm-minicart-trigger" style="background-color: #14BAB0;">
                                 <span class="item-icon"></span>
-                                <span class="item-text">Daftar Properti Baru
+                                <span class="item-text" id="title-property-list-rc">Daftar Properti Baru
                                     <span class="cart-item-count"><?= count($data['new_properties'])?></span>
                                 </span>
                             </div>
                             <span></span>
-                            <div class="minicart">
-                                <ul class="minicart-product-list">
+                            <div class="minicart ">
+                                <ul class="minicart-product-list" id="my-property-list-rc">
                                     <?php
                                         foreach($data['new_properties'] as $row){
                                             echo '<li>
                                                     <div class="minicart-product-details">
-                                                        <h6><a href="'.base_url().'"home/property/'.$row['property_id'].'">'.$row['property_title'].'</a></h6>
+                                                        <h6><a href="'.base_url().'home/property/'.$row['property_id'].'">'.$row['property_title'].'</a></h6>
                                                         <span class="text-secondary"><small>'.$row['area_name'].' | '.$row['city_name'].'</small></span>
                                                     </div>
                                                 </li>';
                                         }
                                     ?>
                                 </ul>
-                                <!-- <p class="minicart-total">Showing: <span>1 dari 100</span></p>
-                                                <div class="minicart-button">
-                                                    <a href="<?= base_url() ?>public/front-web/#" class="li-button li-button-fullwidth li-button-dark">
-                                                        <span>Lihat Semua</span>
-                                                    </a>
-                                                </div> -->
+                                <!-- <p class="minicart-total">Showing: <span>1 dari 100</span></p> -->
+                                <div class="minicart-button" id="show-more-my-property-rc">
+                                    <!-- <a href="<?= base_url() ?>home/my-property" class="li-button li-button-fullwidth li-button-dark">
+                                        <span>Lihat Semua</span>
+                                    </a> -->
+                                </div>
                             </div>
                         </li>
                         <!-- Header Mini Cart Area End Here -->

@@ -123,27 +123,27 @@
                             <h3 class="footer-block-title">Follow Us</h3>
                             <ul class="social-link">
                                 <li class="twitter">
-                                    <a href="<?= base_url() ?>public/front-web/https://twitter.com/" data-toggle="tooltip" target="_blank" title="Twitter">
+                                    <a href="javaascript:void(0)" data-toggle="tooltip" target="_blank" title="Twitter">
                                         <i class="fa fa-twitter"></i>
                                     </a>
                                 </li>
                                 <li class="google-plus">
-                                    <a href="<?= base_url() ?>public/front-web/https://www.plus.google.com/discover" data-toggle="tooltip" target="_blank" title="Google +">
+                                    <a href="javaascript:void(0)" data-toggle="tooltip" target="_blank" title="Google +">
                                         <i class="fa fa-google-plus"></i>
                                     </a>
                                 </li>
                                 <li class="facebook">
-                                    <a href="<?= base_url() ?>public/front-web/https://www.facebook.com/" data-toggle="tooltip" target="_blank" title="Facebook">
+                                    <a href="javaascript:void(0)" data-toggle="tooltip" target="_blank" title="Facebook">
                                         <i class="fa fa-facebook"></i>
                                     </a>
                                 </li>
                                 <li class="youtube">
-                                    <a href="<?= base_url() ?>public/front-web/https://www.youtube.com/" data-toggle="tooltip" target="_blank" title="Youtube">
+                                    <a href="javaascript:void(0)" data-toggle="tooltip" target="_blank" title="Youtube">
                                         <i class="fa fa-youtube"></i>
                                     </a>
                                 </li>
                                 <li class="instagram">
-                                    <a href="<?= base_url() ?>public/front-web/https://www.instagram.com/" data-toggle="tooltip" target="_blank" title="Instagram">
+                                    <a href="javaascript:void(0)" data-toggle="tooltip" target="_blank" title="Instagram">
                                         <i class="fa fa-instagram"></i>
                                     </a>
                                 </li>
@@ -155,9 +155,9 @@
                             <div class="footer-block">
                                 <h3 class="footer-block-title">Layanan Perusahaan</h3>
                                 <ul>
-                                    <li><a href="<?= base_url() ?>public/front-web/#">Jual Beli Properti</a></li>
-                                    <li><a href="<?= base_url() ?>public/front-web/#">Sewa Menyewa Properti</a></li>
-                                    <li><a href="<?= base_url() ?>public/front-web/#">Pengembangan Aset</a></li>
+                                    <li><a href="javaascript:void(0)">Jual Beli Properti</a></li>
+                                    <li><a href="javaascript:void(0)">Sewa Menyewa Properti</a></li>
+                                    <li><a href="javaascript:void(0)">Pengembangan Aset</a></li>
                                 </ul>
                             </div>
                         </div>
@@ -177,23 +177,17 @@
                     <!-- Begin Footer Links Area -->
                     <div class="footer-links">
                         <ul>
-                            <li><a href="<?= base_url() ?>public/front-web/#">Rumah</a></li>
-                            <li><a href="<?= base_url() ?>public/front-web/#">Ruko</a></li>
-                            <li><a href="<?= base_url() ?>public/front-web/#">Tanah</a></li>
-                            <li><a href="<?= base_url() ?>public/front-web/#">Help</a></li>
-                            <li><a href="<?= base_url() ?>public/front-web/#">Apartment</a></li>
-                            <li><a href="<?= base_url() ?>public/front-web/#">Gedung</a></li>
-                            <li><a href="<?= base_url() ?>public/front-web/#">Kios</a></li>
-                            <li><a href="<?= base_url() ?>public/front-web/#">Kos</a></li>
-                            <li><a href="<?= base_url() ?>public/front-web/#">Gudang</a></li>
-                            <li><a href="<?= base_url() ?>public/front-web/#">Vila</a></li>
-                            <li><a href="<?= base_url() ?>public/front-web/#">Hotel</a></li>
+                            <?php
+                                foreach($data['cities'] as $row){
+                                    echo '<li><a href="javaascript:void(0)'.strtolower($row['city_name']).'">'.$row['city_name'].'</a></li>';
+                                }
+                            ?>
                         </ul>
                     </div>
                     <!-- Footer Links Area End Here -->
                     <!-- Begin Copyright Area -->
                     <div class="copyright text-center pt-25">
-                        <span><a target="_blank" href="<?= base_url() ?>public/front-web/https://www.templateshub.net">Design By Anonim</a></span>
+                        <span><a target="_blank" href="https://www.eagletree.co.id/id/">Design By Eagle Tree 2022</a></span>
                     </div>
                     <!-- Copyright Area End Here -->
                 </div>

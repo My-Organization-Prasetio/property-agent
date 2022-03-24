@@ -20,7 +20,7 @@ export function initAction() {
 
 				//Dom area option
 				let areaOption = `<option value="">-- Pilih Area Properti --</option>`;
-				$.each(dataAreas, function(index, key){
+				$.each(dataAreas, function (index, key) {
 					areaOption += `<option value="${key.area_id}">${key.area_name}</option>`;
 				})
 				$('.area-form-update').html(areaOption)
@@ -49,11 +49,11 @@ export function initAction() {
 			},
 		});
 	});
-	
+
 	/*******************************************************************************************
 									ON CLICK BUTTON DELETE
 	*******************************************************************************************/
-	$("#table-body-owner").on("click", ".btn-delete", function () {
+	$("#table-body-property").on("click", ".btn-delete", function () {
 		var id = $(this).data("id");
 		// Setup
 		var notice = new PNotify({
@@ -83,7 +83,7 @@ export function initAction() {
 		// On Comfirm
 		notice.get().on("pnotify.confirm", function () {
 			$.ajax({
-				url: rootApp + "api/owner/delete",
+				url: rootApp + "api/property/delete",
 				type: "POST",
 				data: { id: id },
 				dataType: "json",
@@ -96,5 +96,37 @@ export function initAction() {
 				},
 			});
 		});
+	});
+
+	/*******************************************************************************************
+								UPLOAD PROPERTIES
+	*******************************************************************************************/
+	$("form[name='upload-excel']").validate({
+		// Specify validation rules
+		rules: {
+			file: "required",
+		},
+		// Specify validation error messages
+		messages: {
+			file: "Pilih file excel yang akan di upload",
+		},
+		submitHandler: function (form) {
+			var formData = new FormData(form);
+			$.ajax({
+				url: rootApp + "api/import/properties",
+				type: "POST",
+				data: formData,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (res) {
+					$("form[name='upload-excel']")[0].reset();
+					pnotifySuccess(res.status, res.message);
+				},
+				error: function (request, error) {
+					pnotifyError("Error", JSON.stringify(request.statusText));
+				},
+			});
+		},
 	});
 }

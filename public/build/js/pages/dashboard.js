@@ -3781,8 +3781,8 @@ var Dashboard = function () {
             // Progress charts
             _ProgressPieChart('#today-progress', 20, 20, '#7986CB');
             _ProgressPieChart('#yesterday-progress', 20, 20, '#7986CB');
-            _RoundedProgressChart('#hours-available-progress', 38, 2, '#F06292', 1.13, 'icon-watch text-pink-400', 'Pengunjung', 'Bulan Ini');
-            _RoundedProgressChart('#goal-progress', 38, 2, '#5C6BC0', 0.82, 'icon-trophy3 text-indigo-400', 'Transaksi & Layanan', 'Bulan Ini');
+            _RoundedProgressChart('#hours-available-progress', 38, 2, '#F06292', 1, 'icon-watch text-pink-400', 'Akses Website', 'akses kapan saja : 24/7 days');
+            _RoundedProgressChart('#goal-progress', 38, 2, '#5C6BC0', 1, 'icon-trophy3 text-indigo-400', 'Transaksi & Layanan', 'dilakukan dimanapun dan kapan saja');
 
             // Donut charts
             _MarketingCampaignsDonutChart('#campaigns-donut', 42);

@@ -35,5 +35,7 @@
 <link rel="stylesheet" href="<?= base_url() ?>public/front-web/style.css">
 <!-- Responsive CSS -->
 <link rel="stylesheet" href="<?= base_url() ?>public/front-web/css/responsive.css">
+<!-- Notification by Toastr -->
+<link rel="stylesheet" href="<?= base_url() ?>public/plugins/notifications/toaster-2.1.4-7/toastr.min.css">
 <!-- Modernizr js -->
 <script src="<?= base_url() ?>public/front-web/js/vendor/modernizr-2.8.3.min.js"></script>

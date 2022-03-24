@@ -52,13 +52,6 @@ class User extends Api_main_controller
                 $data = array('upload_data' => $this->upload->data()); //ambil file name yang diupload
                 $image_name = $data['upload_data']['file_name']; //set file name ke variable image
 
-                //UPDATE IMAGE ON DATABASE
-                // $this->main_model->update(
-                //     array('user_name' => $this->session->userdata(SHORT_APP_NAME.'_'.'username')),
-                //     array('user_photo' => $image_name),
-                //     'mst_user'
-                // );
-
                 $inputData = array(
                     'user_level_id'   => $this->input->post('user_level_id'),
                     'user_name'   => $this->input->post('user_name'),
@@ -77,6 +70,163 @@ class User extends Api_main_controller
                 $dataArray = array(
                     'status'    => 'Success',
                     'message'   => 'Berhasil menambahkan pengguna'
+                );
+                $this->output
+                    ->set_status_header(200, 'Success')
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($dataArray));
+            } else {
+                $dataArray = array(
+                    'status'    => 'Error',
+                    'message'   => 'Error Upload.'
+                );
+                $this->output
+                    ->set_status_header(500, 'Gagal upload image, silahkan coba kembali dengan format JPEG, JPG atau PNG.')
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($dataArray));
+            }
+        } catch (\Throwable $th) {
+            $dataArray = array(
+                'status'    => 'Error',
+                'message'   => $th
+            );
+            $this->output
+                ->set_status_header(500, 'Gagal menambahkan pengguna')
+                ->set_content_type('application/json')
+                ->set_output(json_encode($dataArray));
+        }
+    }
+
+    public function change_email()
+    {
+        try {
+            $id = $this->uri->segment(4);
+            $updateData = array(
+                'user_email'   => $this->input->post('user_email'),
+                'updated_with'    => $id
+            );
+            //Update data user
+            $this->main_model->update(
+                array('user_id'=>$id),
+                $updateData,
+                'mst_user');
+            
+            $dataArray = array(
+                'status'    => 'Success',
+                'message'   => 'Berhasil mengubah email pengguna'
+            );
+            $this->output
+                ->set_status_header(200, 'Success')
+                ->set_content_type('application/json')
+                ->set_output(json_encode($dataArray));
+        } catch (\Throwable $err) {
+            $dataArray = array(
+                'status'    => 'Error',
+                'message'   => $err
+            );
+            $this->output
+                ->set_status_header(500, 'Error')
+                ->set_content_type('application/json')
+                ->set_output(json_encode($dataArray));
+        }
+    
+    }
+
+    public function change_phone_number()
+    {
+        try {
+            $id = $this->uri->segment(4);
+            $updateData = array(
+                'user_phone_number'   => $this->input->post('user_phone_number'),
+                'updated_with'    => $id
+            );
+            //Update data user
+            $this->main_model->update(
+                array('user_id'=>$id),
+                $updateData,
+                'mst_user');
+            
+            $dataArray = array(
+                'status'    => 'Success',
+                'message'   => 'Berhasil mengubah no telepon pengguna'
+            );
+            $this->output
+                ->set_status_header(200, 'Success')
+                ->set_content_type('application/json')
+                ->set_output(json_encode($dataArray));
+        } catch (\Throwable $err) {
+            $dataArray = array(
+                'status'    => 'Error',
+                'message'   => $err
+            );
+            $this->output
+                ->set_status_header(500, 'Error')
+                ->set_content_type('application/json')
+                ->set_output(json_encode($dataArray));
+        }
+    
+    }
+
+    public function update_password()
+    {
+        try {
+            $updateData = array(
+                'user_password'   => $this->lib_main->hash($this->input->post('password')),
+                'updated_with'    => $this->session->userdata(SHORT_APP_NAME.'_'.'userid')
+            );
+            //Update data user
+            $this->main_model->update(
+                array('user_id'=>$this->input->post('user_id')),
+                $updateData,
+                'mst_user');
+            
+            $dataArray = array(
+                'status'    => 'Success',
+                'message'   => 'Berhasil mengubah password pengguna'
+            );
+            $this->output
+                ->set_status_header(200, 'Success')
+                ->set_content_type('application/json')
+                ->set_output(json_encode($dataArray));
+        } catch (\Throwable $err) {
+            $dataArray = array(
+                'status'    => 'Error',
+                'message'   => $err
+            );
+            $this->output
+                ->set_status_header(500, 'Error')
+                ->set_content_type('application/json')
+                ->set_output(json_encode($dataArray));
+        }
+    
+    }
+
+    public function update_photo()
+    {
+        try {
+            $config['upload_path'] = "./public/images/profile/"; //path folder file upload
+            $config['allowed_types'] = 'gif|jpg|png'; //type file yang boleh di upload
+            $config['encrypt_name'] = TRUE; //enkripsi file name upload
+
+            $this->load->library('upload', $config); //call library upload 
+            if ($this->upload->do_upload("photo")) { //upload file
+                $data = array('upload_data' => $this->upload->data()); //ambil file name yang diupload
+                $image_name = $data['upload_data']['file_name']; //set file name ke variable image
+
+                $updateData = array(
+                    'user_photo'   => $image_name,
+                    'updated_with'    => $this->session->userdata(SHORT_APP_NAME.'_'.'userid')
+                );
+
+                //Update data user
+                $this->main_model->update(
+                    array('user_id'=>$this->input->post('user_id')),
+                    $updateData,
+                    'mst_user');
+                    
+                $dataArray = array(
+                    'status'    => 'Success',
+                    'message'   => 'Berhasil mengubah foto pengguna'
                 );
                 $this->output
                     ->set_status_header(200, 'Success')

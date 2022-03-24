@@ -25,6 +25,7 @@ export function initAction() {
 				success: function (res) {
 					$("#modal_form_add").modal("hide");
 					pnotifySuccess(res.status, res.message);
+					$("form[name='add-city']")[0].reset();
 					viewAllCity();
 				},
 				error: function (request, error) {
@@ -50,8 +51,8 @@ export function initAction() {
 			success: function (res) {
 				const data = res.data[0];
 				$("#modal_form_edit").modal("show");
-				$("#asset_category_id").val(data.asset_category_id);
-				$("#asset_category_name").val(data.asset_category_name);
+				$("#city_id").val(data.city_id);
+				$("#city_name").val(data.city_name);
 			},
 			error: function (request, error) {
 				// console.log("Request: " + JSON.stringify(request));

@@ -4,6 +4,8 @@
 <script src="<?= base_url() ?>public/front-web/js/vendor/popper.min.js"></script>
 <!-- Bootstrap V4.1.3 Fremwork js -->
 <script src="<?= base_url() ?>public/front-web/js/bootstrap.min.js"></script>
+<!-- Validation -->
+<script src="<?= base_url() ?>public/plugins/forms/validation/validate.min.js"></script>
 <!-- Ajax Mail js -->
 <script src="<?= base_url() ?>public/front-web/js/ajax-mail.js"></script>
 <!-- Meanmenu js -->
@@ -40,10 +42,19 @@
 <script src="<?= base_url() ?>public/front-web/js/scrollUp.min.js"></script>
 <!-- Main/Activator js -->
 <script src="<?= base_url() ?>public/front-web/js/main.js"></script>
+<!-- Notification by Toastr -->
+<script src="<?= base_url() ?>public/plugins/notifications/toaster-2.1.4-7/toastr.min.js"></script>
+
 <!-- Custom Page JS -->
 <script src="<?= base_url() ?>public/build/js/global/function.js"></script>
 <script src="<?= base_url() ?>public/build/js/global/variable.js"></script>
+<script src="<?= base_url() ?>public/build/js/global/function_pnotify.js"></script>
+<script src="<?= base_url() ?>public/front-web/js/page/main.js"></script>
+<script src="<?= base_url() ?>public/front-web/js/page/filter-search.js"></script>
+<script src="<?= base_url() ?>public/front-web/js/page/modal-filter-search.js"></script>
 <script src="<?= base_url() ?>public/front-web/js/page/search.js"></script>
+<script src="<?= base_url() ?>public/front-web/js/page/my-property-list-main.js"></script>
+<script src="<?= base_url() ?>public/build/js/pages/front-login-function.js"></script>
 <?php
 if (!empty($js_file)) {
     echo '<script type="module" src="' . base_url() . 'public/build/js/pages/' . $js_file . '.js"></script>';

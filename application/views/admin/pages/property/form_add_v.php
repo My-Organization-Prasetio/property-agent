@@ -72,8 +72,8 @@
                     <div class="form-group">
                         <label>Kota:</label>
                         <br><small class="text-warning">*Silahkan pilih kota untuk menampilkan area</small>
-                        <select name="city_id" data-placeholder="Pilih Tipe Penjualan" class="form-control cities-form-add">
-                            <option value="">-- Pilih Tipe Penjualan --</option>
+                        <select name="city_id" data-placeholder="Pilih Kota" class="form-control cities-form-add">
+                            <option value="">-- Pilih Kota --</option>
                             <?php
                             foreach ($data['cities'] as $row) {
                                 echo '<option value="' . $row['city_id'] . '">' . $row['city_name'] . '</option>';
@@ -103,7 +103,7 @@
                 <div class="col-md-7">
                     <div class="form-group">
                         <label>Harga: <span class="text-danger">*</span></label>
-                        <input type="text" name="price" placeholder="" class="form-control">
+                        <input type="number" name="price" placeholder="" class="form-control">
                     </div>
                 </div>
 

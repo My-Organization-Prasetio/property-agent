@@ -24,6 +24,7 @@ export function initAction() {
 				processData: false,
 				success: function (res) {
 					$("#modal_form_add").modal("hide");
+					$("form[name='add-asset-category']")[0].reset();
 					pnotifySuccess(res.status, res.message);
 					viewAllAssetCategory();
 				},

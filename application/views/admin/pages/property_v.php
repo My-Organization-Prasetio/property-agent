@@ -1,4 +1,3 @@
-<!-- <script src="<?= base_url() ?>public/build/js/pages/form_wizard.js"></script> -->
 <div class="row">
     <div class="col-lg-9 col-md-9 col-sm-12">
         <div class="card">

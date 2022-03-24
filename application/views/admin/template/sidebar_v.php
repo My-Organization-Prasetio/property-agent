@@ -11,9 +11,9 @@
             </span>
         </a>
     </li>
-    <li class="nav-item"><a href="<?= base_url() ?>admin/service" class="nav-link disabled"><i class="icon-wall icon"></i>Transaksi & Layanan <span class="badge bg-transparent align-self-center ml-auto">Segera Hadir</span></a></li> 
+    <li class="nav-item"><a href="<?= base_url() ?>admin/service" class="nav-link"><i class="icon-wall icon"></i>Transaksi & Layanan</a></li> 
     <li class="nav-item"><a href="<?= base_url() ?>admin/property" class="nav-link"><i class="icon-office"></i>Manajemen Properti</a></li>  
-    <li class="nav-item"><a href="<?= base_url() ?>admin/report" class="nav-link disabled"><i class="icon-file-presentation2 icon"></i> Laporan <span class="badge bg-transparent align-self-center ml-auto">Segera Hadir</span></a></li>  
+    <li class="nav-item"><a href="<?= base_url() ?>admin/report" class="nav-link"><i class="icon-file-presentation2 icon"></i> Laporan </a></li>  
 
     <!-- Tambahan -->
     <li class="nav-item-header mt-0">

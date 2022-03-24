@@ -11,9 +11,9 @@ document.addEventListener("DOMContentLoaded", function () {
             },
             // Specify validation error messages
             messages: {
-                old_password: "Material name is required",
-                new_password: "Material name is required",
-                repeat_new_password: "New password doesn't match",
+                old_password: "Masukan password lama",
+                new_password: "Masukan password baru",
+                repeat_new_password: "Password yang dimasukan harus sama",
             },
             submitHandler: function (form) {
                 $.ajax({

@@ -46,7 +46,7 @@ class City extends Api_main_controller
             $inputData = array(
                 'city_name'   => $this->input->post('city_name'),
                 'created_by'    => $this->session->userdata(SHORT_APP_NAME . '_' . 'userid'),
-                'created_by'    => $this->session->userdata(SHORT_APP_NAME . '_' . 'userid')
+                'updated_by'    => $this->session->userdata(SHORT_APP_NAME . '_' . 'userid')
             );
             $this->main_model->insert($inputData, 'mst_cities');
             $dataArray = array(

@@ -30,6 +30,47 @@ export function initAction() {
 				processData: false,
 				success: function (res) {
 					$("#modal_form_add").modal("hide");
+					$("form[name='add-owner']")[0].reset();
+					pnotifySuccess(res.status, res.message);
+					viewAllOwner();
+				},
+				error: function (request, error) {
+					pnotifyError("Error", JSON.stringify(request.statusText));
+				},
+			});
+		},
+	});
+
+	/*******************************************************************************************
+                                    ON CLICK BUTTON EDIT
+    *******************************************************************************************/
+	$("#table-body-owner").on("click", ".btn-edit-foto", function () {
+		$("#modal_form_edit_foto").modal("show");
+		var id = $(this).data("id");
+		$("#update_foto_owner_id").val(id);
+	});
+
+	$("form[name='update-foto-owner']").validate({
+		// Specify validation rules
+		rules: {
+			owner_photo: "required",
+		},
+		// Specify validation error messages
+		messages: {
+			owner_photo: "Pilih foto profil",
+		},
+		submitHandler: function (form) {
+			var formData = new FormData(form);
+			$.ajax({
+				url: rootApp + "api/owner/update-photo",
+				type: "POST",
+				data: formData,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (res) {
+					$("#modal_form_edit_foto").modal("hide");
+					$("form[name='update-foto-owner']")[0].reset();
 					pnotifySuccess(res.status, res.message);
 					viewAllOwner();
 				},

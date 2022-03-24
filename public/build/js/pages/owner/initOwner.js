@@ -147,16 +147,12 @@ export function viewAllOwner() {
                     <td>
 						<h6 class="mb-0">
 						<a href="#">${key.id_number}</a>
-						<span class="d-block font-size-sm text-muted">Jenis ID: ${
-															key.id_number_type
-														}</span>
+						<span class="d-block font-size-sm text-muted">Jenis ID: ${key.id_number_type}</span>
 						</h6>
                     </td>
                     <td>
                         ${key.owner_phone_number}
-                        <span class="d-block font-size-sm text-muted">E-mail: ${numberWithCommas(
-													key.owner_email
-												)}</span>
+                        <span class="d-block font-size-sm text-muted">E-mail: ${numberWithCommas(key.owner_email)}</span>
                     </td>
                     <td>
                         ${key.address}
@@ -166,12 +162,9 @@ export function viewAllOwner() {
                             <div class="list-icons-item dropdown">
                                 <a href="#" class="list-icons-item dropdown-toggle" data-toggle="dropdown"><i class="icon-file-text2"></i></a>
                                 <div class="dropdown-menu dropdown-menu-right">
-                                    <a href="#" class="dropdown-item btn-edit" data-id="${
-																			key.owner_id
-																		}"><i class="icon-file-plus"></i> Perbarui</a>
-                                    <a href="#" class="dropdown-item btn-delete" data-id="${
-																			key.owner_id
-																		}"><i class="icon-cross2"></i> Hapus</a>
+									<a href="#" class="dropdown-item btn-edit-foto" data-id="${key.owner_id}"><i class="icon-images3"></i>Ubah Foto</a>
+                                    <a href="#" class="dropdown-item btn-edit" data-id="${key.owner_id}"><i class="icon-file-plus"></i> Perbarui</a>
+                                    <a href="#" class="dropdown-item btn-delete" data-id="${key.owner_id}"><i class="icon-cross2"></i> Hapus</a>
                                 </div>
                             </div>
                         </div>

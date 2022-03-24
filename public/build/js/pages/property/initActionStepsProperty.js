@@ -1,4 +1,4 @@
-import { viewAllProperty } from "./initProperty.js";
+import { viewAllProperty, countProperty } from "./initProperty.js";
 
 /*******************************************************************************************
                             VALIDATE INPUT DATA PROPERTY
@@ -69,10 +69,7 @@ export function initActionStepsAdd() {
                      }, 2000);
                     viewAllProperty();
                     $('#add-property')[0].reset();
-                    // $('#steps-add-property-p-0').show();
-                    // $('#steps-add-property-p-4').hide();
-                    // $('#steps-add-property .steps').find('li').removeClass().addClass('disabled');
-                    // $('#steps-add-property .steps li:first').removeClass('disabled').addClass('first current');
+                    countProperty()
                 },
                 error: function (request, error) {
                     pnotifyError("Error", JSON.stringify(request.statusText));

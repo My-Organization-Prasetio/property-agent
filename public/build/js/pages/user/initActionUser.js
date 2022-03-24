@@ -40,6 +40,87 @@ export function initAction() {
 				processData: false,
 				success: function (res) {
 					$("#modal_form_add").modal("hide");
+					$("form[name='add-user']")[0].reset();
+					pnotifySuccess(res.status, res.message);
+					viewAllUser();
+				},
+				error: function (request, error) {
+					pnotifyError("Error", JSON.stringify(request.statusText));
+				},
+			});
+		},
+	});
+
+	/*******************************************************************************************
+								ON CLICK BUTTON EDIT PASSWORD
+    *******************************************************************************************/
+	$("#table-body-user").on("click", ".btn-edit-password", function () {
+	$("#modal_form_edit_password").modal("show");
+		var id = $(this).data("id");
+		$("#update_password_user_id").val(id);
+	});
+
+	$("form[name='update-password-user']").validate({
+		// Specify validation rules
+		rules: {
+			password: "required",
+		},
+		// Specify validation error messages
+		messages: {
+			password: "Masukan password baru",
+		},
+		submitHandler: function (form) {
+			var formData = new FormData(form);
+			$.ajax({
+				url: rootApp + "api/user/update-password",
+				type: "POST",
+				data: formData,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (res) {
+					$("#modal_form_edit_password").modal("hide");
+					$("form[name='update-password-user']")[0].reset();
+					pnotifySuccess(res.status, res.message);
+					viewAllUser();
+				},
+				error: function (request, error) {
+					pnotifyError("Error", JSON.stringify(request.statusText));
+				},
+			});
+		},
+	});
+	
+	/*******************************************************************************************
+								ON CLICK BUTTON EDIT PASSWORD
+    *******************************************************************************************/
+	$("#table-body-user").on("click", ".btn-edit-foto", function () {
+	$("#modal_form_edit_foto").modal("show");
+		var id = $(this).data("id");
+		$("#update_pass_user_id").val(id);
+	});
+
+	$("form[name='update-foto-user']").validate({
+		// Specify validation rules
+		rules: {
+			photo: "required",
+		},
+		// Specify validation error messages
+		messages: {
+			photo: "Pilih foto profil",
+		},
+		submitHandler: function (form) {
+			var formData = new FormData(form);
+			$.ajax({
+				url: rootApp + "api/user/update-photo",
+				type: "POST",
+				data: formData,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (res) {
+					$("#modal_form_edit_foto").modal("hide");
+					$("form[name='update-foto-user']")[0].reset();
 					pnotifySuccess(res.status, res.message);
 					viewAllUser();
 				},

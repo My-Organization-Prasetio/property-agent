@@ -139,35 +139,88 @@ class Property extends Api_main_controller
         }
     }
 
-    // public function delete()
-    // {
-    //     try {
-    //         //Delete data set deleted = 1
-    //         $this->main_model->update(
-    //             array('owner_id'=>$this->input->post('id')),
-    //             array('deleted'=>1),
-    //             'mst_owner');
-    //         $responseArray = array(
-    //             'status'    => 'Success',
-    //             'message'   => 'Berhasil hapus data'
-    //         );
-    //         $this->output
-    //             ->set_status_header(200, 'Success')
-    //             ->set_content_type('application/json')
-    //             ->set_output(json_encode($responseArray));
-    //     } catch (\Throwable $th) {
-    //         $this->output
-    //             ->set_status_header(500, 'Hapus data gagal')
-    //             ->set_content_type('application/json')
-    //             ->set_output(json_encode($responseArray));
-    //     }
-    // }
+    public function delete()
+    {
+        try {
+            //Delete data set deleted = 1
+            $this->main_model->update(
+                array('property_id'=>$this->input->post('id')),
+                array('deleted'=>1),
+                'property');
+            $responseArray = array(
+                'status'    => 'Success',
+                'message'   => 'Berhasil hapus data'
+            );
+            $this->output
+                ->set_status_header(200, 'Success')
+                ->set_content_type('application/json')
+                ->set_output(json_encode($responseArray));
+        } catch (\Throwable $th) {
+            $this->output
+                ->set_status_header(500, 'Hapus data gagal')
+                ->set_content_type('application/json')
+                ->set_output(json_encode($responseArray));
+        }
+    }
+    
+
+    public function id()
+    {
+        //Get property by Property ID
+        $result = $this->m_property->getById($this->input->get('id'));
+        
+        $dataArray = array(
+            'status'    => 'Success',
+            'message'   => 'Result data properti',
+            'total'     => 1,
+            'count'     => 1,
+            'page'      => 1,
+            'per_page'  => 1,
+            'showing'   => '1-1',
+            'data'      => $result->result_array()
+        );
+        $this->output
+            ->set_status_header(200, 'Success')
+            ->set_content_type('application/json')
+            ->set_output(json_encode($dataArray));
+    }
+  
+    public function sold_by_date()
+    {
+        //Get property by Property page
+        $properties = $this->m_property->soldByDate($this->input->post('effective_start_date'), $this->input->post('effective_end_date'));
+        $dataArray = array(
+            'status'    => 'Success',
+            'message'   => 'Proses laporan berhasil',
+            'data'      => $properties->result_array()
+        );
+        $this->output
+            ->set_status_header(200, 'Success')
+            ->set_content_type('application/json')
+            ->set_output(json_encode($dataArray));
+    }
+
+    public function count_property()
+    {
+        //Get property by Property page
+        $count_property = $this->m_property->count_property();
+        $dataArray = array(
+            'status'    => 'Success',
+            'message'   => 'Jumlah properti',
+            'data'      => $count_property->row()
+        );
+        $this->output
+            ->set_status_header(200, 'Success')
+            ->set_content_type('application/json')
+            ->set_output(json_encode($dataArray));
+    }
 
     public function page()
     {
         //pagination config
         $config['perpage'] = 12;
-        $config['offset'] = empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4) == 1 ? 1 : ($this->uri->segment(4)-1)*$config['perpage'];
+        // $config['offset'] = empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4) == 1 ? 1 : ($this->uri->segment(4)-1)*$config['perpage'];
+        $config['offset'] = (empty($this->uri->segment(4)) ?  0 : $this->uri->segment(4) == 1) ? 0 : ($this->uri->segment(4)-1)*$config['perpage'];
         $showing = $config['offset']-1+$config['perpage'];
 
         //Get property by Property page
@@ -183,7 +236,7 @@ class Property extends Api_main_controller
             'count'     => $properties->num_rows(),
             'page'      => empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4),
             'per_page'  => $config['perpage'],
-            'showing'   => $config['offset'].'-'.$showing,
+            'showing'   => $total_properties->total_rows == 0 ? '0-'.$showing : 1+$config['offset'].'-'.$showing,
             'data'      => $properties->result_array(),
             'post_data' => $this->uri->segment(4)
         );
@@ -197,7 +250,7 @@ class Property extends Api_main_controller
     {
         //pagination config
         $config['perpage'] = 12;
-        $config['offset'] = empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4) == 1 ? 1 : ($this->uri->segment(4)-1)*$config['perpage'];
+        $config['offset'] = (empty($this->uri->segment(4)) ?  0 : $this->uri->segment(4) == 1) ? 0 : ($this->uri->segment(4)-1)*$config['perpage'];
         $showing = $config['offset']-1+$config['perpage'];
 
         //Get property by Property page
@@ -213,7 +266,7 @@ class Property extends Api_main_controller
             'count'     => $properties->num_rows(),
             'page'      => empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4),
             'per_page'  => $config['perpage'],
-            'showing'   => $config['offset'].'-'.$showing,
+            'showing'   => $total_properties->total_rows == 0 ? '0-'.$showing : 1+$config['offset'].'-'.$showing,
             'data'      => $properties->result_array(),
             'post_data' => $this->uri->segment(4)
         );
@@ -227,7 +280,7 @@ class Property extends Api_main_controller
     {
         //pagination config
         $config['perpage'] = 12;
-        $config['offset'] = empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4) == 1 ? 1 : ($this->uri->segment(4)-1)*$config['perpage'];
+        $config['offset'] = (empty($this->uri->segment(4)) ?  0 : $this->uri->segment(4) == 1) ? 0 : ($this->uri->segment(4)-1)*$config['perpage'];
         $showing = $config['offset']-1+$config['perpage'];
 
         //Get property by Property page
@@ -243,7 +296,37 @@ class Property extends Api_main_controller
             'count'     => $properties->num_rows(),
             'page'      => empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4),
             'per_page'  => $config['perpage'],
-            'showing'   => $config['offset'].'-'.$showing,
+            'showing'   => $total_properties->total_rows == 0 ? '0-'.$showing : 1+$config['offset'].'-'.$showing,
+            'data'      => $properties->result_array(),
+            'post_data' => $this->uri->segment(4)
+        );
+        $this->output
+            ->set_status_header(200, 'Success')
+            ->set_content_type('application/json')
+            ->set_output(json_encode($dataArray));
+    }
+
+    public function by_agent()
+    {
+        //pagination config
+        $config['perpage'] = 12;
+        $config['offset'] = (empty($this->uri->segment(4)) ?  0 : $this->uri->segment(4) == 1) ? 0 : ($this->uri->segment(4)-1)*$config['perpage'];
+        $showing = $config['offset']-1+$config['perpage'];
+
+        //Get property by Property page
+        $properties = $this->m_property->getByAgent($config['offset'], $config['perpage'], $this->input->get('agent_name'));
+        //Get total rows property
+        $total_properties = $this->m_property->totalRowsByAgent($this->input->get('agent_name'))->row();
+        //Check total rows <> showing
+        $showing = $showing > $total_properties->total_rows ? $total_properties->total_rows : $showing;
+        $dataArray = array(
+            'status'    => 'Success',
+            'message'   => 'Result data properti by agent',
+            'total'     => $total_properties->total_rows,
+            'count'     => $properties->num_rows(),
+            'page'      => empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4),
+            'per_page'  => $config['perpage'],
+            'showing'   => $total_properties->total_rows == 0 ? '0-'.$showing : 1+$config['offset'].'-'.$showing,
             'data'      => $properties->result_array(),
             'post_data' => $this->uri->segment(4)
         );
@@ -257,7 +340,7 @@ class Property extends Api_main_controller
     {
         //pagination config
         $config['perpage'] = 12;
-        $config['offset'] = empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4) == 1 ? 1 : ($this->uri->segment(4)-1)*$config['perpage'];
+        $config['offset'] = (empty($this->uri->segment(4)) ?  0 : $this->uri->segment(4) == 1) ? 0 : ($this->uri->segment(4)-1)*$config['perpage'];
         $showing = $config['offset']-1+$config['perpage'];
 
         //Get property by Property page
@@ -273,7 +356,37 @@ class Property extends Api_main_controller
             'count'     => $properties->num_rows(),
             'page'      => empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4),
             'per_page'  => $config['perpage'],
-            'showing'   => $config['offset'].'-'.$showing,
+            'showing'   => $total_properties->total_rows == 0 ? '0-'.$showing : 1+$config['offset'].'-'.$showing,
+            'data'      => $properties->result_array(),
+            'post_data' => $this->uri->segment(4)
+        );
+        $this->output
+            ->set_status_header(200, 'Success')
+            ->set_content_type('application/json')
+            ->set_output(json_encode($dataArray));
+    }
+
+    public function filter()
+    {
+        //pagination config
+        $config['perpage'] = 12;
+        $config['offset'] = (empty($this->uri->segment(4)) ?  0 : $this->uri->segment(4) == 1) ? 0 : ($this->uri->segment(4)-1)*$config['perpage'];
+        $showing = $config['offset']-1+$config['perpage'];
+
+        //Get property by Property page
+        $properties = $this->m_property->getByCategory($config['offset'], $config['perpage'], $this->input->get('category'));
+        //Get total rows property
+        $total_properties = $this->m_property->totalRowsByCategory($this->input->get('category'))->row();
+        //Check total rows <> showing
+        $showing = $showing > $total_properties->total_rows ? $total_properties->total_rows : $showing;
+        $dataArray = array(
+            'status'    => 'Success',
+            'message'   => 'Result data properti',
+            'total'     => $total_properties->total_rows,
+            'count'     => $properties->num_rows(),
+            'page'      => empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4),
+            'per_page'  => $config['perpage'],
+            'showing'   => $total_properties->total_rows == 0 ? '0-'.$showing : 1+$config['offset'].'-'.$showing,
             'data'      => $properties->result_array(),
             'post_data' => $this->uri->segment(4)
         );
@@ -285,12 +398,28 @@ class Property extends Api_main_controller
 
     public function recomendation()
     {
-        //Get property by keywords
+        //pagination config
+        $config['perpage'] = 12;
+        $config['offset'] = (empty($this->uri->segment(4)) ?  0 : $this->uri->segment(4) == 1) ? 0 : ($this->uri->segment(4)-1)*$config['perpage'];
+        $showing = $config['offset']-1+$config['perpage'];
+
+        // //Get property by Property page
         $properties = $this->m_property->queryByKeyword($this->input->post('keywords'), $this->input->post('cities'));
+        // //Get total rows property
+        $total_properties = $this->m_property->totalRowsByKeywords($this->input->post('keywords'), $this->input->post('cities'))->row();
+        //Check total rows <> showing
+        $showing = $showing > $total_properties->total_rows ? $total_properties->total_rows : $showing;
+
         $dataArray = array(
             'status'    => 'Success',
+            'message'   => 'Result data properti',
+            'total'     => $total_properties->total_rows,
             'count'     => $properties->num_rows(),
+            'page'      => empty($this->uri->segment(4)) ?  1 : $this->uri->segment(4),
+            'per_page'  => $config['perpage'],
+            'showing'   => $total_properties->total_rows == 0 ? '0-'.$showing : 1+$config['offset'].'-'.$showing,
             'data'      => $properties->result_array(),
+            'post_data' => $this->uri->segment(4)
         );
         $this->output
             ->set_status_header(200, 'Success')

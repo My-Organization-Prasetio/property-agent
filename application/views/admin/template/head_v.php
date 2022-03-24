@@ -13,6 +13,8 @@
 	<link href="<?= base_url() ?>public/build/css/global/layout.min.css" rel="stylesheet" type="text/css">
 	<link href="<?= base_url() ?>public/build/css/global/components.min.css" rel="stylesheet" type="text/css">
 	<link href="<?= base_url() ?>public/build/css/global/colors.min.css" rel="stylesheet" type="text/css">
+	<link href="<?= base_url() ?>public/plugins/tables/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
+	<link href="<?= base_url() ?>public/plugins/tables/datatables/extensions/buttons.dataTables.min.css" rel="stylesheet" type="text/css">
 	<!-- /global stylesheets -->
 	<style lang="">
 		form .error {
@@ -39,10 +41,10 @@
 	<!-- Theme JS files -->
 	<script src="<?= base_url() ?>public/plugins/forms/selects/select2.min.js"></script>
 	<script src="<?= base_url() ?>public/plugins/tables/datatables/datatables.min.js"></script>
+	<script src="<?= base_url() ?>public/plugins/tables/datatables/extensions/buttons.min.js"></script>
 	<script src="<?= base_url() ?>public/plugins/forms/validation/validate.min.js"></script>
 	<!-- Jquery Steps -->
 	<script src="<?= base_url() ?>public/plugins/forms/wizards/steps.min.js"></script>
-	<!-- <script src="<?= base_url() ?>public/plugins/forms/wizards/jquery.steps.js"></script> -->
 	<!-- Theme JS files -->
 	<script src="<?= base_url() ?>public/plugins/forms/styling/uniform.min.js"></script>
 	<script src="<?= base_url() ?>public/plugins/forms/styling/switchery.min.js"></script>
@@ -56,9 +58,9 @@
 	<script src="<?= base_url() ?>public/build/js/global/function.js"></script>
 	<script src="<?= base_url() ?>public/build/js/global/function_pnotify.js"></script>
 
-	<!-- /Page -->
 	<script src="<?= base_url() ?>public/build/js/pages/change-photo.js"></script>
 	<script src="<?= base_url() ?>public/build/js/pages/change-password.js"></script>
+	<!-- /Page -->
 	<?php
 	if (!empty($js_file)) {
 		echo '<script type="module" src="' . base_url() . 'public/build/js/pages/' . $js_file . '.js"></script>';

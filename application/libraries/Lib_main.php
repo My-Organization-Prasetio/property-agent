@@ -18,4 +18,17 @@ class Lib_main
         $hash = password_hash($password, PASSWORD_DEFAULT);
         return $hash;
     }
+
+    /************************************************************
+                    Filter Data Array using Key
+    ************************************************************/
+    //Ex: $this->filter_array(array(key=>value), [key, value]))
+    public function filter_array($data, $allowed)
+    {
+        $filtered = array_filter($data, function ($var) use ($allowed) {
+            return ($var[$allowed[0]] == $allowed[1]);
+        });
+
+        return $filtered;
+    }
 }

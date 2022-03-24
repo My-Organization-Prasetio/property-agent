@@ -95,6 +95,60 @@ class Owner extends Api_main_controller
         }
     }
 
+    public function update_photo()
+    {
+        try {
+            $config['upload_path'] = "./public/images/profile/"; //path folder file upload
+            $config['allowed_types'] = 'gif|jpg|png'; //type file yang boleh di upload
+            $config['encrypt_name'] = TRUE; //enkripsi file name upload
+
+            $this->load->library('upload', $config); //call library upload 
+
+            if ($this->upload->do_upload("owner_photo")) { //upload file
+                $data = array('upload_data' => $this->upload->data()); //ambil file name yang diupload
+                $image_name = $data['upload_data']['file_name']; //set file name ke variable image
+
+                $updateData = array(
+                    'owner_photo'   => $image_name,
+                    'updated_by'    => $this->session->userdata(SHORT_APP_NAME.'_'.'userid')
+                );
+                
+                //Update data user
+                $this->main_model->update(
+                    array('owner_id'=>$this->input->post('owner_id')),
+                    $updateData,
+                    'mst_owner');
+
+                $dataArray = array(
+                    'status'    => 'Success',
+                    'message'   => 'Berhasil menambahkan pemilik aset'
+                );
+                $this->output
+                    ->set_status_header(200, 'Success')
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($dataArray));
+            } else {
+                $dataArray = array(
+                    'status'    => 'Error',
+                    'message'   => 'Error Upload.'
+                );
+                $this->output
+                    ->set_status_header(500, 'Gagal upload image, silahkan coba kembali dengan format JPEG, JPG atau PNG.')
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($dataArray));
+            }
+        } catch (\Throwable $th) {
+            $dataArray = array(
+                'status'    => 'Error',
+                'message'   => $th
+            );
+            $this->output
+                ->set_status_header(500, 'Gagal menambahkan pemilik aset')
+                ->set_content_type('application/json')
+                ->set_output(json_encode($dataArray));
+        }
+    }
+
     public function edit()
     {
         try {

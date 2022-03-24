@@ -31,7 +31,7 @@
 				</a>
 			</li>
 			<li class="nav-item text-secondary">
-			<i class="icon-feed mr-2"></i>10 Januari 2022 20:20:20 |  Terakhir Masuk : 7 hari yang lalu | Tingkat Penanggungjawab : Administrator
+			<!-- <i class="icon-feed mr-2"></i>10 Januari 2022 20:20:20 |  Terakhir Masuk : 7 hari yang lalu | Tingkat Penanggungjawab : Administrator -->
 			</li>
 		</ul>
 
@@ -48,28 +48,32 @@
 				<div class="dropdown-menu dropdown-menu-right dropdown-content wmin-md-350">
 					<div class="dropdown-content-header">
 						<span class="font-weight-semibold">Daftar Properti</span>
-						<small>1.200 properti</small>
+						<!-- <small>1.200 properti</small> -->
 					</div>
 
 					<div class="dropdown-content-body dropdown-scrollable">
 						<ul class="media-list">
-							<li class="media">
+						<?php
+                        foreach($data['properties'] as $row){
+                            echo '<li class="media">
 								<div class="media-body">
 									<div class="media-title">
 										<a href="#">
-											<span class="font-weight-semibold">Rumah Kebayoran Bintaro Terawat</span>
-											<span class="text-muted float-right font-size-sm">Rumah</span>
+											<span class="font-weight-semibold">'.$row['property_title'].'</span>
+											<!-- <span class="text-muted float-right font-size-sm">Rumah</span> -->
 										</a>
 									</div>
 
-									<span class="text-muted">Bintaro Tangerang Selatan LT/LB : 371/320 KM/KT : 5/4.</span>
+									<span class="text-muted">'.$row['city_name'].' | '.$row['area_name'].' | '.$row['unit_number'].'</span>
 								</div>
-							</li>
+							</li>';
+                        }
+                    ?>
 						</ul>
 					</div>
 
 					<div class="dropdown-content-footer justify-content-center p-0">
-						<a href="#" class="bg-light text-grey w-100 py-2" data-popup="tooltip" title="Tampilkan Lebih Banyak"><i class="icon-menu7 d-block top-0"></i></a>
+						<a href="<?= base_url() ?>admin/property" class="bg-light text-grey w-100 py-2" data-popup="tooltip" title="Tampilkan Lebih Banyak"><i class="icon-menu7 d-block top-0"></i></a>
 					</div>
 				</div>
 			</li>

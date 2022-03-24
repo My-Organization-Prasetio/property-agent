@@ -1,4 +1,4 @@
-<!-- Modal Change Password -->
+<!-- Modal Change Photo -->
 <div id="modal-change-photo" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-">
         <div class="modal-content">
@@ -27,4 +27,4 @@
         </div>
     </div>
 </div>
-<!-- Modal Change Password -->
+<!-- Modal Change Photo -->

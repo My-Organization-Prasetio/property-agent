@@ -27,7 +27,7 @@ $(function () {
                         window.location.href = rootApp+'admin';
 					},
 					error: function (request, error) {
-						alert(request.responseJSON.message);
+						alert('Nama pengguna atau password salah!');
 					},
 				});
 			} catch (error) {

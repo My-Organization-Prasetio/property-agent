@@ -49,6 +49,70 @@
     </div>
 </div>
 
+<!-- Modal Update Password -->
+<div id="modal_form_edit_password" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-teal">FORM UBAH FOTO</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <form action="#" class="form-horizontal" name="update-password-user" id="update-password-user">
+                <div class="modal-body">
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-3">Kata Sandi</label>
+                        <div class="col-sm-9">
+                            <input type="hidden" placeholder="" class="form-control" name="user_id" id="update_password_user_id">
+                            <input type="password" placeholder="Masukan kata sandi yang sulit ditebak" class="form-control" name="password">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn bg-primary">Submit form</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal Update Password -->
+
+<!-- Modal Update Photo -->
+<div id="modal_form_edit_foto" class="modal fade" tabindex="-1">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title text-teal">FORM UBAH FOTO</h5>
+                <button type="button" class="close" data-dismiss="modal">&times;</button>
+            </div>
+
+            <form action="#" class="form-horizontal" name="update-foto-user" id="update-foto-user">
+                <div class="modal-body">
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-3">Foto</label>
+                        <div class="col-sm-9">
+                            <input type="hidden" placeholder="" class="form-control" name="user_id" id="update_foto_user_id">
+                            <input type="file" class="form-control h-auto" name="photo">
+                        </div>
+                    </div>
+
+                </div>
+
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-link" data-dismiss="modal">Close</button>
+                    <button type="submit" class="btn bg-primary">Submit form</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
+<!-- Modal Update Photo -->
+
 <!-- Modal Add -->
 <div id="modal_form_add" class="modal fade" tabindex="-1">
     <div class="modal-dialog modal-lg">

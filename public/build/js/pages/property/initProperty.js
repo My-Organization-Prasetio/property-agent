@@ -190,3 +190,20 @@ export function viewAllProperty() {
 		},
 	});
 }
+
+
+export function countProperty() {
+	$.ajax({
+		url: rootApp + "api/property/count-property",
+		type: "GET",
+		dataType: "json",
+		success: function (res) {
+			$('.total-property').html(numberWithCommas(res.data.all_property))
+			$('.property-sold').html(numberWithCommas(res.data.sold_property))
+			$('.property-available').html(numberWithCommas(res.data.available_property))
+		},
+		error: function (request, error) {
+			// console.log("Request: " + JSON.stringify(request));
+		},
+	});
+}
