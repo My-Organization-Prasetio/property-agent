@@ -11,6 +11,7 @@
 	<link href="<?= base_url() ?>public/build/css/global/bootstrap.min.css" rel="stylesheet" type="text/css">
 	<link href="<?= base_url() ?>public/build/css/global/bootstrap_limitless.css" rel="stylesheet" type="text/css">
 	<link href="<?= base_url() ?>public/build/css/global/layout.min.css" rel="stylesheet" type="text/css">
+	<link href="<?= base_url() ?>public/build/css/global/main.css" rel="stylesheet" type="text/css">
 	<link href="<?= base_url() ?>public/build/css/global/components.min.css" rel="stylesheet" type="text/css">
 	<link href="<?= base_url() ?>public/build/css/global/colors.min.css" rel="stylesheet" type="text/css">
 	<link href="<?= base_url() ?>public/plugins/tables/datatables/jquery.dataTables.min.css" rel="stylesheet" type="text/css">
@@ -56,6 +57,7 @@
 	<script src="<?= base_url() ?>public/build/js/pages/dashboard.js"></script>
 	<script src="<?= base_url() ?>public/build/js/global/variable.js"></script>
 	<script src="<?= base_url() ?>public/build/js/global/function.js"></script>
+	<script src="<?= base_url() ?>public/build/js/global/main.js"></script>
 	<script src="<?= base_url() ?>public/build/js/global/function_pnotify.js"></script>
 
 	<script src="<?= base_url() ?>public/build/js/pages/change-photo.js"></script>

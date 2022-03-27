@@ -10,14 +10,14 @@ export function initAction() {
 			owner_name: "required",
 			owner_type: "required",
 			owner_photo: "required",
-			owner_phone_number: "required",
+			// owner_phone_number: "required",
 		},
 		// Specify validation error messages
 		messages: {
 			owner_name: "Masukan pemilik",
 			owner_type: "Pilih tipe kepelikan",
 			owner_photo: "Pilih foto owner",
-			owner_phone_number: "Masukan No. Telp",
+			// owner_phone_number: "Masukan No. Telp",
 		},
 		submitHandler: function (form) {
 			var formData = new FormData(form);

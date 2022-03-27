@@ -291,7 +291,7 @@ class Property_model extends CI_model
     public function getBySaleType($offset, $items_per_page = 12, $sale_type)
 	{
         $offset = $offset != null ? $offset : 0;
-        $sale_type = (empty($sale_type) ? 0 : $sale_type == "sale") ? 2 : 1;
+        $sale_type = (empty($sale_type) ? 0 : $sale_type == "sale") ? 'JUAL' : 'SEWA';
 		return $this->db->query("SELECT
                                     p.property_id,
                                     p.property_title,
@@ -323,7 +323,7 @@ class Property_model extends CI_model
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.deleted = 0
                                 AND p.sale_status = 0
-                                AND p.sale_type = $sale_type
+                                AND UPPER(p.sale_type) = '$sale_type'
                                 ORDER BY p.property_id DESC
                                 LIMIT $offset, $items_per_page");
 	}

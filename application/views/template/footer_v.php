@@ -76,74 +76,64 @@
                                 PT. Denadi Mitra Propertindo atau yang lebih dikenal dengan Eagle Tree Property, berdiri sejak 2012 di Jakarta. Didirikan oleh tiga pelaku industri properti yang bergabung bersama, karena memiliki visi yang sama,dengan latar belakang pengalaman yang sangat mumpuni di dunia properti. Spesialisasi masing-masing pendiri yang berbeda namun dapat dipersatukan untuk menciptakan sinergi, menjadikan Eagle Tree Property sebagai perusahaan properti yang sanggup memberikan solusi terintegrasi (one-stop property solution) di bidang properti.
                             </p>
                         </div>
-                        <ul class="des">
+                        <!-- <ul class="des">
                             <li>
-                                <span>Address: </span>
+                                <span>Alamat: </span>
                                 6688Princess Road, London, Greater London BAS 23JK, UK
                             </li>
                             <li>
-                                <span>Phone: </span>
+                                <span>Telepon: </span>
                                 <a href="<?= base_url() ?>public/front-web/#">(+123) 123 321 345</a>
                             </li>
                             <li>
                                 <span>Email: </span>
                                 <a href="<?= base_url() ?>public/front-web/mailto://info@yourdomain.com">info@yourdomain.com</a>
                             </li>
-                        </ul>
+                        </ul> -->
                     </div>
                     <!-- Footer Logo Area End Here -->
-                    <!-- Begin Footer Block Area -->
-                    <!-- <div class="col-lg-2 col-md-3 col-sm-6">
-                                    <div class="footer-block">
-                                        <h3 class="footer-block-title">Layanan Perusahaan</h3>
-                                        <ul>
-                                            <li><a href="<?= base_url() ?>public/front-web/#">Jual Beli Properti</a></li>
-                                            <li><a href="<?= base_url() ?>public/front-web/#">Sewa Menyewa Properti</a></li>
-                                            <li><a href="<?= base_url() ?>public/front-web/#">Pengembangan Aset</a></li>
-                                        </ul>
-                                    </div>
-                                </div> -->
-                    <!-- Footer Block Area End Here -->
-                    <!-- Begin Footer Block Area -->
-                    <!-- <div class="col-lg-2 col-md-3 col-sm-6">
-                                    <div class="footer-block">
-                                        <h3 class="footer-block-title">Fitur</h3>
-                                        <ul>
-                                            <li><a href="<?= base_url() ?>public/front-web/#">Pencarian Properti</a></li>
-                                            <li><a href="<?= base_url() ?>public/front-web/#">Cek Ketersediaan Properti</a></li>
-                                            <li><a href="<?= base_url() ?>public/front-web/#">Informasi Agen</a></li>
-                                            <li><a href="<?= base_url() ?>public/front-web/#">Informasi Detail Properti</a></li>
-                                        </ul>
-                                    </div>
-                                </div> -->
-                    <!-- Footer Block Area End Here -->
                     <!-- Begin Footer Block Area -->
                     <div class="col-lg-4">
                         <div class="footer-block">
                             <h3 class="footer-block-title">Follow Us</h3>
                             <ul class="social-link">
                                 <li class="twitter">
-                                    <a href="javaascript:void(0)" data-toggle="tooltip" target="_blank" title="Twitter">
+                                    <a href="<?php
+                                                $url = $data['my_company']->url_twitter != '' ? $data['my_company']->url_twitter : 'javascript:void(0)';
+                                                echo $url;
+                                            ?>" data-toggle="tooltip" title="Twitter">
                                         <i class="fa fa-twitter"></i>
                                     </a>
                                 </li>
                                 <li class="google-plus">
-                                    <a href="javaascript:void(0)" data-toggle="tooltip" target="_blank" title="Google +">
+                                    <a href="<?php
+                                                $url = $data['my_company']->url_google_plus != '' ? $data['my_company']->url_google_plus : 'javascript:void(0)';
+                                                echo $url;
+                                            ?>" data-toggle="tooltip" title="Google +">
                                         <i class="fa fa-google-plus"></i>
                                     </a>
                                 </li>
                                 <li class="facebook">
-                                    <a href="javaascript:void(0)" data-toggle="tooltip" target="_blank" title="Facebook">
+                                    <a href="<?php
+                                                $url = $data['my_company']->url_facebook != '' ? $data['my_company']->url_facebook : 'javascript:void(0)';
+                                                echo $url;
+                                            ?>" data-toggle="tooltip" title="Facebook">
                                         <i class="fa fa-facebook"></i>
                                     </a>
                                 </li>
                                 <li class="youtube">
-                                    <a href="javaascript:void(0)" data-toggle="tooltip" target="_blank" title="Youtube">
+                                    <a href="<?php
+                                                $url = $data['my_company']->url_youtube != '' ? $data['my_company']->url_youtube : 'javascript:void(0)';
+                                                echo $url;
+                                            ?>" data-toggle="tooltip" title="Youtube">
                                         <i class="fa fa-youtube"></i>
                                     </a>
                                 </li>
                                 <li class="instagram">
-                                    <a href="javaascript:void(0)" data-toggle="tooltip" target="_blank" title="Instagram">
+                                    <a href="<?php
+                                                $url = $data['my_company']->url_instagram != '' ? $data['my_company']->url_instagram : 'javascript:void(0)';
+                                                echo $url;
+                                            ?>" data-toggle="tooltip" title="Instagram">
                                         <i class="fa fa-instagram"></i>
                                     </a>
                                 </li>

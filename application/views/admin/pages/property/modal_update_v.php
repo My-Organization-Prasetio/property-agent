@@ -43,8 +43,8 @@
                                 <br><small class="text-warning">*Silahkan pilih tipe penjualan properti</small>
                                 <select name="sale_type" id="sale_type" data-placeholder="Pilih Tipe Penjualan" class="form-control">
                                     <option value="">-- Pilih Tipe Penjualan --</option>
-                                    <option value="1">Sewa</option>
-                                    <option value="2">Jual</option>
+                                    <option value="Sewa">Sewa</option>
+                                    <option value="Jual">Jual</option>
                                 </select>
                             </div>
                         </div>
@@ -111,7 +111,7 @@
                         <div class="col-md-7">
                             <div class="form-group">
                                 <label>Harga: <span class="text-danger">*</span></label>
-                                <input type="text" name="price" id="price" placeholder="" class="form-control">
+                                <input type="text" name="price" id="price" pattern="^\Rp\d{1,3}(,\d{3})*(\.\d+)?Rp" data-type="currency" placeholder="" class="form-control">
                             </div>
                         </div>
 

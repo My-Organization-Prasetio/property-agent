@@ -1,4 +1,4 @@
-import { viewAllProperty } from "./initProperty.js";
+import { viewAllProperty, countProperty } from "./initProperty.js";
 
 export function initAction() {
 	/*******************************************************************************************
@@ -90,6 +90,7 @@ export function initAction() {
 				success: function (res) {
 					pnotifySuccess(res.status, res.message);
 					viewAllProperty();
+					countProperty()
 				},
 				error: function (request, error) {
 					pnotifyError("Error", JSON.stringify(request.statusText));
@@ -112,6 +113,7 @@ export function initAction() {
 		},
 		submitHandler: function (form) {
 			var formData = new FormData(form);
+			$('.loader-import').removeClass("d-none")
 			$.ajax({
 				url: rootApp + "api/import/properties",
 				type: "POST",
@@ -122,6 +124,9 @@ export function initAction() {
 				success: function (res) {
 					$("form[name='upload-excel']")[0].reset();
 					pnotifySuccess(res.status, res.message);
+					viewAllProperty()
+					countProperty()
+					$('.loader-import').addClass("d-none")
 				},
 				error: function (request, error) {
 					pnotifyError("Error", JSON.stringify(request.statusText));

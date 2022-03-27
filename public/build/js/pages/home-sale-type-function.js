@@ -51,7 +51,7 @@ function __renderData(data) {
 									</h5>
 									<div class="rating-box">
 										<ul class="rating">
-											${key.sale_type == 1 ? '<span class="badge badge-info">Sewa</span>' : '<span class="badge badge-warning">Jual</span>'}
+											${key.sale_type == 'Sewa' ? '<span class="badge badge-info">Sewa</span>' : '<span class="badge badge-warning">Jual</span>'}
 										</ul>
 									</div>
 								</div>

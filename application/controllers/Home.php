@@ -14,6 +14,7 @@ class Home extends Main_controller
 
 	public function index()
 	{
+        $my_company = $this->m_main->viewWhereOrdering('my_company', array('company_id' => 1), 'company_id', 'ASC')->row();
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
@@ -25,6 +26,7 @@ class Home extends Main_controller
 									<span class="breadcrumb-item active">Home</span>',
 			'js_function_file'=> 'home-function',
 			'data'			=> array(
+				'my_company'	=> $my_company,
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
 				'new_properties'	=> $new_properties,
@@ -41,6 +43,7 @@ class Home extends Main_controller
 		echo '<script> var propertyCategory = "'.$this->uri->segment(3).'"</script>';
 
 		//Get Data
+        $my_company = $this->m_main->viewWhereOrdering('my_company', array('company_id' => 1), 'company_id', 'ASC')->row();
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
@@ -54,6 +57,7 @@ class Home extends Main_controller
 									<span class="breadcrumb-item active">Home</span>',
 			'js_function_file'=> 'home-category-function',
 			'data'			=> array(
+				'my_company'	=> $my_company,
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
 				'new_properties'	=> $new_properties,
@@ -70,6 +74,7 @@ class Home extends Main_controller
 		echo '<script> var saleType = "'.$this->uri->segment(3).'"</script>';
 
 		//Get Data
+        $my_company = $this->m_main->viewWhereOrdering('my_company', array('company_id' => 1), 'company_id', 'ASC')->row();
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
@@ -83,6 +88,7 @@ class Home extends Main_controller
 									<span class="breadcrumb-item active">Home</span>',
 			'js_function_file'=> 'home-sale-type-function',
 			'data'			=> array(
+				'my_company'	=> $my_company,
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
 				'new_properties'	=> $new_properties,
@@ -99,6 +105,7 @@ class Home extends Main_controller
 		echo '<script> var propertyId = "'.$this->uri->segment(3).'"</script>';
 
 		//Get Data
+        $my_company = $this->m_main->viewWhereOrdering('my_company', array('company_id' => 1), 'company_id', 'ASC')->row();
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
@@ -112,6 +119,7 @@ class Home extends Main_controller
 									<span class="breadcrumb-item active">Home</span>',
 			'js_function_file'=> 'home-property-function',
 			'data'			=> array(
+				'my_company'	=> $my_company,
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
 				'new_properties'	=> $new_properties,
@@ -128,6 +136,7 @@ class Home extends Main_controller
 		echo '<script> var propertyId = "'.$this->uri->segment(3).'"</script>';
 
 		//Get Data
+        $my_company = $this->m_main->viewWhereOrdering('my_company', array('company_id' => 1), 'company_id', 'ASC')->row();
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
@@ -141,6 +150,7 @@ class Home extends Main_controller
 									<span class="breadcrumb-item active">Home</span>',
 			'js_function_file'=> 'home-my-property-function',
 			'data'			=> array(
+				'my_company'	=> $my_company,
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
 				'new_properties'	=> $new_properties,
@@ -157,6 +167,7 @@ class Home extends Main_controller
 		echo '<script> var tag = "'.$this->uri->segment(3).'"</script>';
 
 		//Get Data
+        $my_company = $this->m_main->viewWhereOrdering('my_company', array('company_id' => 1), 'company_id', 'ASC')->row();
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
@@ -170,6 +181,7 @@ class Home extends Main_controller
 									<span class="breadcrumb-item active">Home</span>',
 			'js_function_file'=> 'home-tag-function',
 			'data'			=> array(
+				'my_company'	=> $my_company,
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
 				'new_properties'	=> $new_properties,
@@ -186,6 +198,7 @@ class Home extends Main_controller
 		echo '<script> var tag = "'.$this->uri->segment(3).'"</script>';
 
 		//Get Data
+        $my_company = $this->m_main->viewWhereOrdering('my_company', array('company_id' => 1), 'company_id', 'ASC')->row();
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
@@ -199,6 +212,7 @@ class Home extends Main_controller
 									<span class="breadcrumb-item active">Home</span>',
 			'js_function_file'=> 'front-login-function',
 			'data'			=> array(
+				'my_company'	=> $my_company,
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
 				'new_properties'	=> $new_properties,

@@ -154,7 +154,7 @@ export function viewAllProperty() {
 						</h6>
                     </td>
                     <td>
-                        Rp_ ${key.price}
+                        Rp_ ${formatNumber(key.price)}
                     </td>
                     <td>
                         ${key.agent_name}
@@ -198,9 +198,9 @@ export function countProperty() {
 		type: "GET",
 		dataType: "json",
 		success: function (res) {
-			$('.total-property').html(numberWithCommas(res.data.all_property))
-			$('.property-sold').html(numberWithCommas(res.data.sold_property))
-			$('.property-available').html(numberWithCommas(res.data.available_property))
+			$('.total-property').html(numberWithCommas(res.data.all_property === null ? 0 : res.data.all_property))
+			$('.property-sold').html(numberWithCommas(res.data.sold_property === null ? 0 : res.data.sold_property))
+			$('.property-available').html(numberWithCommas(res.data.available_property === null ? 0 : res.data.available_property))
 		},
 		error: function (request, error) {
 			// console.log("Request: " + JSON.stringify(request));

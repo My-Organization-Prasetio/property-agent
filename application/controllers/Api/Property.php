@@ -66,7 +66,7 @@ class Property extends Api_main_controller
                     'building_area'   => $this->input->post('building_area'),
                     'bedroom'   => $this->input->post('bedroom'),
                     'bathroom'   => $this->input->post('bathroom'),
-                    'price'   => $this->input->post('price'),
+                    'price'   => $this->lib_main->extract_numbers($this->input->post('price')),
                     'agent_id'   => $this->input->post('agent_id'),
                     'owner_id'   => $this->input->post('owner_id'),
                     'fee'   => $this->input->post('fee'),

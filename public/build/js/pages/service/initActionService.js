@@ -1,8 +1,8 @@
-import { viewAllCustomer, viewAllProperty, countProperty} from "./initService.js";
+import { viewAllCustomer, viewAllProperty, countProperty } from "./initService.js";
 export function initAction() {
 	/*******************************************************************************************
-                                VALIDATE INPUT DATA SUPPLIER
-    *******************************************************************************************/
+								VALIDATE INPUT DATA SUPPLIER
+	*******************************************************************************************/
 	$("form[name='add-transaction']").validate({
 		// Specify validation rules
 		rules: {
@@ -37,9 +37,44 @@ export function initAction() {
 	});
 
 	/*******************************************************************************************
-                                ADD CUSTOMER (MODAL AND SUBMIT)
-    *******************************************************************************************/
-	$('#btn-modal-add-customer').click(function(){
+								UPLOAD PROPERTIES
+	*******************************************************************************************/
+	$("form[name='upload-excel']").validate({
+		// Specify validation rules
+		rules: {
+			file: "required",
+		},
+		// Specify validation error messages
+		messages: {
+			file: "Pilih file excel yang akan di upload",
+		},
+		submitHandler: function (form) {
+			$('.loader-import').removeClass("d-none")
+			var formData = new FormData(form);
+			$.ajax({
+				url: rootApp + "api/import/properties",
+				type: "POST",
+				data: formData,
+				dataType: "json",
+				contentType: false,
+				processData: false,
+				success: function (res) {
+					$("form[name='upload-excel']")[0].reset();
+					pnotifySuccess(res.status, res.message);
+					countProperty()
+					$('.loader-import').addClass("d-none")
+				},
+				error: function (request, error) {
+					pnotifyError("Error", JSON.stringify(request.statusText));
+				},
+			});
+		},
+	});
+
+	/*******************************************************************************************
+								ADD CUSTOMER (MODAL AND SUBMIT)
+	*******************************************************************************************/
+	$('#btn-modal-add-customer').click(function () {
 		$('#modal_form_add').modal('show')
 	})
 
@@ -75,15 +110,15 @@ export function initAction() {
 	});
 
 	/*******************************************************************************************
-                                PREVIEW TRANSACTION
-    *******************************************************************************************/
-	$('#btn-preview').click(function(){
+								PREVIEW TRANSACTION
+	*******************************************************************************************/
+	$('#btn-preview').click(function () {
 		let id = $('#option_property').val()
 		let property_id = id == '' ? 0 : id
 		$.ajax({
 			url: rootApp + "api/property/id",
 			type: "GET",
-			data: {id: property_id},
+			data: { id: property_id },
 			dataType: "json",
 			success: function (res) {
 				let data = res.data[0]

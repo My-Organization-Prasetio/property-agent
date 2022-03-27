@@ -6,20 +6,43 @@
     <div class="card-body p-0">
         <div class="nav nav-sidebar my-2">
             <form id="upload-excel" name="upload-excel">
-            <div class="form-group row">
-                <div class="col-12 ml-1 mr-1">
-                    <small class="text-warning">*Maksimal 500 baris properti import</small>
+                <div class="form-group row">
+                    <div class="col-12 ml-1 mr-1">
+                        <small class="text-warning">*Maksimal 500 baris properti import</small>
+                    </div>
                 </div>
-                <div class="col-sm-11 ml-1 mr-1">
-                    <input type="file" class="form-control h-auto" name="file">
+                <div class="form-group row">
+                    <div class="col-sm-11 ml-1 mr-1">
+                        <input type="file" class="form-control h-auto" name="file">
+                    </div>
+                    <div class="col-12 ml-1 mr-1">
+                        <small>Jika belum memiliki contoh dokumen upload maka klik <a target="_blank" href="<?= base_url() . "admin/property/import-sample" ?>">disini</a>.</small>
+                    </div>
+                    <div class="col-sm-11 ml-1 mr-1 mt-3">
+                        <button type="submit" class="btn btn-block bg-primary">Import Data Properti</button>
+                    </div>
+                    <div class="container loader-import d-none">
+                        <div class="row">
+                            <div class="col-md-12">
+                                <div class="loader">
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                    <span></span>
+                                </div>
+                            </div>
+                            <div class="col-12 font-weight-bold text-center text-teal-400 mt-3">
+                                Import Data dalam Proses . . .
+                            </div>
+                        </div>
+                    </div>
                 </div>
-                <div class="col-12 ml-1 mr-1">
-                    <small>Jika belum memiliki contoh dokumen upload maka klik <a target="_blank" href="<?= base_url()."admin/property/import-sample" ?>">disini</a>.</small>
-                </div>
-                <div class="col-sm-11 ml-1 mr-1 mt-3">
-                    <button type="submit" class="btn btn-block bg-primary">Import Data Properti</button>
-                </div>
-            </div>
             </form>
         </div>
     </div>
