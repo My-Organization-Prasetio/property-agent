@@ -46,6 +46,7 @@ class Property_model extends CI_model
                                     p.property_title,
                                     p.property_description,
                                     p.sale_type,
+                                    p.tag_code,
                                     p.address,
                                     p.unit_number,
                                     land_area,
@@ -111,11 +112,21 @@ class Property_model extends CI_model
                                 WHERE p.deleted = 0");
 	}
 
-    public function queryByKeyword($keyword, $cities)
+    public function queryByKeyword($keyword, $cities, $category, $sale_type, $tag)
 	{
         $title = empty($keyword) ? "%%" : "%".$keyword."%";
         $address = empty($keyword) ? "%%" : "%".$keyword."%";
         $cities = empty($cities) ? "%%" : "%".$cities."%";
+        $category = empty($category) ? "%%" : "%".$category."%";
+        $tag = empty($tag) ? "%%" : "%".$tag."%";
+        $sale_type = '%%';
+        if(!empty($sale_type)){
+            if($sale_type == 'sale'){
+                $sale_type = '%Jual%';
+            }else if($sale_type == 'rent'){
+                $sale_type = '%Sewa%';
+            }
+        }
 
 		return $this->db->query("SELECT
                                     p.property_id,
@@ -146,12 +157,19 @@ class Property_model extends CI_model
                                 JOIN mst_cities mc ON mc.city_id = p.city_id
                                 JOIN mst_user mua ON mua.user_id = p.agent_id
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
+                                JOIN mst_tags mtg ON mtg.tag_code = p.tag_code
                                 WHERE p.property_title like '$title'
                                 AND mc.city_name like '$cities'
+                                AND mac.asset_category_name like '$category'
+                                AND p.sale_type like '$sale_type'
+                                AND mtg.tag_name like '$tag'
                                 AND p.deleted = 0
                                 AND p.sale_status = 0
                                 OR p.address like '$address'
                                 AND mc.city_name like '$cities'
+                                AND mac.asset_category_name like '$category'
+                                AND p.sale_type like '$sale_type'
+                                AND mtg.tag_name like '$tag'
                                 AND p.deleted = 0
                                 AND p.sale_status = 0
                                 ORDER BY p.property_id DESC

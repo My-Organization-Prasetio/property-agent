@@ -32,7 +32,8 @@ class Filter extends Api_main_controller
             $this->input->post('category'),
             $this->input->post('bedroom'),
             $this->input->post('land_area'),
-            $this->input->post('price')
+            $this->input->post('price'),
+            ''
         );
 
         //If the request by property agent

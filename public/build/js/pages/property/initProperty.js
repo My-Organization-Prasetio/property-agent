@@ -191,6 +191,24 @@ export function viewAllProperty() {
 	});
 }
 
+export function viewAllTags() {
+	$.ajax({
+		url: rootApp + "api/tags",
+		type: "GET",
+		dataType: "json",
+		success: function (res) {
+			var listOptionTags = `<option value="">-- Pilih Tag --</option>`
+			$.each(res.data, function (index, key) {
+				listOptionTags += `<option value="${key.tag_code}">${key.tag_name}</option>`
+			})
+			$('.option_tags').html(listOptionTags)
+		},
+		error: function (request, error) {
+			// console.log("Request: " + JSON.stringify(request));
+		},
+	});
+}
+
 
 export function countProperty() {
 	$.ajax({

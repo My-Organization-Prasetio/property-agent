@@ -40,6 +40,14 @@
                         </select>
                     </div>
                 </div>
+                <div class="col-md-6 col-sm-12">
+                    <div class="form-group">
+                        <label>Tag Properti:</label>
+                        <br><small class="text-warning">*Pilih tag properti anda</small>
+                        <select name="tag_code" data-placeholder="Pilih Tag" class="form-control option_tags">
+                        </select>
+                    </div>
+                </div>
                 <div class="col-md-9 col-sm-12">
                     <div class="form-group">
                         <label>Deskripsi Properti:</label>

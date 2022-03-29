@@ -21,13 +21,20 @@ inputBox.onkeyup = (e) => {
         if (!userData) {
             $("#instant-results").removeClass("active");
         }
+        
+        const vcategory = typeof propertyCategory === 'undefined' || propertyCategory === null ? '' : propertyCategory;
+        const vsaleType = typeof saleType === 'undefined' || saleType === null ? '' : saleType;
+        const vTag = typeof tag === 'undefined' || tag === null ? '' : tag;
     
         $.ajax({
             url: rootApp + "api/property/recomendation",
             type: "POST",
             data: {
                 keywords: userData,
-                cities: $('#form-search-cities').val()
+                cities: $('#form-search-cities').val(),
+                category: vcategory,
+                sale_type: vsaleType,
+                tag: vTag
             },
             dataType: "json",
             success: function (res) {
@@ -61,12 +68,19 @@ $( "#form-search" ).submit(function( event ) {
 
 //Get data
 function searchProperty(page = 1) {
+    const vcategory = typeof propertyCategory === 'undefined' || propertyCategory === null ? '' : propertyCategory;
+    const vsaleType = typeof saleType === 'undefined' || saleType === null ? '' : saleType;
+    const vTag = typeof tag === 'undefined' || tag === null ? '' : tag;
+    
     $.ajax({
         url: rootApp + "api/property/recomendation/"+page,
         type: "POST",
         data: {
             keywords: $('#form-search-input').val(),
-            cities: $('#form-search-cities').val()
+            cities: $('#form-search-cities').val(),
+            category: vcategory,
+            sale_type: vsaleType,
+            tag: vTag
         },
         success: function (res) {
             //Render data to view

@@ -40,7 +40,7 @@ class Home extends Main_controller
 	public function category()
 	{
 		//Will read on javascript
-		echo '<script> var propertyCategory = "'.$this->uri->segment(3).'"</script>';
+		echo '<script>var propertyCategory = "'.$this->uri->segment(3).'"</script>';
 
 		//Get Data
         $my_company = $this->m_main->viewWhereOrdering('my_company', array('company_id' => 1), 'company_id', 'ASC')->row();

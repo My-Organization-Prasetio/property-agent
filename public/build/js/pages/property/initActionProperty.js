@@ -31,6 +31,7 @@ export function initAction() {
 				$("#asset_category_id").val(dataProperty.asset_category_id);
 				$("#property_description").val(dataProperty.property_description);
 				$("#sale_type").val(dataProperty.sale_type);
+				$("#tag_code").val(dataProperty.tag_code);
 				$("#address").val(dataProperty.address);
 				$("#unit_number").val(dataProperty.unit_number);
 				$("#area_id").val(dataProperty.area_id);

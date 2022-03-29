@@ -58,6 +58,7 @@ class Property extends Api_main_controller
                     'property_description'   => $this->input->post('property_description'),
                     'asset_category_id'   => $this->input->post('asset_category_id'),
                     'sale_type'   => $this->input->post('sale_type'),
+                    'tag_code'   => $this->input->post('tag_code'),
                     'address'   => $this->input->post('address'),
                     'unit_number'   => $this->input->post('unit_number'),
                     'area_id'   => $this->input->post('area_id'),
@@ -102,6 +103,7 @@ class Property extends Api_main_controller
                 'property_description'   => $this->input->post('property_description'),
                 'asset_category_id'   => $this->input->post('asset_category_id'),
                 'sale_type'   => $this->input->post('sale_type'),
+                'tag_code'   => $this->input->post('tag_code'),
                 'address'   => $this->input->post('address'),
                 'unit_number'   => $this->input->post('unit_number'),
                 'area_id'   => $this->input->post('area_id'),
@@ -398,13 +400,17 @@ class Property extends Api_main_controller
 
     public function recomendation()
     {
+        $category = $this->input->post('category') ? $this->input->post('category') : '';
+        $cities = $this->input->post('sale_type') ? $this->input->post('sale_type') : '';
+        $tag = $this->input->post('tag') ? $this->input->post('tag') : '';  
+        
         //pagination config
         $config['perpage'] = 12;
         $config['offset'] = (empty($this->uri->segment(4)) ?  0 : $this->uri->segment(4) == 1) ? 0 : ($this->uri->segment(4)-1)*$config['perpage'];
         $showing = $config['offset']-1+$config['perpage'];
 
         // //Get property by Property page
-        $properties = $this->m_property->queryByKeyword($this->input->post('keywords'), $this->input->post('cities'));
+        $properties = $this->m_property->queryByKeyword($this->input->post('keywords'), $this->input->post('cities'), $category, $cities, $tag);
         // //Get total rows property
         $total_properties = $this->m_property->totalRowsByKeywords($this->input->post('keywords'), $this->input->post('cities'))->row();
         //Check total rows <> showing
