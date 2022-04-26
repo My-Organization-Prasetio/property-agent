@@ -2,7 +2,7 @@
 
 class Filter_model extends CI_model
 {
-    public function filter($offset, $items_per_page = 12, $category, $bedroom, $land_area, $price, $agent)
+    public function filter($offset, $items_per_page = 12, $category, $bedroom, $land_area, $price, $agent, $agent_name)
 	{
         $offset = $offset != null ? $offset : 0;
         $where_category = !empty($category) ? $this->condition_by_category($category) : '';
@@ -41,6 +41,7 @@ class Filter_model extends CI_model
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.deleted = 0
                                 AND p.sale_status = 0
+                                AND LOWER(mua.user_full_name) like '%$agent_name%'
                                 $where_category
                                 $where_price
                                 $where_land_area
@@ -50,7 +51,7 @@ class Filter_model extends CI_model
                                 LIMIT $offset, $items_per_page");
 	}
     
-    public function totalRowsFilter($category, $bedroom, $land_area, $price)
+    public function totalRowsFilter($category, $bedroom, $land_area, $price, $agent_name)
 	{
         $where_category = !empty($category) ? $this->condition_by_category($category) : '';
         $where_price = $this->condition_by_price($price);
@@ -66,6 +67,7 @@ class Filter_model extends CI_model
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.deleted = 0
                                 AND p.sale_status = 0
+                                AND LOWER(mua.user_full_name) like '%$agent_name%'
                                 $where_category
                                 $where_price
                                 $where_land_area

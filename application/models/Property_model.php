@@ -9,6 +9,7 @@ class Property_model extends CI_model
                                     p.property_title,
                                     p.property_description,
                                     p.sale_type,
+                                    p.sale_status,
                                     p.address,
                                     p.unit_number,
                                     land_area,
@@ -34,7 +35,6 @@ class Property_model extends CI_model
                                 JOIN mst_user mua ON mua.user_id = p.agent_id
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.deleted = 0
-                                AND p.sale_status = 0
                                 ORDER BY p.property_id DESC");
 	}
     
@@ -46,6 +46,7 @@ class Property_model extends CI_model
                                     p.property_title,
                                     p.property_description,
                                     p.sale_type,
+                                    p.sale_status,
                                     p.tag_code,
                                     p.address,
                                     p.unit_number,
@@ -94,11 +95,17 @@ class Property_model extends CI_model
                                 AND p.sale_status = 1");
 	}
 
-    public function count_by_category()
+    public function count_by_category($agent_name = '')
 	{
 		return $this->db->query("SELECT
                                     mac.asset_category_name,
-                                    (SELECT COUNT(p.property_id) FROM property p WHERE p.asset_category_id = mac.asset_category_id AND p.deleted = 0 AND p.sale_status = 0) total_property
+                                    (SELECT COUNT(p.property_id)
+                                    FROM property p
+                                    JOIN mst_user mua ON mua.user_id = p.agent_id
+                                    WHERE p.asset_category_id = mac.asset_category_id
+                                    AND p.deleted = 0
+                                    AND p.sale_status = 0
+                                    AND LOWER(mua.user_full_name) like '%$agent_name%') total_property
                                 FROM mst_asset_category mac");
 	}
 
@@ -112,7 +119,7 @@ class Property_model extends CI_model
                                 WHERE p.deleted = 0");
 	}
 
-    public function queryByKeyword($keyword, $cities, $category, $sale_type, $tag)
+    public function queryByKeyword($keyword, $cities, $category, $sale_type, $tag, $agent_name)
 	{
         $title = empty($keyword) ? "%%" : "%".$keyword."%";
         $address = empty($keyword) ? "%%" : "%".$keyword."%";
@@ -133,6 +140,7 @@ class Property_model extends CI_model
                                     p.property_title,
                                     p.property_description,
                                     p.sale_type,
+                                    p.sale_status,
                                     p.address,
                                     p.unit_number,
                                     land_area,
@@ -163,6 +171,7 @@ class Property_model extends CI_model
                                 AND mac.asset_category_name like '$category'
                                 AND p.sale_type like '$sale_type'
                                 AND mtg.tag_name like '$tag'
+                                AND LOWER(mua.user_full_name) like '%$agent_name%'
                                 AND p.deleted = 0
                                 AND p.sale_status = 0
                                 OR p.address like '$address'
@@ -170,13 +179,14 @@ class Property_model extends CI_model
                                 AND mac.asset_category_name like '$category'
                                 AND p.sale_type like '$sale_type'
                                 AND mtg.tag_name like '$tag'
+                                AND LOWER(mua.user_full_name) like '%$agent_name%'
                                 AND p.deleted = 0
                                 AND p.sale_status = 0
                                 ORDER BY p.property_id DESC
                                 LIMIT 12");
 	}
 
-    public function getOffset($offset, $items_per_page = 12)
+    public function getOffset($offset, $items_per_page = 12, $agent_name='')
 	{
         $offset = $offset != null ? $offset : 0;
 		return $this->db->query("SELECT
@@ -184,6 +194,7 @@ class Property_model extends CI_model
                                     p.property_title,
                                     p.property_description,
                                     p.sale_type,
+                                    p.sale_status,
                                     p.address,
                                     p.unit_number,
                                     land_area,
@@ -210,6 +221,7 @@ class Property_model extends CI_model
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.deleted = 0
                                 AND p.sale_status = 0
+                                AND LOWER(mua.user_full_name) like '%$agent_name%'
                                 ORDER BY p.property_id DESC
                                 LIMIT $offset, $items_per_page");
 	}
@@ -222,6 +234,7 @@ class Property_model extends CI_model
                                     p.property_title,
                                     p.property_description,
                                     p.sale_type,
+                                    p.sale_status,
                                     p.address,
                                     p.unit_number,
                                     land_area,
@@ -252,7 +265,7 @@ class Property_model extends CI_model
                                 LIMIT $offset");
 	}
 
-    public function totalRows()
+    public function totalRows($agent_name)
 	{
 		return $this->db->query("SELECT
                                     COUNT(*) total_rows
@@ -263,10 +276,11 @@ class Property_model extends CI_model
                                 JOIN mst_user mua ON mua.user_id = p.agent_id
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.deleted = 0
+                                AND LOWER(mua.user_full_name) like '%$agent_name%'
                                 AND p.sale_status = 0");
 	}
 
-    public function getByCategory($offset, $items_per_page = 12, $category)
+    public function getByCategory($offset, $items_per_page = 12, $category, $agent_name)
 	{
         $offset = $offset != null ? $offset : 0;
         $category = empty($category) ? "%%" : "%".$category."%";
@@ -275,6 +289,7 @@ class Property_model extends CI_model
                                     p.property_title,
                                     p.property_description,
                                     p.sale_type,
+                                    p.sale_status,
                                     p.address,
                                     p.unit_number,
                                     land_area,
@@ -302,11 +317,12 @@ class Property_model extends CI_model
                                 WHERE p.deleted = 0
                                 AND p.sale_status = 0
                                 AND mac.asset_category_name like '$category'
+                                AND LOWER(mua.user_full_name) like '%$agent_name%'
                                 ORDER BY p.property_id DESC
                                 LIMIT $offset, $items_per_page");
 	}
 
-    public function getBySaleType($offset, $items_per_page = 12, $sale_type)
+    public function getBySaleType($offset, $items_per_page = 12, $sale_type, $agent_name)
 	{
         $offset = $offset != null ? $offset : 0;
         $sale_type = (empty($sale_type) ? 0 : $sale_type == "sale") ? 'JUAL' : 'SEWA';
@@ -315,6 +331,7 @@ class Property_model extends CI_model
                                     p.property_title,
                                     p.property_description,
                                     p.sale_type,
+                                    p.sale_status,
                                     p.address,
                                     p.unit_number,
                                     land_area,
@@ -342,11 +359,12 @@ class Property_model extends CI_model
                                 WHERE p.deleted = 0
                                 AND p.sale_status = 0
                                 AND UPPER(p.sale_type) = '$sale_type'
+                                AND LOWER(mua.user_full_name) like '%$agent_name%'
                                 ORDER BY p.property_id DESC
                                 LIMIT $offset, $items_per_page");
 	}
 
-    public function getByTag($offset, $items_per_page = 12, $tag)
+    public function getByTag($offset, $items_per_page = 12, $tag, $agent_name)
 	{
         $offset = $offset != null ? $offset : 0;
 		return $this->db->query("SELECT
@@ -354,6 +372,7 @@ class Property_model extends CI_model
                                     p.property_title,
                                     p.property_description,
                                     p.sale_type,
+                                    p.sale_status,
                                     p.address,
                                     p.unit_number,
                                     land_area,
@@ -382,6 +401,7 @@ class Property_model extends CI_model
                                 WHERE p.deleted = 0
                                 AND p.sale_status = 0
                                 AND LOWER(mt.tag_name) = LOWER('$tag')
+                                AND LOWER(mua.user_full_name) like '%$agent_name%'
                                 ORDER BY p.property_id DESC
                                 LIMIT $offset, $items_per_page");
 	}
@@ -394,6 +414,7 @@ class Property_model extends CI_model
                                     p.property_title,
                                     p.property_description,
                                     p.sale_type,
+                                    p.sale_status,
                                     p.address,
                                     p.unit_number,
                                     land_area,
@@ -420,12 +441,12 @@ class Property_model extends CI_model
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.deleted = 0
                                 AND p.sale_status = 0
-                                AND LOWER(mua.user_full_name) = LOWER('$agent_name')
+                                AND LOWER(mua.user_full_name) like '%$agent_name%'
                                 ORDER BY p.property_id DESC
                                 LIMIT $offset, $items_per_page");
 	}
 
-    public function totalRowsByTag($tag)
+    public function totalRowsByTag($tag, $agent_name)
 	{
 		return $this->db->query("SELECT
                                     COUNT(*) total_rows
@@ -437,10 +458,11 @@ class Property_model extends CI_model
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 JOIN mst_tags mt ON mt.tag_code = p.tag_code
                                 WHERE p.deleted = 0
+                                AND LOWER(mua.user_full_name) like '%$agent_name%'
                                 AND LOWER(mt.tag_name) = LOWER('$tag')");
 	}
 
-    public function totalRowsByKeywords($keyword, $cities)
+    public function totalRowsByKeywords($keyword, $cities, $agent_name)
 	{
         $title = empty($keyword) ? "%%" : "%".$keyword."%";
         $address = empty($keyword) ? "%%" : "%".$keyword."%";
@@ -456,10 +478,12 @@ class Property_model extends CI_model
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.property_title like '$title'
                                 AND mc.city_name like '$cities'
+                                AND LOWER(mua.user_full_name) like '%$agent_name%'
                                 AND p.deleted = 0
                                 AND p.sale_status = 0
                                 OR p.address like '$address'
                                 AND mc.city_name like '$cities'
+                                AND LOWER(mua.user_full_name) like '%$agent_name%'
                                 AND p.deleted = 0");
 	}
 
@@ -475,10 +499,10 @@ class Property_model extends CI_model
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.deleted = 0
                                 AND p.sale_status = 0
-                                AND LOWER(mua.user_full_name) = LOWER('$agent_name')");
+                                AND LOWER(mua.user_full_name) like '%$agent_name%'");
 	}
 
-    public function totalRowsByCategory($category)
+    public function totalRowsByCategory($category, $agent_name)
 	{
         $category = empty($category) ? "%%" : "%".$category."%";
 		return $this->db->query("SELECT
@@ -491,12 +515,13 @@ class Property_model extends CI_model
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.deleted = 0
                                 AND p.sale_status = 0
+                                AND LOWER(mua.user_full_name) like '%$agent_name%'
                                 AND mac.asset_category_name like '$category'");
 	}
 
-    public function totalRowsBySaleType($sale_type)
+    public function totalRowsBySaleType($sale_type, $agent_name)
 	{
-        $sale_type = (empty($sale_type) ? 0 : $sale_type == "sale") ? 2 : 1;
+        $sale_type = (empty($sale_type) ? 0 : $sale_type == "sale") ? 'JUAL' : 'SEWA';
 		return $this->db->query("SELECT
                                     COUNT(*) total_rows
                                 FROM property p
@@ -507,6 +532,7 @@ class Property_model extends CI_model
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 WHERE p.deleted = 0
                                 AND p.sale_status = 0
-                                AND p.sale_type = $sale_type");
+                                AND LOWER(mua.user_full_name) like '%$agent_name%'
+                                AND UPPER(p.sale_type) = '$sale_type'");
 	}
 }

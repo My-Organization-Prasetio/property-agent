@@ -1,5 +1,13 @@
 <div class="row">
-    <div class="col-lg-9 col-md-9 col-sm-12">
+
+    <div class="col-lg-12 col-md-3 col-sm-12">
+        <!-- Property Right Content -->
+        <?php
+        $this->load->view('admin/pages/property/property_up_content_v');
+        ?>
+        <!-- End Property Right Content -->
+    </div>
+    <div class="col-lg-12 col-md-12 col-sm-12">
         <div class="card">
 
             <div class="card-body">
@@ -12,7 +20,7 @@
                     <div class="tab-pane fade active show" id="justified-right-icon-tab1">
                         <!-- Form Add -->
                         <?php
-                            $this->load->view('admin/pages/property/form_add_v');
+                        $this->load->view('admin/pages/property/form_add_v');
                         ?>
                         <!-- End Form Add -->
                     </div>
@@ -20,7 +28,7 @@
                     <div class="tab-pane fade" id="justified-right-icon-tab2">
                         <!-- Property List -->
                         <?php
-                            $this->load->view('admin/pages/property/property_list_v');
+                        $this->load->view('admin/pages/property/property_list_v');
                         ?>
                         <!-- End Property List -->
                     </div>
@@ -28,17 +36,10 @@
             </div>
         </div>
     </div>
-    <div class="col-lg-3 col-md-3 col-sm-12">
-        <!-- Property Right Content -->
-        <?php
-            $this->load->view('admin/pages/property/property_right_content_v');
-        ?>
-        <!-- End Property Right Content -->
-    </div>
 </div>
 
 <!-- Modal Edit -->
 <?php
-    $this->load->view('admin/pages/property/modal_update_v.php');
+$this->load->view('admin/pages/property/modal_update_v.php');
 ?>
 <!-- Modal Edit -->

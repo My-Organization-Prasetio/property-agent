@@ -226,9 +226,9 @@ class Property extends Api_main_controller
         $showing = $config['offset']-1+$config['perpage'];
 
         //Get property by Property page
-        $properties = $this->m_property->getOffset($config['offset'], $config['perpage']);
+        $properties = $this->m_property->getOffset($config['offset'], $config['perpage'], $this->input->get('agent_name'));
         //Get total rows property
-        $total_properties = $this->m_property->totalRows()->row();
+        $total_properties = $this->m_property->totalRows($this->input->get('agent_name'))->row();
         //Check total rows <> showing
         $showing = $showing > $total_properties->total_rows ? $total_properties->total_rows : $showing;
         $dataArray = array(
@@ -256,9 +256,9 @@ class Property extends Api_main_controller
         $showing = $config['offset']-1+$config['perpage'];
 
         //Get property by Property page
-        $properties = $this->m_property->getByCategory($config['offset'], $config['perpage'], $this->input->get('category'));
+        $properties = $this->m_property->getByCategory($config['offset'], $config['perpage'], $this->input->get('category'), $this->input->get('agent_name'));
         //Get total rows property
-        $total_properties = $this->m_property->totalRowsByCategory($this->input->get('category'))->row();
+        $total_properties = $this->m_property->totalRowsByCategory($this->input->get('category'), $this->input->get('agent_name'))->row();
         //Check total rows <> showing
         $showing = $showing > $total_properties->total_rows ? $total_properties->total_rows : $showing;
         $dataArray = array(
@@ -286,9 +286,9 @@ class Property extends Api_main_controller
         $showing = $config['offset']-1+$config['perpage'];
 
         //Get property by Property page
-        $properties = $this->m_property->getBySaleType($config['offset'], $config['perpage'], $this->input->get('sale_type'));
+        $properties = $this->m_property->getBySaleType($config['offset'], $config['perpage'], $this->input->get('sale_type'), $this->input->get('agent_name'));
         //Get total rows property
-        $total_properties = $this->m_property->totalRowsBySaleType($this->input->get('sale_type'))->row();
+        $total_properties = $this->m_property->totalRowsBySaleType($this->input->get('sale_type'), $this->input->get('agent_name'))->row();
         //Check total rows <> showing
         $showing = $showing > $total_properties->total_rows ? $total_properties->total_rows : $showing;
         $dataArray = array(
@@ -346,9 +346,9 @@ class Property extends Api_main_controller
         $showing = $config['offset']-1+$config['perpage'];
 
         //Get property by Property page
-        $properties = $this->m_property->getByTag($config['offset'], $config['perpage'], $this->input->get('tag'));
+        $properties = $this->m_property->getByTag($config['offset'], $config['perpage'], $this->input->get('tag'), $this->input->get('agent_name'));
         //Get total rows property
-        $total_properties = $this->m_property->totalRowsByTag($this->input->get('tag'))->row();
+        $total_properties = $this->m_property->totalRowsByTag($this->input->get('tag'), $this->input->get('agent_name'))->row();
         //Check total rows <> showing
         $showing = $showing > $total_properties->total_rows ? $total_properties->total_rows : $showing;
         $dataArray = array(
@@ -403,6 +403,7 @@ class Property extends Api_main_controller
         $category = $this->input->post('category') ? $this->input->post('category') : '';
         $cities = $this->input->post('sale_type') ? $this->input->post('sale_type') : '';
         $tag = $this->input->post('tag') ? $this->input->post('tag') : '';  
+        $tag = $this->input->post('tag') ? $this->input->post('tag') : '';  
         
         //pagination config
         $config['perpage'] = 12;
@@ -410,9 +411,9 @@ class Property extends Api_main_controller
         $showing = $config['offset']-1+$config['perpage'];
 
         // //Get property by Property page
-        $properties = $this->m_property->queryByKeyword($this->input->post('keywords'), $this->input->post('cities'), $category, $cities, $tag);
+        $properties = $this->m_property->queryByKeyword($this->input->post('keywords'), $this->input->post('cities'), $category, $cities, $tag, $this->input->post('agent_name'));
         // //Get total rows property
-        $total_properties = $this->m_property->totalRowsByKeywords($this->input->post('keywords'), $this->input->post('cities'))->row();
+        $total_properties = $this->m_property->totalRowsByKeywords($this->input->post('keywords'), $this->input->post('cities'), $this->input->post('agent_name'))->row();
         //Check total rows <> showing
         $showing = $showing > $total_properties->total_rows ? $total_properties->total_rows : $showing;
 

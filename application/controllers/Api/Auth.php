@@ -91,17 +91,6 @@ class Auth extends CI_Controller
             try {
                 $verify = $this->verifyHash($this->input->post('password'), $user->user_password);
                 if ($verify == true) {
-                    $user_session = array(
-                        SHORT_APP_NAME.'_MAIN_'.'loginstatus' => true,
-                        SHORT_APP_NAME.'_MAIN_'.'userid'  => $user->user_id,
-                        SHORT_APP_NAME.'_MAIN_'.'username'  => $user->user_name,
-                        SHORT_APP_NAME.'_MAIN_'.'fullname'  => $user->user_full_name,
-                        SHORT_APP_NAME.'_MAIN_'.'email'     => $user->user_email,
-                        SHORT_APP_NAME.'_MAIN_'.'level'     => $user->user_level_position,
-                        SHORT_APP_NAME.'_MAIN_'.'photo'     => $user->user_photo
-                    );
-                    $this->session->set_userdata($user_session);
-
                     $user_session_data = array(
                         'loginstatus' => true,
                         'userid'  => $user->user_id,
@@ -306,6 +295,66 @@ class Auth extends CI_Controller
         }
     }
 
+    public function change_photo_agent()
+    {
+        $id = $this->uri->segment(4);
+        if (!empty($id)) {
+            $config['upload_path'] = "./public/images/profile/"; //path folder file upload
+            $config['allowed_types'] = 'gif|jpg|png'; //type file yang boleh di upload
+            $config['encrypt_name'] = TRUE; //enkripsi file name upload
+
+            $this->load->library('upload', $config); //call library upload 
+            if ($this->upload->do_upload("photo")) { //upload file
+                $data = array('upload_data' => $this->upload->data()); //ambil file name yang diupload
+                $image_name = $data['upload_data']['file_name']; //set file name ke variable image
+
+                //UPDATE IMAGE ON DATABASE
+                $this->main_model->update(
+                    array('user_id' => $id),
+                    array('user_photo' => $image_name),
+                    'mst_user'
+                );
+
+                //SETT SESSION PHOTO
+                $user_session = array(
+                    SHORT_APP_NAME.'_'.'photo'     => $image_name
+                );
+                $this->session->set_userdata($user_session);
+
+                $responseArray = array(
+                    'status'    => 'Success',
+                    'message'   => 'Success upload image',
+                    'data'      => array(
+                        'photo' => $image_name
+                    )
+                );
+
+                $this->output
+                    ->set_status_header(200, 'OK')
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($responseArray));
+            } else {
+                $dataArray = array(
+                    'status'    => 'Error',
+                    'message'   => 'Error Upload.'
+                );
+                $this->output
+                    ->set_status_header(500, 'Error when upload image, please try again.')
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($dataArray));
+            }
+        } else {
+            $dataArray = array(
+                'status'    => 'Error',
+                'message'   => 'Please login again.'
+            );
+            $this->output
+                ->set_status_header(401, 'Unauthorized, Please login again.')
+                ->set_content_type('application/json')
+                ->set_output(json_encode($dataArray));
+        }
+    }
+
     public function change_photo_by_id()
     {
         $id = $this->uri->segment(4);
@@ -321,6 +370,55 @@ class Auth extends CI_Controller
             //UPDATE IMAGE ON DATABASE
             $this->main_model->update(
                 array('user_name' => $id),
+                array('user_photo' => $image_name),
+                'mst_user'
+            );
+
+            //SETT SESSION PHOTO
+            $user_session = array(
+                SHORT_APP_NAME.'_'.'photo'     => $image_name
+            );
+            $this->session->set_userdata($user_session);
+
+            $responseArray = array(
+                'status'    => 'Success',
+                'message'   => 'Success upload image',
+                'data'      => array(
+                    'photo' => $image_name
+                )
+            );
+
+            $this->output
+                ->set_status_header(200, 'OK')
+                ->set_content_type('application/json')
+                ->set_output(json_encode($responseArray));
+        } else {
+            $dataArray = array(
+                'status'    => 'Error',
+                'message'   => 'Error Upload.'
+            );
+            $this->output
+                ->set_status_header(500, 'Error when upload image, please try again.')
+                ->set_content_type('application/json')
+                ->set_output(json_encode($dataArray));
+        }
+    }
+
+    public function change_photo_agent_by_id()
+    {
+        $id = $this->uri->segment(4);
+        $config['upload_path'] = "./public/images/profile/"; //path folder file upload
+        $config['allowed_types'] = 'gif|jpg|png'; //type file yang boleh di upload
+        $config['encrypt_name'] = TRUE; //enkripsi file name upload
+
+        $this->load->library('upload', $config); //call library upload 
+        if ($this->upload->do_upload("photo")) { //upload file
+            $data = array('upload_data' => $this->upload->data()); //ambil file name yang diupload
+            $image_name = $data['upload_data']['file_name']; //set file name ke variable image
+
+            //UPDATE IMAGE ON DATABASE
+            $this->main_model->update(
+                array('user_id' => $id),
                 array('user_photo' => $image_name),
                 'mst_user'
             );

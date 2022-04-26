@@ -5,10 +5,14 @@ $(document).ready(function () {
 
 //Get data
 function viewAllHome(page = 1) {
+    const agentName = getCookie(appShortName+'MAIN_fullname') != '' ? getCookie(appShortName+'MAIN_fullname') : '';
     $.ajax({
         url: rootApp + "api/property/page/" + page,
         type: "GET",
         dataType: "json",
+        data: {
+            agent_name:agentName
+        },
         success: function (res) {
             //Render data to view
             __renderData(res.data)
@@ -40,6 +44,11 @@ function __renderData(data) {
                             <p><i class="fa fa-user-secret mr-1"></i>Owner : ${key.owner_name}</p>`;
             
         }
+        /******************************* TERSEWAA / TERJUAL ************************************************/
+        // const sale_type = key.sale_type == 1 ? '<span class="badge badge-info">Sewa</span>' : '<span class="badge badge-warning">Jual</span>';
+        // if(key.sale_status == 1){
+        //     const sale_type = key.sale_type == 1 ? '<span class="badge badge-danger text-warning">Disewa</span>' : '<span class="badge badge-danger text-warning">Terjual</span>';
+        // }
         listData += `<div class="col-lg-3 col-md-3 col-sm-4 mt-40">
 					<div class="single-product-wrap">
 						<div class="product_desc">

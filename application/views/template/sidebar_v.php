@@ -51,7 +51,7 @@
                     <ul>
                         <?php
                         foreach ($data['property_count_by_category'] as $row) {
-                            echo '<li><input type="checkbox" name="category[]" value="' . $row['asset_category_name'] . '"><a href="' . base_url() . '">' . $row['asset_category_name'] . ' (' . $row['total_property'] . ')</a></li>';
+                            echo '<li><input type="checkbox" name="category[]" value="' . $row['asset_category_name'] . '"><a href="javascript:void(0)">' . $row['asset_category_name'] . ' (' . $row['total_property'] . ')</a></li>';
                         }
                         ?>
                     </ul>

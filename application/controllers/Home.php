@@ -19,7 +19,11 @@ class Home extends Main_controller
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
-        $property_count_by_category = $this->m_property->count_by_category()->result_array();
+		if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
+			$property_count_by_category = $this->m_property->count_by_category($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])->result_array();
+		} else {
+			$property_count_by_category = $this->m_property->count_by_category()->result_array();
+		}
 		$data = array(
 			'content' 		=> 'page/home_v',
 			'breadcrumb' 	=> '<a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
@@ -48,7 +52,11 @@ class Home extends Main_controller
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
-        $property_count_by_category = $this->m_property->count_by_category()->result_array();
+		if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
+			$property_count_by_category = $this->m_property->count_by_category($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])->result_array();
+		} else {
+			$property_count_by_category = $this->m_property->count_by_category()->result_array();
+		}
 
 		//Load View
 		$data = array(
@@ -79,7 +87,11 @@ class Home extends Main_controller
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
-        $property_count_by_category = $this->m_property->count_by_category()->result_array();
+		if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
+			$property_count_by_category = $this->m_property->count_by_category($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])->result_array();
+		} else {
+			$property_count_by_category = $this->m_property->count_by_category()->result_array();
+		}
 
 		//Load View
 		$data = array(
@@ -110,7 +122,11 @@ class Home extends Main_controller
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
-        $property_count_by_category = $this->m_property->count_by_category()->result_array();
+		if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
+			$property_count_by_category = $this->m_property->count_by_category($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])->result_array();
+		} else {
+			$property_count_by_category = $this->m_property->count_by_category()->result_array();
+		}
 
 		//Load View
 		$data = array(
@@ -141,7 +157,11 @@ class Home extends Main_controller
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
-        $property_count_by_category = $this->m_property->count_by_category()->result_array();
+		if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
+			$property_count_by_category = $this->m_property->count_by_category($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])->result_array();
+		} else {
+			$property_count_by_category = $this->m_property->count_by_category()->result_array();
+		}
 
 		//Load View
 		$data = array(
@@ -172,7 +192,11 @@ class Home extends Main_controller
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
-        $property_count_by_category = $this->m_property->count_by_category()->result_array();
+		if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
+			$property_count_by_category = $this->m_property->count_by_category($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])->result_array();
+		} else {
+			$property_count_by_category = $this->m_property->count_by_category()->result_array();
+		}
 
 		//Load View
 		$data = array(
@@ -203,7 +227,11 @@ class Home extends Main_controller
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
-        $property_count_by_category = $this->m_property->count_by_category()->result_array();
+		if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
+			$property_count_by_category = $this->m_property->count_by_category($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])->result_array();
+		} else {
+			$property_count_by_category = $this->m_property->count_by_category()->result_array();
+		}
 
 		//Load View
 		$data = array(

@@ -8,10 +8,11 @@ $("#form-filter").submit(function(e) {
 
 //Get data
 function filterProperty(page = 1) {
+    const agentName = getCookie(appShortName+'MAIN_fullname') != '' ? getCookie(appShortName+'MAIN_fullname') : '';
     $.ajax({
         url: rootApp + "api/filter/property/" + page,
         type: "POST",
-        data: $("#form-filter").serialize(),
+        data: $("#form-filter").serialize()+ '&agent_name=' + agentName,
         success: function (res) {
             //Render data to view
             __renderDataFilter(res.data)

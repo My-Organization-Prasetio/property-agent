@@ -9,10 +9,11 @@ $("#modal-form-filter").submit(function(e) {
 
 //Get data
 function modalFilterProperty(page = 1) {
+    const agentName = getCookie(appShortName+'MAIN_fullname') != '' ? getCookie(appShortName+'MAIN_fullname') : '';
     $.ajax({
         url: rootApp + "api/filter/property/" + page,
         type: "POST",
-        data: $("#modal-form-filter").serialize(),
+        data: $("#modal-form-filter").serialize()+ '&agent_name=' + agentName,
         success: function (res) {
             //Render data to view
             __renderDataFilter(res.data)

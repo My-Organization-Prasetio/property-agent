@@ -25,6 +25,7 @@ inputBox.onkeyup = (e) => {
         const vcategory = typeof propertyCategory === 'undefined' || propertyCategory === null ? '' : propertyCategory;
         const vsaleType = typeof saleType === 'undefined' || saleType === null ? '' : saleType;
         const vTag = typeof tag === 'undefined' || tag === null ? '' : tag;
+        const agentName = getCookie(appShortName+'MAIN_fullname') != '' ? getCookie(appShortName+'MAIN_fullname') : '';
     
         $.ajax({
             url: rootApp + "api/property/recomendation",
@@ -34,7 +35,8 @@ inputBox.onkeyup = (e) => {
                 cities: $('#form-search-cities').val(),
                 category: vcategory,
                 sale_type: vsaleType,
-                tag: vTag
+                tag: vTag,
+                agent_name:agentName
             },
             dataType: "json",
             success: function (res) {
@@ -71,6 +73,7 @@ function searchProperty(page = 1) {
     const vcategory = typeof propertyCategory === 'undefined' || propertyCategory === null ? '' : propertyCategory;
     const vsaleType = typeof saleType === 'undefined' || saleType === null ? '' : saleType;
     const vTag = typeof tag === 'undefined' || tag === null ? '' : tag;
+    const agentName = getCookie(appShortName+'MAIN_fullname') != '' ? getCookie(appShortName+'MAIN_fullname') : '';
     
     $.ajax({
         url: rootApp + "api/property/recomendation/"+page,
@@ -80,7 +83,8 @@ function searchProperty(page = 1) {
             cities: $('#form-search-cities').val(),
             category: vcategory,
             sale_type: vsaleType,
-            tag: vTag
+            tag: vTag,
+            agent_name:agentName
         },
         success: function (res) {
             //Render data to view

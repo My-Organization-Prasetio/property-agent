@@ -4,30 +4,30 @@ var _initTableProperty = function (className) {
 		autoWidth: false,
 		columnDefs: [
 			{
-				width: 30,
-				targets: 0,
+				width: 140,
+				targets: 2,
 			},
 			{
 				visible: false,
 				targets: 1,
 			},
-			{
-				orderable: false,
-				width: 120,
-				targets: 7,
-			},
-			{
-				width: "15%",
-				targets: [4, 5],
-			},
-			{
-				width: "15%",
-				targets: 6,
-			},
-			{
-				width: "15%",
-				targets: 3,
-			},
+			// {
+			// 	orderable: false,
+			// 	width: 120,
+			// 	targets: 7,
+			// },
+			// {
+			// 	width: "15%",
+			// 	targets: [4, 5],
+			// },
+			// {
+			// 	width: "15%",
+			// 	targets: 6,
+			// },
+			// {
+			// 	width: "15%",
+			// 	targets: 3,
+			// },
 		],
 		order: [[0, "asc"]],
 		dom: '<"datatable-header"fl><"datatable-scroll-lg"t><"datatable-footer"ip>',
@@ -133,31 +133,36 @@ export function viewAllProperty() {
 		success: function (res) {
 			var tbProperty = "";
 			$.each(res.data, function (index, key) {
+				/******************************* TERSEWAA / TERJUAL ************************************************/
+				let sale_type = key.sale_type == 1 ? '<span class="badge badge-info">Sewa</span>' : '<span class="badge badge-success">Jual</span>';
+				if(key.sale_status == 1){
+				    sale_type = key.sale_type == 1 ? '<span class="badge badge-danger text-white">Disewa</span>' : '<span class="badge badge-danger text-white">Terjual</span>';
+				}
 				tbProperty += `<tr>
                     <td>${index + 1}</td>
                     <td>${key.asset_category_name}</td>
                     <td>
 						<h6 class="mb-0">
-							<a href="#">${key.property_title}</a>
-							<span class="d-block font-size-sm text-muted">Jenis ID: ${key.property_description}</span>
+							<a href="#" class="text-secondary font-weight-bold">${key.property_title} ${sale_type}</a>
+							<span class="d-block font-size-sm text-muted"><small>${key.property_description.substring(0, 100)}</small></span>
 						</h6>
                     </td>
                     <td>
                         <h6 class="mb-0">
-                            <a href="#">${key.owner_name}</a>
+                            <small>LB :${formatNumber(key.building_area)} m<sup>2</sup> || LT :${formatNumber(key.land_area)} m<sup>2</sup></small>
+							<span class="d-block font-size-sm text-muted">KT : ${key.bedroom} || KM : ${key.bathroom}</span>
                         </h6>
                     </td>
                     <td>
-						<h6 class="mb-0">
-							<a href="#">${key.area_name}</a>
-							<span class="d-block font-size-sm text-muted">Jenis ID: ${key.city_name}</span>
-						</h6>
+						<span class="text-info">${key.unit_number}, ${key.area_name}, ${key.city_name}</span>
                     </td>
                     <td>
-                        Rp_ ${formatNumber(key.price)}
+                        Rp. ${formatNumber(key.price)}
+						<span class="d-block font-size-sm text-muted">Fee : ${key.fee}%</span>
                     </td>
                     <td>
-                        ${key.agent_name}
+						<a href="#">${key.owner_name}</a>
+						<span class="d-block font-size-sm text-muted">Agen : ${key.agent_name}</span>
                     </td>
                     <td class="text-center">
                         <div class="list-icons list-icons-extended">

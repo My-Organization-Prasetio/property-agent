@@ -119,7 +119,7 @@ $( document ).ready(function() {
 
 				$.ajax({
 					type: "POST",
-					url: rootApp + "api/auth/change-photo-by-id/"+getCookie(appShortName+'MAIN_USER_ID'),
+					url: rootApp + "api/auth/change-photo-agent-by-id/"+getCookie(appShortName+'MAIN_USER_ID'),
 					dataType: "json",
 					data: formData,
 					mimeType: "multipart/form-data",

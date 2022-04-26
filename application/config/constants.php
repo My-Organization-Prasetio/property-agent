@@ -86,3 +86,4 @@ defined('EXIT__AUTO_MAX')      OR define('EXIT__AUTO_MAX', 125); // highest auto
 define('SECRET_CODE', '0a181d5c1cf78c29ad8f5c9563109150ace33398c1e7f92c26a9b6843d8b859b1dd6c541f75ffcad43734a101acecdcb');
 define('CUR', 'Rp_ '); //currency demonation
 define('SHORT_APP_NAME', 'PROP_AGENT');
+define('SHORT_APP_NAME_VARIABLE_JS', 'PROPERTY_AGENT');

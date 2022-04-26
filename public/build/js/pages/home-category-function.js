@@ -5,10 +5,14 @@ $(document).ready(function () {
 
 //Get data
 function viewAllHome(page = 1) {
+    const agentName = getCookie(appShortName+'MAIN_fullname') != '' ? getCookie(appShortName+'MAIN_fullname') : '';
     $.ajax({
         url: rootApp + "api/property/by-category/" + page,
         type: "GET",
-        data: {category:propertyCategory},
+        data: {
+            category:propertyCategory,
+            agent_name:agentName
+        },
         dataType: "json",
         success: function (res) {
             //Render data to view

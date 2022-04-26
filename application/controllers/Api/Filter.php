@@ -33,7 +33,8 @@ class Filter extends Api_main_controller
             $this->input->post('bedroom'),
             $this->input->post('land_area'),
             $this->input->post('price'),
-            ''
+            '',
+            $this->input->post('agent_name')
         );
 
         //If the request by property agent
@@ -44,7 +45,7 @@ class Filter extends Api_main_controller
             $this->input->post('bedroom'),
             $this->input->post('land_area'),
             $this->input->post('price'),
-            $agent
+            $this->input->post('agent_name')
         )->row();
         //Check total rows <> showing
         $showing = $showing > $total_properties->total_rows ? $total_properties->total_rows : $showing;
