@@ -271,8 +271,8 @@ class User extends Api_main_controller
     public function edit()
     {
         try {
-            $check_username = $this->m_main->view_where('mst_user', array('user_name' => $this->input->post('user_name'), 'user_level_id' => $this->input->post('user_level_id'), 'deleted' => 0))->num_rows();
-            if($check_username > 0){
+            $user_data = $this->m_main->view_where('mst_user', array('user_name' => $this->input->post('user_name'), 'user_level_id' => $this->input->post('user_level_id'), 'deleted' => 0))->row();
+            if($user_data->user_name != $this->input->post('user_name')){ //Data Exist
                 $dataArray = array(
                     'status'    => 'Error',
                     'message'   => 'Username sudah terdaftar'

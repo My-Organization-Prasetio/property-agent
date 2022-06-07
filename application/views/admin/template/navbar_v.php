@@ -1,6 +1,6 @@
 <div class="navbar navbar-expand-md navbar-dark">
 	<div class="navbar-brand" style="margin-top: -6px;">
-		<a href="index.html" class="d-inline-block">
+		<a href="<?= base_url('admin') ?>" class="d-inline-block">
 			<div class="row">
 				<div class="col-2">
 					<!-- <img src="<?= base_url() ?>public/images/logo/logo-full.png" alt=""> -->

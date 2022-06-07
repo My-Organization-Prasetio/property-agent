@@ -94,7 +94,7 @@ export function initAction() {
 	});
 	
 	/*******************************************************************************************
-								ON CLICK BUTTON EDIT PASSWORD
+								ON CLICK BUTTON EDIT FOTO
     *******************************************************************************************/
 	$("#table-body-user").on("click", ".btn-edit-foto", function () {
 	$("#modal_form_edit_foto").modal("show");
@@ -147,6 +147,7 @@ export function initAction() {
 			dataType: "json",
 			success: function (res) {
 				const data = res.data[0];
+				console.log(data.user_full_name)
 				$("#modal_form_edit").modal("show");
                 $("#user_id").val(data.user_id);
                 $("#user_level_id").val(data.user_level_id);
