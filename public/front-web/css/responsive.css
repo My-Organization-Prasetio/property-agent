@@ -645,7 +645,8 @@ Note: responsive.css, All Responsive CSS Style For This Theme Included In This F
 		float: unset;
 	}
 	.hm-searchbox .nice-select.select-search-category {
-		display: none;
+		display: block;
+		/* display: none; Before Update */
 	}
 	.hm-searchbox input {
 		padding: 0 60px 0 15px;
