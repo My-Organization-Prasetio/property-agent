@@ -28,7 +28,7 @@ inputBox.onkeyup = (e) => {
         const agentName = getCookie(appShortName+'MAIN_fullname') != '' ? getCookie(appShortName+'MAIN_fullname') : '';
     
         $.ajax({
-            url: rootApp + "api/property/recomendation",
+            url: rootApp + "api/property/recomendation-by-agent",
             type: "POST",
             data: {
                 keywords: userData,
@@ -45,7 +45,7 @@ inputBox.onkeyup = (e) => {
                     recomendationList += `<div class="list rounded">
                     <a href="${rootApp + "home/property/" + key.property_id}">
                             <div class="title">${key.property_title}</div>
-                            <!-- <div class="description">${key.unit_number} | ${key.area_name} | ${key.address}</div> -->
+                            <div class="description">${key.unit_number} | ${key.area_name} | ${key.address}</div>
                         </a>
                     </div>`
                 })
@@ -76,7 +76,7 @@ function searchProperty(page = 1) {
     const agentName = getCookie(appShortName+'MAIN_fullname') != '' ? getCookie(appShortName+'MAIN_fullname') : '';
     
     $.ajax({
-        url: rootApp + "api/property/recomendation/"+page,
+        url: rootApp + "api/property/recomendation-by-agent/"+page,
         type: "POST",
         data: {
             keywords: $('#form-search-input').val(),
@@ -102,7 +102,6 @@ function searchProperty(page = 1) {
         },
     });
 }
-
 
 //Pagination
 var current_page = 1;

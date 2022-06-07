@@ -25,6 +25,26 @@ class Filter extends Api_main_controller
         $config['offset'] = (empty($this->uri->segment(4)) ?  0 : $this->uri->segment(4) == 1) ? 0 : ($this->uri->segment(4)-1)*$config['perpage'];
         $showing = $config['offset']-1+$config['perpage'];
 
+        /**************************** View By Agent ******************************/
+        // $properties = $this->f_property->filter(
+        //     $config['offset'],
+        //     $config['perpage'],
+        //     $this->input->post('category'),
+        //     $this->input->post('bedroom'),
+        //     $this->input->post('land_area'),
+        //     $this->input->post('price'),
+        //     '',
+        //     $this->input->post('agent_name')
+        // );
+        // $agent = empty($this->input->post('my_property')) ? '' : $this->input->post('my_property');
+        // $total_properties = $this->f_property->totalRowsFilter(
+        //     $this->input->post('category'),
+        //     $this->input->post('bedroom'),
+        //     $this->input->post('land_area'),
+        //     $this->input->post('price'),
+        //     $this->input->post('agent_name')
+        // )->row();
+        /*************************************************************************/
         //Get property by Property page
         $properties = $this->f_property->filter(
             $config['offset'],
@@ -34,10 +54,8 @@ class Filter extends Api_main_controller
             $this->input->post('land_area'),
             $this->input->post('price'),
             '',
-            $this->input->post('agent_name')
+            ''
         );
-
-        //If the request by property agent
         $agent = empty($this->input->post('my_property')) ? '' : $this->input->post('my_property');
         //Get total rows property
         $total_properties = $this->f_property->totalRowsFilter(
@@ -45,8 +63,9 @@ class Filter extends Api_main_controller
             $this->input->post('bedroom'),
             $this->input->post('land_area'),
             $this->input->post('price'),
-            $this->input->post('agent_name')
+            ''
         )->row();
+        /**************************** View By Agent ******************************/
         //Check total rows <> showing
         $showing = $showing > $total_properties->total_rows ? $total_properties->total_rows : $showing;
         $dataArray = array(

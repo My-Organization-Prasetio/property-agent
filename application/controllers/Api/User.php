@@ -9,6 +9,7 @@ class User extends Api_main_controller
         parent::__construct();
         $this->load->model('User_model', 'm_user');
         $this->load->library('lib_main');
+        $this->load->model('main_model', 'm_main');
         $this->check_login('admin');
     }
 
@@ -43,6 +44,18 @@ class User extends Api_main_controller
     public function add()
     {
         try {
+            $check_username = $this->m_main->view_where('mst_user', array('user_name' => $this->input->post('user_name'), 'user_level_id' => $this->input->post('user_level_id'), 'deleted' => 0))->num_rows();
+            if($check_username > 0){
+                $dataArray = array(
+                    'status'    => 'Error',
+                    'message'   => 'Username sudah terdaftar'
+                );
+                $this->output
+                    ->set_status_header(422, 'Username sudah terdaftar')
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($dataArray));
+                exit;
+            }
             $config['upload_path'] = "./public/images/profile/"; //path folder file upload
             $config['allowed_types'] = 'gif|jpg|png'; //type file yang boleh di upload
             $config['encrypt_name'] = TRUE; //enkripsi file name upload
@@ -56,6 +69,7 @@ class User extends Api_main_controller
                     'user_level_id'   => $this->input->post('user_level_id'),
                     'user_name'   => $this->input->post('user_name'),
                     'user_full_name'   => $this->input->post('user_full_name'),
+                    'user_fullname'   => $this->input->post('user_fullname'),
                     'user_email'   => $this->input->post('user_email'),
                     'user_phone_number'   => $this->input->post('user_phone_number'),
                     'id_card'   => $this->input->post('id_card'),
@@ -257,10 +271,23 @@ class User extends Api_main_controller
     public function edit()
     {
         try {
+            $check_username = $this->m_main->view_where('mst_user', array('user_name' => $this->input->post('user_name'), 'user_level_id' => $this->input->post('user_level_id'), 'deleted' => 0))->num_rows();
+            if($check_username > 0){
+                $dataArray = array(
+                    'status'    => 'Error',
+                    'message'   => 'Username sudah terdaftar'
+                );
+                $this->output
+                    ->set_status_header(422, 'Username sudah terdaftar')
+                    ->set_content_type('application/json')
+                    ->set_output(json_encode($dataArray));
+                exit;
+            }
             $updateData = array(
                 'user_level_id'   => $this->input->post('user_level_id'),
                 'user_name'   => $this->input->post('user_name'),
                 'user_full_name'   => $this->input->post('user_full_name'),
+                'user_fullname'   => $this->input->post('user_fullname'),
                 'user_email'   => $this->input->post('user_email'),
                 'user_phone_number'   => $this->input->post('user_phone_number'),
                 'id_card'   => $this->input->post('id_card'),

@@ -6,8 +6,8 @@ class Main_controller extends CI_Controller
 
 	public function check_login()
 	{
-        if(empty($this->session->userdata(SHORT_APP_NAME.'_'.'loginstatus')) || $this->session->userdata(SHORT_APP_NAME.'_'.'loginstatus') != true){
-            redirect(base_url().'auth');
+        if($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_level'] != 'agen' || $_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_LOGIN_STATUS'] != 1){
+            redirect(base_url().'home/login');
         }
     }
 

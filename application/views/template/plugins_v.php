@@ -50,17 +50,24 @@
 <script src="<?= base_url() ?>public/build/js/global/variable.js"></script>
 <script src="<?= base_url() ?>public/build/js/global/function_pnotify.js"></script>
 <script src="<?= base_url() ?>public/front-web/js/page/main.js"></script>
+<script src="<?= base_url() ?>public/front-web/js/page/front-function.js"></script>
 <script src="<?= base_url() ?>public/front-web/js/page/filter-search.js"></script>
 <script src="<?= base_url() ?>public/front-web/js/page/modal-filter-search.js"></script>
-<script src="<?= base_url() ?>public/front-web/js/page/search.js"></script>
 <script src="<?= base_url() ?>public/front-web/js/page/my-property-list-main.js"></script>
 <script src="<?= base_url() ?>public/build/js/pages/front-login-function.js"></script>
 <?php
-if (!empty($js_file)) {
-    echo '<script type="module" src="' . base_url() . 'public/build/js/pages/' . $js_file . '.js"></script>';
-}
-// Not module type
-if (!empty($js_function_file)) {
-    echo '<script src="' . base_url() . 'public/build/js/pages/' . $js_function_file . '.js"></script>';
-}
+
+    if($this->uri->segment(2) != 'my-property'){
+        echo '<script src="'.base_url().'public/front-web/js/page/search.js"></script>';
+    }else{
+        echo '<script src="'.base_url().'public/front-web/js/page/search-my-property.js"></script>';
+    }
+
+    if (!empty($js_file)) {
+        echo '<script type="module" src="' . base_url() . 'public/build/js/pages/' . $js_file . '.js"></script>';
+    }
+    // Not module type
+    if (!empty($js_function_file)) {
+        echo '<script src="' . base_url() . 'public/build/js/pages/' . $js_function_file . '.js"></script>';
+    }
 ?>

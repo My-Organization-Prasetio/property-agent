@@ -8,6 +8,7 @@ export function initAction() {
 		// Specify validation rules
 		rules: {
 			user_full_name: "required",
+			user_fullname: "required",
 			user_name: "required",
 			password: "required",
 			id_card: "required",
@@ -19,7 +20,8 @@ export function initAction() {
 		},
 		// Specify validation error messages
 		messages: {
-			user_full_name: "Masukan nama lengkap",
+			user_full_name: "Masukan nama",
+			user_fullname: "Masukan nama lengkap (sama dengan group properti)",
 			user_name: "Masukan nama pengguna",
 			password: "Masukan password",
 			id_card: "Masukan nomor identitas",
@@ -166,6 +168,7 @@ export function initAction() {
 	    // Specify validation rules
 		rules: {
 			user_full_name: "required",
+			user_fullname: "required",
 			user_name: "required",
 			password: "required",
 			id_card: "required",
@@ -177,7 +180,8 @@ export function initAction() {
 		},
 		// Specify validation error messages
 		messages: {
-			user_full_name: "Masukan nama lengkap",
+			user_full_name: "Masukan nama",
+			user_fullname: "Masukan nama lengkap (sama dengan grup properti)",
 			user_name: "Masukan nama pengguna",
 			password: "Masukan password",
 			id_card: "Masukan nomor identitas",

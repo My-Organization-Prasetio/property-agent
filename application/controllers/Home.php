@@ -14,16 +14,19 @@ class Home extends Main_controller
 
 	public function index()
 	{
+		//Check Login Status
+		$this->check_login();
+
         $my_company = $this->m_main->viewWhereOrdering('my_company', array('company_id' => 1), 'company_id', 'ASC')->row();
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
-		if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
-			$property_count_by_category = $this->m_property->count_by_category($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])->result_array();
-		} else {
+		// if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
+		// 	$property_count_by_category = $this->m_property->count_by_category($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])->result_array();
+		// } else {
 			$property_count_by_category = $this->m_property->count_by_category()->result_array();
-		}
+		// }
 		$data = array(
 			'content' 		=> 'page/home_v',
 			'breadcrumb' 	=> '<a href="#" class="breadcrumb-item"><i class="icon-home2 mr-2"></i> Home</a>
@@ -43,6 +46,8 @@ class Home extends Main_controller
 
 	public function category()
 	{
+		//Check Login Status
+		$this->check_login();
 		//Will read on javascript
 		echo '<script>var propertyCategory = "'.$this->uri->segment(3).'"</script>';
 
@@ -52,11 +57,11 @@ class Home extends Main_controller
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
-		if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
-			$property_count_by_category = $this->m_property->count_by_category($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])->result_array();
-		} else {
+		// if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
+		// 	$property_count_by_category = $this->m_property->count_by_category($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])->result_array();
+		// } else {
 			$property_count_by_category = $this->m_property->count_by_category()->result_array();
-		}
+		// }
 
 		//Load View
 		$data = array(
@@ -78,6 +83,8 @@ class Home extends Main_controller
 
 	public function sale_type()
 	{
+		//Check Login Status
+		$this->check_login();
 		//Will read on javascript
 		echo '<script> var saleType = "'.$this->uri->segment(3).'"</script>';
 
@@ -87,11 +94,11 @@ class Home extends Main_controller
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
-		if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
-			$property_count_by_category = $this->m_property->count_by_category($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])->result_array();
-		} else {
+		// if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
+		// 	$property_count_by_category = $this->m_property->count_by_category($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])->result_array();
+		// } else {
 			$property_count_by_category = $this->m_property->count_by_category()->result_array();
-		}
+		// }
 
 		//Load View
 		$data = array(
@@ -113,6 +120,8 @@ class Home extends Main_controller
 
 	public function property()
 	{
+		//Check Login Status
+		$this->check_login();
 		//Will read on javascript
 		echo '<script> var propertyId = "'.$this->uri->segment(3).'"</script>';
 
@@ -122,11 +131,11 @@ class Home extends Main_controller
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
-		if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
-			$property_count_by_category = $this->m_property->count_by_category($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])->result_array();
-		} else {
+		// if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
+		// 	$property_count_by_category = $this->m_property->count_by_category($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])->result_array();
+		// } else {
 			$property_count_by_category = $this->m_property->count_by_category()->result_array();
-		}
+		// }
 
 		//Load View
 		$data = array(
@@ -148,6 +157,8 @@ class Home extends Main_controller
 
 	public function my_property()
 	{
+		//Check Login Status
+		$this->check_login();
 		//Will read on javascript
 		echo '<script> var propertyId = "'.$this->uri->segment(3).'"</script>';
 
@@ -183,6 +194,8 @@ class Home extends Main_controller
 
 	public function tag()
 	{
+		//Check Login Status
+		$this->check_login();
 		//Will read on javascript
 		echo '<script> var tag = "'.$this->uri->segment(3).'"</script>';
 
@@ -192,11 +205,11 @@ class Home extends Main_controller
         $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
-		if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
-			$property_count_by_category = $this->m_property->count_by_category($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])->result_array();
-		} else {
+		// if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
+		// 	$property_count_by_category = $this->m_property->count_by_category($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])->result_array();
+		// } else {
 			$property_count_by_category = $this->m_property->count_by_category()->result_array();
-		}
+		// }
 
 		//Load View
 		$data = array(

@@ -125,9 +125,16 @@
             <form action="#" class="form-horizontal" name="add-user" id="add-user">
                 <div class="modal-body">
                     <div class="form-group row">
+                        <label class="col-form-label col-sm-3">Nama <br><sub class="text-warning">(Harus sama dengan group)</sub></label>
+                        <div class="col-sm-9">
+                            <input type="text" placeholder="Hana" class="form-control" name="user_full_name">
+                        </div>
+                    </div>
+
+                    <div class="form-group row">
                         <label class="col-form-label col-sm-3">Nama Lengkap</label>
                         <div class="col-sm-9">
-                            <input type="text" placeholder="Hana Az.." class="form-control" name="user_full_name">
+                            <input type="text" placeholder="Hana Az.." class="form-control" name="user_fullname">
                         </div>
                     </div>
                     
@@ -179,7 +186,8 @@
                             <select class="form-control" name="user_level_id">
                                 <option value="">-- Pilih Tingkatan --</option>
                                 <option value="1">Admin</option>
-                                <option value="2">Agen</option>
+                                <option value="2">Group</option>
+                                <option value="3">Agen</option>
                             </select>
                         </div>
                     </div>
@@ -226,10 +234,18 @@
             <form action="#" class="form-horizontal" name="edit-user" id="edit-user">
                     <div class="modal-body">
                     <div class="form-group row">
-                        <label class="col-form-label col-sm-3">Nama Lengkap</label>
+                        <label class="col-form-label col-sm-3">Nama <br><sub class="text-warning">(Harus sama dengan group)</sub></label>
                         <div class="col-sm-9">
                             <input type="hidden" placeholder="" class="form-control" name="user_id" id="user_id">
-                            <input type="text" placeholder="Hana Az.." class="form-control" name="user_full_name" id="user_full_name">
+                            <input type="text" placeholder="Hana" class="form-control" name="user_full_name" id="user_full_name">
+                        </div>
+                    </div>
+                    
+
+                    <div class="form-group row">
+                        <label class="col-form-label col-sm-3">Nama Lengkap</label>
+                        <div class="col-sm-9">
+                            <input type="text" placeholder="Hana Az.." class="form-control" name="user_fullname" id="user_fullname">
                         </div>
                     </div>
                     
@@ -267,7 +283,8 @@
                             <select class="form-control" name="user_level_id" id="user_level_id">
                                 <option value="">-- Pilih Tingkatan --</option>
                                 <option value="1">Admin</option>
-                                <option value="2">Agen</option>
+                                <option value="2">Group</option>
+                                <option value="3">Agen</option>
                             </select>
                         </div>
                     </div>

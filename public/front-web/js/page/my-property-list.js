@@ -41,11 +41,11 @@ function __renderDataFilter(data) {
     var listData = ``;
     $.each(data, function (index, key) {
         let additionalInfo = ``;
-        if(levelAgen == 'agen' && key.agent_name == agentName){
+        // if(levelAgen == 'agen' && key.agent_name == agentName){
             additionalInfo = `<p><i class="fa fa-money mr-1"></i>${key.fee}%</p>
                             <p><i class="fa fa-user-secret mr-1"></i>Owner : ${key.owner_name}</p>`;
             
-        }
+        // }
         listData += `<div class="col-lg-3 col-md-3 col-sm-4 mt-40">
 					<div class="single-product-wrap">
 						<div class="product_desc">
