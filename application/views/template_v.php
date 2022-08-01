@@ -5,7 +5,7 @@
 
 <head>
     <?php
-        $this->load->view('template/head_v');
+    $this->load->view('template/head_v');
     ?>
 </head>
 
@@ -18,7 +18,7 @@
         <!-- Begin Header Area -->
         <header>
             <?php
-                $this->load->view('template/header_v');
+            $this->load->view('template/header_v');
             ?>
         </header>
         <!-- Header Area End Here -->
@@ -39,10 +39,10 @@
             <div class="container">
                 <div class="row">
                     <?php
-                        !empty($content) ? $this->load->view($content) : ''
+                    !empty($content) ? $this->load->view($content) : ''
                     ?>
                     <?php
-                        $this->load->view('template/sidebar_v');
+                    $this->load->view('template/sidebar_v');
                     ?>
                 </div>
             </div>
@@ -50,18 +50,18 @@
         <!-- Content Wraper Area End Here -->
         <!-- Begin Footer Area -->
         <?php
-            $this->load->view('template/footer_v');
+        $this->load->view('template/footer_v');
         ?>
         <!-- Footer Area End Here -->
         <!-- Begin Quick View | Modal Area -->
         <?php
-            $this->load->view('template/modal_example_v');
+        $this->load->view('template/modal_example_v');
         ?>
         <!-- Quick View | Modal Area End Here -->
     </div>
     <!-- Body Wrapper End Here -->
     <?php
-        $this->load->view('template/plugins_v');
+    $this->load->view('template/plugins_v');
     ?>
 </body>
 

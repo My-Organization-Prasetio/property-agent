@@ -64,7 +64,7 @@
                             <option value="">Semua</option>
                             <?php
                                 foreach($data['cities'] as $row){
-                                    echo '<option value="'.$row['city_name'].'">'.$row['city_name'].'</option>';
+                                    echo '<option value="'.$row['area_name'].'">'.$row['area_name'].'</option>';
                                 }
                             ?>
                         </select>

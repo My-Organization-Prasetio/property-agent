@@ -7,6 +7,11 @@
     <?php
         $this->load->view('template/head_v');
     ?>
+    <style>
+        .container{
+            /* width: 100%; */
+        }
+    </style>
 </head>
 
 <body>

@@ -19,6 +19,7 @@ class Auth extends CI_Controller
         $where = array(
             'mst_user.user_name' => $this->input->post('username'),
             'user_level_management.user_level_status' => 'active',
+            'mst_user.deleted' => 0,
             'user_level_management.user_level_position' => 'admin'
         );
         $result = $this->m_auth->view_by_username($where);
@@ -82,6 +83,7 @@ class Auth extends CI_Controller
     {
         $where = array(
             'mst_user.user_name' => $this->input->post('username'),
+            'mst_user.deleted' => 0,
             'user_level_management.user_level_status' => 'active',
             'user_level_management.user_level_position' => 'agen'
         );

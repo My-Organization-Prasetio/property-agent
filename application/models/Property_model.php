@@ -167,7 +167,7 @@ class Property_model extends CI_model
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 JOIN mst_tags mtg ON mtg.tag_code = p.tag_code
                                 WHERE p.property_title like '$title'
-                                AND mc.city_name like '$cities'
+                                AND ma.area_name like '$cities'
                                 AND mac.asset_category_name like '$category'
                                 AND p.sale_type like '$sale_type'
                                 AND mtg.tag_name like '$tag'
@@ -175,7 +175,7 @@ class Property_model extends CI_model
                                 AND p.deleted = 0
                                 AND p.sale_status = 0
                                 OR p.address like '$address'
-                                AND mc.city_name like '$cities'
+                                AND ma.area_name like '$cities'
                                 AND mac.asset_category_name like '$category'
                                 AND p.sale_type like '$sale_type'
                                 AND mtg.tag_name like '$tag'
@@ -488,7 +488,7 @@ class Property_model extends CI_model
                                 JOIN mst_owner muo ON muo.owner_id = p.owner_id
                                 JOIN mst_tags mtg ON mtg.tag_code = p.tag_code
                                 WHERE p.property_title like '$title'
-                                AND mc.city_name like '$cities'
+                                AND ma.area_name like '$cities'
                                 AND mac.asset_category_name like '$category'
                                 AND p.sale_type like '$sale_type'
                                 AND mtg.tag_name like '$tag'
@@ -496,7 +496,7 @@ class Property_model extends CI_model
                                 AND p.deleted = 0
                                 AND p.sale_status = 0
                                 OR p.address like '$address'
-                                AND mc.city_name like '$cities'
+                                AND ma.area_name like '$cities'
                                 AND mac.asset_category_name like '$category'
                                 AND p.sale_type like '$sale_type'
                                 AND mtg.tag_name like '$tag'

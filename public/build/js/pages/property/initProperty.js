@@ -134,9 +134,9 @@ export function viewAllProperty() {
 			var tbProperty = "";
 			$.each(res.data, function (index, key) {
 				/******************************* TERSEWAA / TERJUAL ************************************************/
-				let sale_type = key.sale_type == 1 ? '<span class="badge badge-info">Sewa</span>' : '<span class="badge badge-success">Jual</span>';
+				let sale_type = key.sale_type == "Sewa" ? '<span class="badge badge-info">Sewa</span>' : '<span class="badge badge-success">Jual</span>';
 				if(key.sale_status == 1){
-				    sale_type = key.sale_type == 1 ? '<span class="badge badge-danger text-white">Disewa</span>' : '<span class="badge badge-danger text-white">Terjual</span>';
+				    sale_type = key.sale_type == "Sewa" ? '<span class="badge badge-danger text-white">Disewa</span>' : '<span class="badge badge-danger text-white">Terjual</span>';
 				}
 				tbProperty += `<tr>
                     <td>${index + 1}</td>

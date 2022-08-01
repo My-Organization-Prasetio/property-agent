@@ -19,7 +19,9 @@ class Home extends Main_controller
 
         $my_company = $this->m_main->viewWhereOrdering('my_company', array('company_id' => 1), 'company_id', 'ASC')->row();
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
-        $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        // $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        $cities = $this->m_main->viewWhereOrdering('mst_area', array('deleted' => 0), 'area_name', 'ASC')->result_array();
+		$mst_cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
 		// if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
@@ -36,6 +38,7 @@ class Home extends Main_controller
 				'my_company'	=> $my_company,
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
+				'mst_cities'		=> $mst_cities,
 				'new_properties'	=> $new_properties,
 				'tags'				=> $tags,
 				'property_count_by_category'	=> $property_count_by_category
@@ -54,7 +57,9 @@ class Home extends Main_controller
 		//Get Data
         $my_company = $this->m_main->viewWhereOrdering('my_company', array('company_id' => 1), 'company_id', 'ASC')->row();
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
-        $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        // $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        $cities = $this->m_main->viewWhereOrdering('mst_area', array('deleted' => 0), 'area_name', 'ASC')->result_array();
+		$mst_cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
 		// if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
@@ -73,6 +78,7 @@ class Home extends Main_controller
 				'my_company'	=> $my_company,
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
+				'mst_cities'		=> $mst_cities,
 				'new_properties'	=> $new_properties,
 				'tags'				=> $tags,
 				'property_count_by_category'	=> $property_count_by_category
@@ -91,7 +97,9 @@ class Home extends Main_controller
 		//Get Data
         $my_company = $this->m_main->viewWhereOrdering('my_company', array('company_id' => 1), 'company_id', 'ASC')->row();
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
-        $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        // $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        $cities = $this->m_main->viewWhereOrdering('mst_area', array('deleted' => 0), 'area_name', 'ASC')->result_array();
+		$mst_cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
 		// if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
@@ -110,6 +118,7 @@ class Home extends Main_controller
 				'my_company'	=> $my_company,
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
+				'mst_cities'		=> $mst_cities,
 				'new_properties'	=> $new_properties,
 				'tags'				=> $tags,
 				'property_count_by_category'	=> $property_count_by_category
@@ -128,7 +137,9 @@ class Home extends Main_controller
 		//Get Data
         $my_company = $this->m_main->viewWhereOrdering('my_company', array('company_id' => 1), 'company_id', 'ASC')->row();
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
-        $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        // $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        $cities = $this->m_main->viewWhereOrdering('mst_area', array('deleted' => 0), 'area_name', 'ASC')->result_array();
+		$mst_cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
 		// if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
@@ -147,6 +158,7 @@ class Home extends Main_controller
 				'my_company'	=> $my_company,
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
+				'mst_cities'		=> $mst_cities,
 				'new_properties'	=> $new_properties,
 				'tags'				=> $tags,
 				'property_count_by_category'	=> $property_count_by_category
@@ -165,7 +177,9 @@ class Home extends Main_controller
 		//Get Data
         $my_company = $this->m_main->viewWhereOrdering('my_company', array('company_id' => 1), 'company_id', 'ASC')->row();
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
-        $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        // $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        $cities = $this->m_main->viewWhereOrdering('mst_area', array('deleted' => 0), 'area_name', 'ASC')->result_array();
+		$mst_cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
 		if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
@@ -184,6 +198,7 @@ class Home extends Main_controller
 				'my_company'	=> $my_company,
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
+				'mst_cities'		=> $mst_cities,
 				'new_properties'	=> $new_properties,
 				'tags'				=> $tags,
 				'property_count_by_category'	=> $property_count_by_category
@@ -202,7 +217,9 @@ class Home extends Main_controller
 		//Get Data
         $my_company = $this->m_main->viewWhereOrdering('my_company', array('company_id' => 1), 'company_id', 'ASC')->row();
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
-        $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        // $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        $cities = $this->m_main->viewWhereOrdering('mst_area', array('deleted' => 0), 'area_name', 'ASC')->result_array();
+		$mst_cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
 		// if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
@@ -221,6 +238,7 @@ class Home extends Main_controller
 				'my_company'	=> $my_company,
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
+				'mst_cities'		=> $mst_cities,
 				'new_properties'	=> $new_properties,
 				'tags'				=> $tags,
 				'property_count_by_category'	=> $property_count_by_category
@@ -237,7 +255,9 @@ class Home extends Main_controller
 		//Get Data
         $my_company = $this->m_main->viewWhereOrdering('my_company', array('company_id' => 1), 'company_id', 'ASC')->row();
         $asset_categories = $this->m_main->viewWhereOrdering('mst_asset_category', array('deleted' => 0), 'asset_category_name', 'ASC')->result_array();
-        $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        // $cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
+        $cities = $this->m_main->viewWhereOrdering('mst_area', array('deleted' => 0), 'area_name', 'ASC')->result_array();
+		$mst_cities = $this->m_main->viewWhereOrdering('mst_cities', array('deleted' => 0), 'city_name', 'ASC')->result_array();
         $tags = $this->m_main->viewWhereOrdering('mst_tags', array('deleted' => 0), 'tag_name', 'ASC')->result_array();
         $new_properties = $this->m_property->getNew(12)->result_array();
 		if(isset($_COOKIE[SHORT_APP_NAME_VARIABLE_JS.'MAIN_fullname'])) {
@@ -256,6 +276,7 @@ class Home extends Main_controller
 				'my_company'	=> $my_company,
 				'asset_categories'	=> $asset_categories,
 				'cities'			=> $cities,
+				'mst_cities'		=> $mst_cities,
 				'new_properties'	=> $new_properties,
 				'tags'				=> $tags,
 				'property_count_by_category'	=> $property_count_by_category

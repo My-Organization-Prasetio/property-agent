@@ -99,7 +99,7 @@ export function initAction() {
 	$("#table-body-user").on("click", ".btn-edit-foto", function () {
 	$("#modal_form_edit_foto").modal("show");
 		var id = $(this).data("id");
-		$("#update_pass_user_id").val(id);
+		$("#update_foto_user_id").val(id);
 	});
 
 	$("form[name='update-foto-user']").validate({
@@ -147,12 +147,13 @@ export function initAction() {
 			dataType: "json",
 			success: function (res) {
 				const data = res.data[0];
-				console.log(data.user_full_name)
+				console.log(data.user_fullname)
 				$("#modal_form_edit").modal("show");
                 $("#user_id").val(data.user_id);
                 $("#user_level_id").val(data.user_level_id);
                 $("#user_name").val(data.user_name);
                 $("#user_full_name").val(data.user_full_name);
+                $("#user_fullname").val(data.user_fullname);
                 $("#user_email").val(data.user_email);
                 $("#user_phone_number").val(data.user_phone_number);
                 $("#id_card").val(data.id_card);

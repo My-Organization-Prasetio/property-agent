@@ -168,8 +168,8 @@
                     <div class="footer-links">
                         <ul>
                             <?php
-                                foreach($data['cities'] as $row){
-                                    echo '<li><a href="javaascript:void(0)'.strtolower($row['city_name']).'">'.$row['city_name'].'</a></li>';
+                                foreach($data['mst_cities'] as $row){
+                                    echo '<li><a href="javascript:void(0)'.strtolower($row['city_name']).'">'.$row['city_name'].'</a></li>';
                                 }
                             ?>
                         </ul>

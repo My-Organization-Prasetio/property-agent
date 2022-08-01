@@ -18,10 +18,10 @@ function __renderData(data) {
 			<p><i class="fa fa-user-secret mr-1"></i>Owner : ${key.owner_name}</p>`;
         }
         /******************************* TERSEWAA / TERJUAL ************************************************/
-        // const sale_type = key.sale_type == 1 ? '<span class="badge badge-info">Sewa</span>' : '<span class="badge badge-warning">Jual</span>';
-        // if(key.sale_status == 1){
-        //     const sale_type = key.sale_type == 1 ? '<span class="badge badge-danger text-warning">Disewa</span>' : '<span class="badge badge-danger text-warning">Terjual</span>';
-        // }
+		let sale_type = key.sale_type == "Sewa" ? '<span class="badge badge-info">Sewa</span>' : '<span class="badge badge-success">Jual</span>';
+		if(key.sale_status == 1){
+			sale_type = key.sale_type == "Sewa" ? '<span class="badge badge-danger text-white">Disewa</span>' : '<span class="badge badge-danger text-white">Terjual</span>';
+		}
         listData += `<div class="col-lg-3 col-md-3 col-sm-4 mt-40">
 					<div class="single-product-wrap">
 						<div class="product_desc">
@@ -32,7 +32,7 @@ function __renderData(data) {
 									</h5>
 									<div class="rating-box">
 										<ul class="rating">
-											${key.sale_type == 1 ? '<span class="badge badge-info">Sewa</span>' : '<span class="badge badge-warning">Jual</span>'}
+											${sale_type}
 										</ul>
 									</div>
 								</div>

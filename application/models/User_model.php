@@ -25,6 +25,7 @@ class User_model extends CI_model
                                     mu.user_id,
                                     mu.user_name,
                                     mu.user_full_name,
+                                    mu.user_fullname,
                                     mu.user_email,
                                     mu.user_phone_number,
                                     mu.id_card,
